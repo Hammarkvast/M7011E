@@ -13,8 +13,8 @@ const app = express();
 //});
 
 app.use(express.static('public'));
-app.get('/index.html', function (req, res) {
-   res.sendFile("./" + "index.html" );
+app.get('/', function (req, res) {
+   res.sendFile(__dirname+ "/index.html" );
 })
 
 app.get('/process_get', function (req, res) {
