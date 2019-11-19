@@ -1,4 +1,6 @@
 var gaussian = require('gaussian'); 
+
+
 class WeatherSim{
     distribution;
     date;
@@ -9,7 +11,6 @@ class WeatherSim{
         this.date = new Date();
 
     }
-    
 
     weather(distribution,date, previousspped){
         previousspped += distribution.ppf(Math.random());
