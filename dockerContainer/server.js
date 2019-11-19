@@ -14,12 +14,15 @@ const app = express();
 
 app.use(express.static('public'));
 app.get('/', function (req, res) {
-   res.sendFile(__dirname+ "/index.html" );
+   res.sendFile(__dirname + "/index.html" );
+   // var response = app.query("https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/159880/period/latest-months/data.json");
+   // console.log(response);
+   // res.end(JSON.stringify(response));
 })
 
 app.get('/process_get', function (req, res) {
    // Prepare output in JSON format
-   response = {
+   var response = {
       first_name:req.query.first_name,
       last_name:req.query.last_name
    };
