@@ -4,7 +4,7 @@ var gaussian = require('gaussian');
 class WeatherSim{
     distribution;
     date;
-    previousspped = 7;
+    previouspeed = 7;
     timespan = 100;
     constructor(){
         this.distribution = new gaussian(0, 0.49);
@@ -12,10 +12,10 @@ class WeatherSim{
 
     }
 
-    weather(distribution,date, previousspped){
-        previousspped += distribution.ppf(Math.random());
-        this.previousspped = previousspped;
-        return previousspped
+    weather(distribution,date, previouspeed){
+        previouspeed += distribution.ppf(Math.random());
+        this.previouspeed = previouspeed;
+        return previouspeed
     }
 
     runweather(){
@@ -24,9 +24,9 @@ class WeatherSim{
 
        // while(i < 5){
         for (let i = 0; i<this.timespan;i++){
-            setTimeout(()=>{console.log(this.weather(this.distribution,this.date,this.previousspped)); },i*1000)
+            setTimeout(()=>{console.log(this.weather(this.distribution,this.date,this.previouspeed)); },i*1000)
         }   
-       // console.log(this.weather(this.distribution,this.date,this.previousspped));
+       // console.log(this.weather(this.distribution,this.date,this.previouspeed));
         //setTimeout(function(){ alert("Hello"); }, 5000);
         //    i++;
        // }
@@ -34,6 +34,6 @@ class WeatherSim{
     }
 }
 
-const test = new WeatherSim();
-test.runweather();
+//const test = new WeatherSim();
+//test.runweather();
 

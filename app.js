@@ -3,7 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var weathersim = require('./public/javascripts/WeatherSim');
+//var weathersim = require('./public/javascripts/WeatherSim');
+var productionSim = require('./public/javascripts/productionSIm')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -20,9 +21,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.get('*', function(req,res){
+  console.log("Enter check")
+  console.log(res);
+})
 app.use('/users', usersRouter);
 
-app.use('/weathersim', express.static('./public/javascripts/WeatherSim.js'));
+//app.use('/weathersim', express.static('./public/javascripts/WeatherSim.js'));
+
+app.use('/productionSim', express.static('./public/javascripts/ProductionSim.js'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
