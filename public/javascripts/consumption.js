@@ -1,20 +1,23 @@
 var gaussian = require("gaussian");
 
-class consumption {
+module.exports = class Consumption {
     distribution;
-    prevConsumption = 300;
+    prevConsumption;
     constructor(){
-        this.distribution = gaussian(0, 0.8)
+        let prevConsumption = 300;
+        const distribution = gaussian(0, 0.8);
+        this.distribution = distribution;
+        this.prevConsumption = prevConsumption;
     }
 
-    consumption(prevConsumption, distribution){
-        prevConsumption+= distribution.ppf(Math.random());
-        this.prevConsumption = prevConsumption;
-        return prevConsumption;
+    consumption(){
+        this.prevConsumption+= this.distribution.ppf(Math.random());
+        return this.prevConsumption;
     }
 
     runConsumptionSim(){
-        setTimeout(() => {console.log(this.consumption(this.prevConsumption, this.distribution)); }, 1);
+        //setInterval(() => {console.log(this.consumption(this.prevConsumption, this.distribution)); }, 1000);
+        return this.consumption();
     }
 
 }

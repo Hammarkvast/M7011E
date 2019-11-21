@@ -4,7 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //var weathersim = require('./public/javascripts/WeatherSim');
-var productionSim = require('./public/javascripts/productionSIm')
+//var productionSim = require('./public/javascripts/productionSIm');
+var house = require('./public/javascripts/house');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -29,8 +30,9 @@ app.use('/users', usersRouter);
 
 //app.use('/weathersim', express.static('./public/javascripts/WeatherSim.js'));
 
-app.use('/productionSim', express.static('./public/javascripts/ProductionSim.js'));
+//app.use('/productionSim', express.static('./public/javascripts/ProductionSim.js'));
 
+app.use('/house', express.static('./public/javascripts/house.js'));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -46,6 +48,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// const test = new house("Adam");
+// test.testCons();
 
 module.exports = app;
 
