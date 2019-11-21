@@ -3,16 +3,23 @@ let WeatherSim = require('./WeatherSim.js');
 class ProductionSim{
     weather;
     constructor(){
-         this.weather = new WeatherSim();
-
+        const weather = new WeatherSim();
+        this.weather = weather;
     };
 
     currentproduction(){
-        console.log("Enter check Poduction")
-        this.weather.runweather();
+        let windspeed = this.weather.weather();
+        let production_kwh = windspeed * 8;
+        return production_kwh;
     }
 }
 
 const test = new ProductionSim();
-test.currentproduction();
+var avg =0;
+for (i = 0; i <100;i++){
+    let output = test.currentproduction();
+    avg += output;
+    console.log(output);
+}
+console.log("final avg: ", avg/100,"\n");
 
