@@ -8,3 +8,4 @@
 | 2019-11-19  | 5.5       | More work on the simulator that now uses the SMHI api. The structure was also changed |
 | 2019-11-20  | 5       | More work on the weather sim and learning object oriented js |
 | 2019-11-21  | 2       | Started work on a house simulator, that simulates a house with its current electric consumption |
+| 2019-11-22  | 3       | Researched REST, and setup a MySQL server inside a docker container |
