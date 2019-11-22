@@ -1,6 +1,6 @@
 const ProductionSim = require('./ProductionSim.js');
 
-class Windturbine{
+module.exports = class Windturbine{
     production;
     broken;
     count;
@@ -36,7 +36,7 @@ class Windturbine{
 
 }
 
-const wt = new Windturbine();
-for (i = 0; i <1000; i++){
-    console.log(wt.getwindtrubineprod());
-}
+// const wt = new Windturbine();
+// for (i = 0; i <1000; i++){
+    // console.log(wt.getwindtrubineprod());
+// }

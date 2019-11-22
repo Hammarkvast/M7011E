@@ -6,10 +6,10 @@ var logger = require('morgan');
 //var weathersim = require('./public/javascripts/WeatherSim');
 //var productionSim = require('./public/javascripts/ProductionSim')
 
-var WindTurbine = require('./public/javascripts/WindTurbine')
+//var WindTurbine = require('./public/javascripts/WindTurbine')
 //var productionSim = require('./public/javascripts/productionSIm');
 
-//var house = require('./public/javascripts/house');
+var house = require('./public/javascripts/house');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -37,9 +37,9 @@ app.use('/users', usersRouter);
 
 //app.use('/productionSim', express.static('./public/javascripts/ProductionSim.js'));
 
-app.use('/WindTurbine', express.static('./public/javascripts/WindTurbine.js'));
+//app.use('/WindTurbine', express.static('./public/javascripts/WindTurbine.js'));
 
-//app.use('/house', express.static('./public/javascripts/house.js'));
+app.use('/house', express.static('./public/javascripts/house.js'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
