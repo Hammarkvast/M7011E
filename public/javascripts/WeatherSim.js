@@ -9,6 +9,8 @@ module.exports = class WeatherSim{
     constructor(){
         let previouspeed = 7;
         let timespan = 100;
+        let minWind = 0;
+        let highwind = 16;
         const distribution = new gaussian(0, 0.49);
         const date = new Date();
 
@@ -19,8 +21,25 @@ module.exports = class WeatherSim{
     }
 
     weather(){
-        this.previouspeed += this.distribution.ppf(Math.random());
+        if (this.previouspeed>this.highwind){
+            let difference = this.previouspeed-this.highwind
+            this.previouspeed += this.distribution.ppf(Math.random()-this.decprob(difference));
+        } else{
+            this.previouspeed += this.distribution.ppf(Math.random());
+        }
+        if (this.previouspeed < 0){
+            this.previouspeed = 0;
+        }
         return this.previouspeed;
+    }
+
+    decprob(difference){{
+        if (difference <=1){
+            return 0.35;
+        }
+        return 0.35^difference + this.decprob(difference-1);
+    }
+
     }
 
     runweather(){
