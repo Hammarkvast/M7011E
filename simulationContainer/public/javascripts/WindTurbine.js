@@ -15,23 +15,31 @@ module.exports = class Windturbine{
 
     getwindtrubineprod(){
         let val = Math.random();
-        console.log(val);
         if (val <= 0.01){
             this.broken = true;
         } 
-        console.log("Är jag dum i huvudet eller vad?!?!: ",this.count);
         if (this.count >= 5){
-            console.log("enter check")
             this.broken = false; 
             this.count = 0;
         }
         if (this.broken == true){
             this.count += 1;
-            return -1;
+            return 0;
         }
 
 
         return this.production.currentproduction();
+    }
+
+    getbroken(){
+        // if (this.count >=5){
+            // this.count = 0;
+            // this.broken = false;
+        // } 
+        // if (this.broken){
+            // this.count++;
+        // }
+        return this.broken;
     }
 
 }

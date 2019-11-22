@@ -4,7 +4,7 @@ module.exports = class Consumption {
     distribution;
     prevConsumption;
     constructor(){
-        let prevConsumption = 300;
+        let prevConsumption = 45;
         const distribution = gaussian(0, 0.8);
         this.distribution = distribution;
         this.prevConsumption = prevConsumption;
