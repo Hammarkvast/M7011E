@@ -9,3 +9,4 @@
 | 2019-11-20  | 5       | More work on the weather sim and learning object oriented js |
 | 2019-11-21  | 2       | Started work on a house simulator, that simulates a house with its current electric consumption |
 | 2019-11-22  | 3       | Researched REST, and setup a MySQL server inside a docker container |
+| 2019-11-24  | 2.5       | Did more research into API:S and how to write them. Also setup Postman for future use. |
