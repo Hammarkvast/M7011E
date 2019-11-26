@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var ownerRouter = require('./routes/owner');
 //var weathersim = require('./public/javascripts/WeatherSim');
 //var productionSim = require('./public/javascripts/ProductionSim')
 
@@ -32,7 +33,7 @@ app.get('*', function(req,res){
   console.log(res);
 })
 app.use('/users', usersRouter);
-
+app.use('./owner', ownerRouter);
 //app.use('/weathersim', express.static('./public/javascripts/WeatherSim.js'));
 
 //app.use('/productionSim', express.static('./public/javascripts/ProductionSim.js'));
