@@ -8,10 +8,10 @@ services:
       MYSQL_ROOT_PASSWORD: jada  #lägg lösenordet här
       MYSQL_DATABASE: testapp
     ports:
-      - "8080:8080"
+      - "3308:3306"
     volumes: 
       - /mysql_init:/docker-entrypoint-initdb.d
   admin:
     image: adminer
     ports:  
-      - "3308:3306"
+      - "8080:8080"
