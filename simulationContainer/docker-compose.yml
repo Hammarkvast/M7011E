@@ -4,7 +4,7 @@ services:
     build: .
     ports:
       - "8080:8080"
-    #network_mode: host 
+    network_mode: host 
     # networks:
     # - m7011e_default
 # 
