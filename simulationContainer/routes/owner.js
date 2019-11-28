@@ -15,3 +15,6 @@ router.get('/', function(req, res, next) {
         res.json(row[0])
     })
 });
+
+
+module.exports = router;
