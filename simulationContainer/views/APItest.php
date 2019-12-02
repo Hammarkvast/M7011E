@@ -38,7 +38,7 @@
 
   // Call GET method fetch all records
   $method = 'GET';
-  $url = 'http://localhost:3000/products';
+  $url = 'http://localhost:3000/owner';
   $data = NULL;
 
   $products = callapi($method, $url, $data);
@@ -49,7 +49,7 @@
     $id = $_GET['id'];
 
     $method = 'GET';
-    $url = 'http://localhost:3000/products/'.$id;
+    $url = 'http://localhost:3000/owner/'.$id;
     $data = NULL;
 
     $prod = callapi($method, $url, $data);
@@ -113,13 +113,13 @@
       <form action="" method="POST">
         <div class="form-row">
           <div class="col-md-3">
-            <input type="text" name="name" class="form-control" placeholder="name" />
+            <input type="text" name="username" class="form-control" placeholder="username" />
           </div>
           <div class="col-md-3">
-            <input type="text" name="sku" class="form-control" placeholder="sku" />
+            <input type="text" name="password" class="form-control" placeholder="password" />
           </div>
           <div class="col-md-3">
-            <input type="text" name="price" class="form-control" placeholder="price" />
+            <input type="text" name="houseid" class="form-control" placeholder="houseid" />
           </div>
           <div class="col-md-3">
             <button type="submit" name="submit" value="create" class="btn btn-success">Create</button>
@@ -131,13 +131,13 @@
       <form action="" method="POST">
         <div class="form-row">
           <div class="col-md-3">
-            <input type="text" name="name" class="form-control" value="<?php echo $prod->name ?>" />
+            <input type="text" name="username" class="form-control" value="<?php echo $owners->username ?>" />
           </div>
           <div class="col-md-3">
-            <input type="text" name="sku" class="form-control" value="<?php echo $prod->sku ?>" />
+            <input type="text" name="password" class="form-control" value="<?php echo $prod->password ?>" />
           </div>
           <div class="col-md-3">
-            <input type="text" name="price" class="form-control" value="<?php echo $prod->price ?>" />
+            <input type="text" name="houseid" class="form-control" value="<?php echo $prod->houseid ?>" />
           </div>
           <div class="col-md-3">
             <input type="hidden" name="id" value="<?php echo $prod->id ?>" />
@@ -149,25 +149,25 @@
       <br />
       <div class="row">
         <div class="col-md-12">
-          <?php $products = json_decode($products) ?>
-          <?php if(!empty($products)) { ?>
+          <?php $owners = json_decode($owners) ?>
+          <?php if(!empty($owners)) { ?>
             <table class="table">
               <tr>
                 <th>#ID</th>
-                <th>Name</th>
-                <th>SKU</th>
-                <th>Price</th>
+                <th>username</th>
+                <th>password</th>
+                <th>houseid</th>
                 <th>Action</th>
               </tr>
-            <?php foreach($products as $product) { ?>
+            <?php foreach($owners as $owners) { ?>
               <tr>
-                <td><?php echo $product->id ?></td>
-                <td><?php echo $product->name ?></td>
-                <td><?php echo $product->sku ?></td>
-                <td><?php echo $product->price ?></td>
+                <td><?php echo $owners->id ?></td>
+                <td><?php echo $owners->houseid ?></td>
+                <td><?php echo $owners->username ?></td>
+                <td><?php echo $owners->password ?></td>
                 <td>
-                  <a href="index.php?id=<?php echo $product->id ?>&action=edit" class="btn btn-info btn-sm">Edit</a>
-                  <a href="index.php?id=<?php echo $product->id ?>&action=del" class="btn btn-danger btn-sm">Delete</a>
+                  <a href="index.php?id=<?php echo $owners->id ?>&action=edit" class="btn btn-info btn-sm">Edit</a>
+                  <a href="index.php?id=<?php echo $owners->id ?>&action=del" class="btn btn-danger btn-sm">Delete</a>
                 </td>
               </tr>
             <?php } ?>

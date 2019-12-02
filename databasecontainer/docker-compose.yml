@@ -10,8 +10,16 @@ services:
     ports:
       - "3308:3306"
     volumes: 
-      - /mysql_init:/docker-entrypoint-initdb.d
-  admin:
-    image: adminer
-    ports:  
-      - "8080:8080"
+      - ./mysql_init:/docker-entrypoint-initdb.d #/databasecreation.sql
+      #- /mysql_init:/docker-entrypoint-initdb.d/test.sql
+    container_name: mydb
+    #network_mode: host
+    # networks:
+    #   - m7011e_default  
+    # admin:
+      # image: adminer
+        # ports:  
+          # - "3308:3306"
+# # networks:
+  # m7011e_default:
+    # driver: bridge
