@@ -10,3 +10,6 @@
 | 2019-11-21  | 2       | Started work on a house simulator, that simulates a house with its current electric consumption |
 | 2019-11-22  | 3       | Researched REST, and setup a MySQL server inside a docker container |
 | 2019-11-24  | 2.5       | Did more research into API:S and how to write them. Also setup Postman for future use. |
+| 2019-11-26  | 4       | Started building the API |
+| 2019-11-27  | 3       | Tried to create a connection between the database, and the API |
+| 2019-11-28  | 4       | Got connection between the db and API, started on SQL |
