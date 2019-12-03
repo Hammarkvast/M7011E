@@ -62,7 +62,7 @@
     $id = $_GET['id'];
 
     $method = 'DELETE';
-    $url = 'http://localhost:3000/products/delete/'.$id;
+    $url = 'http://localhost:3000/owner/delete/'.$id;
     $data = NULL;
 
     $result = callapi($method, $url, $data);
@@ -76,7 +76,7 @@
     if($_POST['submit'] == 'create')
     {
       $method = 'POST';
-      $url = 'http://localhost:3000/products/create';
+      $url = 'http://localhost:3000/owners/create';
       $data = json_encode($_POST);
 
       $result = callapi($method, $url, $data);
@@ -90,7 +90,7 @@
       $id = $_POST['id'];
 
       $method = 'PUT';
-      $url = 'http://localhost:3000/products/update/'.$id;
+      $url = 'http://localhost:3000/owners/update/'.$id;
       $data = json_encode($_POST);
 
       $result = callapi($method, $url, $data);
@@ -134,10 +134,10 @@
             <input type="text" name="username" class="form-control" value="<?php echo $owners->username ?>" />
           </div>
           <div class="col-md-3">
-            <input type="text" name="password" class="form-control" value="<?php echo $prod->password ?>" />
+            <input type="text" name="password" class="form-control" value="<?php echo $owners->password ?>" />
           </div>
           <div class="col-md-3">
-            <input type="text" name="houseid" class="form-control" value="<?php echo $prod->houseid ?>" />
+            <input type="text" name="houseid" class="form-control" value="<?php echo $owners->houseid ?>" />
           </div>
           <div class="col-md-3">
             <input type="hidden" name="id" value="<?php echo $prod->id ?>" />

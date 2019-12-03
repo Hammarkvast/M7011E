@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var ownerRouter = require('./routes/owner');
+var ownerRouter = require('./routes/owners');
 //var weathersim = require('./public/javascripts/WeatherSim');
 //var productionSim = require('./public/javascripts/ProductionSim')
 
@@ -19,7 +19,8 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set('view engine', 'php');
+//app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -33,7 +34,7 @@ app.get('*', function(req,res){
   console.log(res);
 })
 app.use('/users', usersRouter);
-app.use('./owner', ownerRouter);
+app.use('./owners', ownerRouter);
 //app.use('/weathersim', express.static('./public/javascripts/WeatherSim.js'));
 
 //app.use('/productionSim', express.static('./public/javascripts/ProductionSim.js'));
