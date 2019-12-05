@@ -14,3 +14,8 @@
 | 2019-11-25  | 0.7     |Did some research on restful api|
 | 2019-11-26  | 3.3     | Started with setting up an api have ran into some problems with connecting our nodejs container and our mysql container|
 | 2019-11-27  | 5.5     | Spent the entire time just trying to connnect node.js and mysql|
+| 2019-12-1   | 3.5     | spent more time trying to connect node js and mysql and finally got it to work|
+| 2019-12-2   |  3   | for some reason the database is emty with no tables and no data |
+| 2019-12-3   |  3.5   |managed to solve the problem with empty database adn started writing the api |
+| 2019-12-4   | 4    | writing some of the api and adding table to mysql database |
+| 2019-12-2   |     | |
