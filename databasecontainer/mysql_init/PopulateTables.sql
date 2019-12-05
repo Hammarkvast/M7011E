@@ -6,3 +6,5 @@ INSERT INTO `house` (`longitude`, `latitude`, `production`, `consumption`, `batt
 INSERT INTO `owners` ( `houseid`, `username`, `password`) VALUES (1,"a", "a1");
 INSERT INTO `owners` ( `houseid`, `username`, `password`) VALUES (2,"b", "b1");
 INSERT INTO `owners` ( `houseid`, `username`, `password`) VALUES (3,"c", "c1");
+
+INSERT INTO `totalelectricity` (`id`, `totalconsumption`, `totalproduction`) VALUES (1, 2.0, 3.0);

@@ -10,5 +10,6 @@ services:
     ports:
       - "3308:3306"
     volumes: 
-      - ./mysql_init:/docker-entrypoint-initdb.d 
+      - ./mysql_init/databasecreation.sql:/docker-entrypoint-initdb.d/1-databasecreation.sql
+      - ./mysql_init/PopulateTables.sql:/docker-entrypoint-initdb.d/2-PopulateTables.sql
     container_name: mydb

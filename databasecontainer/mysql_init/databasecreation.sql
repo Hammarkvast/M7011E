@@ -28,4 +28,10 @@ CREATE TABLE `antom`.`owners`(
     FOREIGN KEY (houseid) REFERENCES house(houseid)   
 );
 
+CREATE TABLE `antom`.`totalelectricity`(
+    `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+    `totalproduction` float,
+    `totalconsumption` float,
+    PRIMARY KEY (id)
+);
 -- ALTER TABLE owners OWNER TO antom;   

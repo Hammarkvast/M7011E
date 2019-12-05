@@ -19,8 +19,10 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+
+app.set('view engine', 'hbs');
 //app.set('view engine', 'hbs');
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -30,11 +32,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 // app.get('*', function(req,res){
+
   // console.log("Enter check")
   // console.log(res);
 // })
 app.use('/users', usersRouter);
 console.log("passed users");
+
 app.use('/owners', ownerRouter);
 //app.use('/weathersim', express.static('./public/javascripts/WeatherSim.js'));
 
@@ -57,7 +61,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  //res.render('error');
+  res.render('error');
 });
 
 // const test = new house("Adam");
