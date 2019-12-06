@@ -13,3 +13,7 @@
 | 2019-11-26  | 4       | Started building the API |
 | 2019-11-27  | 3       | Tried to create a connection between the database, and the API |
 | 2019-11-28  | 4       | Got connection between the db and API, started on SQL |
+| 2019-12-02  | 3       | Discovered a bug where database was empty, even tho tables were created.  |
+| 2019-12-03  | 4       | Fixed bug, and also started to test the api with postman |
+| 2019-12-04  | 4       | Did more work on the api, slowly progressing forward. |
+
