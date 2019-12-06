@@ -34,17 +34,17 @@ router.get('/getowner', function(req, res, next){
     })
 });
 
+
 router.delete('/deleteOwner', function(req, res, next) {
-    var id = req.param.id;
+    var id = req.query.id;
     var sql = 'DELETE * FROM owners WHERE id = ?';
-    db.query(sql, userID, function(err, row, fields) {
+    db.query(sql, [id], function(err, row, fields) {
         if(err){
             res.status(500).send({error: 'couldnt delete the specific owner'});
         }
         res.json(row[0])
     })
-})
-
+});
 
 
 module.exports = router;

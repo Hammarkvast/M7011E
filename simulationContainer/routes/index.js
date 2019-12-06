@@ -3,12 +3,12 @@ var router = express.Router();
 const request = require("request");
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render("index");
+  res.render("test");
 });
 
-//  router.get('/owner', function(req, res, next) {
-  //  res.render("owner");
-// });
+  router.get('/owners/owner', function(req, res, next) {
+    res.render("owner");
+});
 
 /*
 //router.post('/',function(req,res){
