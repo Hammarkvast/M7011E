@@ -8,11 +8,11 @@ router.use(bodyParser.json());
 
 //GET all owners.
 
-router.get('/owner', function(req, res, next) {
+router.get('/', function(req, res, next) {
      //var id = req.param.id;
     // console.log("enter check owner")
     // res.render('owner.ejs');
-    var sql = 'SELECT * FROM  owners;';
+    var sql = 'SELECT * FROM  owners';
     //res.status(200);
     db.query(sql, function(err, rows, fields){
         if(err) {
@@ -59,6 +59,24 @@ router.delete('/deleteOwner', function(req, res, next) {
 
 
 
+router.get('/totalelectricity',function(req, res, next) {
+    var sql = 'SELECT * FROM totalelectricity';
+    db.query(sql, function(err, rows, fields){
+        if(err){
+            res.status(500).send({error: 'couldnt get the total electricity consumption or production'});
+        }
+        res.json(rows);
+    })
+});
 
+router.post('/addProductionConsumption', function(req, res, next){
+    var sql = 'INSERT INTO totalelectricity(totalconsumption, totalproduction) (SELECT SUM(consumption), SUM(production) FROM house)';
+    db.query(sql, function(err, result){
+        if(err){
+            res.status(500).send({error: 'couldnt add production or consumption'});
+        }
+        res.json({'status':'success'})
+    })
+});
 
 module.exports = router;

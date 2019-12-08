@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ownerRouter = require('./routes/owners');
+//var totalElectrictyRouter = require('./routes/totalelectricity');
 //var weathersim = require('./public/javascripts/WeatherSim');
 //var productionSim = require('./public/javascripts/ProductionSim')
 
@@ -39,9 +40,11 @@ app.use('/', indexRouter);
   // console.log(res);
 // })
 app.use('/users', usersRouter);
-console.log("passed users");
+//Fconsole.log("passed users");
 
 app.use('/owners', ownerRouter);
+console.log("passed users");
+
 //app.use('/weathersim', express.static('./public/javascripts/WeatherSim.js'));
 
 //app.use('/productionSim', express.static('./public/javascripts/ProductionSim.js'));
