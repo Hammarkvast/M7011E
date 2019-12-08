@@ -15,6 +15,8 @@ var ownerRouter = require('./routes/owners');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var signupRouter = require('./routes/signup');
+
 var app = express();
 
 // view engine setup
@@ -52,6 +54,10 @@ app.use('/owners', ownerRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+app.get('/signup', signupRouter);//call for signup page
+ 	
+app.post('/signup', signupRouter);
 
 // error handler
 app.use(function(err, req, res, next) {

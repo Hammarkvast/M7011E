@@ -15,6 +15,7 @@
 <head>
   <meta charset = "utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel='stylesheet' href='/stylesheets/slider.css' />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -28,12 +29,16 @@
 <div class="container p-3 my-3 bg-dark text-white">
   <div class="row">
     <div class="col-sm-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor..</p>
+        <h4>batttery vs grid </h4>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+          </div>
     </div>
     <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor..</p>
+      <h4> battery level 70%</h4>
+        <div class="progress">
+            <div class="progress-bar bg-secondary" style="width:70%"></div>
+          </div>
     </div>
     <div class="col-sm-4">
       <h3>Column 3</h3>
@@ -41,4 +46,17 @@
     </div>
   </div>
 </div>
+
+<script>
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  output.innerHTML = this.value;
+} 
+</script>
+
+
  </html>

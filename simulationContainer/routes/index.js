@@ -5,6 +5,10 @@ const request = require("request");
 router.get('/', function(req, res, next) {
   res.render("test");
 });
+router.get('/signup', function(req, res, next) {
+  res.render("signup");
+});
+
 
   router.get('/owners/owner', function(req, res, next) {
     res.render("owner");

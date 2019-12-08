@@ -1,1 +1,3 @@
-GET localhost:3000/owner http/1.1;
+GET http://localhost:3000/owners/owner http/1.1
+
+###
