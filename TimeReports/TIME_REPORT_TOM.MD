@@ -16,4 +16,5 @@
 | 2019-12-02  | 3       | Discovered a bug where database was empty, even tho tables were created.  |
 | 2019-12-03  | 4       | Fixed bug, and also started to test the api with postman |
 | 2019-12-04  | 4       | Did more work on the api, slowly progressing forward. |
+| 2019-12-06  | 3.5       | Setup tables for total electricity consumption and production, also added functionality that adds all production and consumption together and adds them to the table. Started building signup page. |
 
