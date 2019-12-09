@@ -3,3 +3,24 @@ GET http://localhost:3000/owners/owner http/1.1
 ###
  
 POST  http://localhost:3000/owners/owner http/1.1
+
+###
+
+POST http://localhost:3000/wind/updatelastwind http/1.1
+content-type: application/json
+
+{
+    "id": 1, 
+    "lws": 10.0
+}
+###
+PUT http://localhost:3000/wind/updatelastwind http/1.1
+content-type: application/json
+
+{
+    "id": 1, 
+    "lws": 10.0
+}
+
+###
+POST  http://localhost:3000/wind/updatelastwind http/1.1

@@ -10,19 +10,24 @@ router.get('/gewinddata', function(req, res, next){
     var sql = 'SELECT lastwindspeed, meanwind, stddevwind FROM house WHERE houseid = ?';
     db.query(sql, [id], function(err, row, fields){
         if(err){
-            res.status(500).send({error: 'couldnt recieve mean wind'});
+            console.log(err);
+            res.sendStatus(500);
+            return;
         }
         res.json(row)
     })
 });
 
 router.put('/updatelastwind', function(req, res, next){
-    var id = req.query.id;
-    var lastwindspeed = req.body.lastwindspeed;
-    var sql = "'UPDATE house SET lastwindspeed = '"+lastwindspeed + "' WHERE houseid = ?'";
+    var id = req.body.id;
+    var lastwindspeed = req.body.lws;
+    console.log("req body: "+ req.body);
+    var sql = "UPDATE antom.house SET lastwindspeed = "+ lastwindspeed + " WHERE houseid ="+id+";";
     db.query(sql, function(err, result){
         if (err){
-            res.status(500).send({error: 'couldnt update wind speed'});
+            console.log(err);
+            res.sendStatus(500);
+            return;
         }
         res.json({'status':'success'})
     })
