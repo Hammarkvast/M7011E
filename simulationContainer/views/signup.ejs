@@ -17,7 +17,14 @@
 
 <div class="container p-3 my-3 bg-dark text-white">
     <form class="form-horizontal" role="form" method="post" action="/signup" onSubmit="return checkblank(this);">
-      <div class="input-group mb-3">
+        <% if (message.length > 0) { %>
+          <div class="alert alert-success col-sm-12"><%= message %></div>
+        <% } %>
+        <div id="signupalert" style="display:none" class="alert alert-danger">
+          <p>Error:</p>
+          <span></span>
+        </div>
+      <div class="input-group mb-3">  
         <div class="input-group-prepend">
           <span class="input-group-text">Person</span>
         </div>
@@ -30,11 +37,11 @@
         </div>
        <div class="form-group">
          <label for="usr">Username:</label>
-         <input type="text" class="form-control" id="usr">
+         <input type="text" class="form-control" id="username" name = "username">
         </div>
         <div class="form-group">
             <label for="pwd">Password:</label>
-             <input type="password" class="form-control" id="pwd">
+             <input type="password" class="form-control" id="password" name = "password">
         </div> 
         <div class="form-group">
           <!-- Button -->                                       

@@ -34,16 +34,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/signup', signupRouter);//call for signup page
 // app.get('*', function(req,res){
-
+  
   // console.log("Enter check")
   // console.log(res);
 // })
-app.use('/users', usersRouter);
-//Fconsole.log("passed users");
-
-app.use('/owners', ownerRouter);
-console.log("passed users");
+// ///app.use('/users', usersRouter);
+///Fconsole.log("passed users");
+// ///
+// ///app.use('/owners', ownerRouter);
+// ///console.log("passed users");
 
 //app.use('/weathersim', express.static('./public/javascripts/WeatherSim.js'));
 
@@ -58,9 +59,8 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-app.get('/signup', signupRouter);//call for signup page
- 	
-app.post('/signup', signupRouter);
+//app.use('/', indexRouter);
+
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -70,7 +70,10 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  console.log("error Message: " + err.message);
+  console.log("error log: " + err.log);
+  //console.log("error message" + err.);
+  //res.render('signup',{message: err});
 });
 
 // const test = new house("Adam");

@@ -3,15 +3,18 @@ var router = express.Router();
 const request = require("request");
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render("test");
-});
-router.get('/signup', function(req, res, next) {
-  res.render("signup");
+  res.render("test2", {message: "testtest"});
 });
 
+// router.get('/signup', function(req, res, next) {
+  // let message = "index.js";
+  // res.render("signup", {message: message});
+// });
 
-  router.get('/owners/owner', function(req, res, next) {
-    res.render("owner");
+
+
+router.get('/owners/owner', function(req, res, next) {
+   res.render("owner");
 });
 
 /*
