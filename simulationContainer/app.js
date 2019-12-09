@@ -15,7 +15,7 @@ var ownerRouter = require('./routes/owners');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var windRouter = require('./routes/wind');
 var signupRouter = require('./routes/signup');
 
 var app = express();
@@ -43,7 +43,9 @@ app.use('/signup', signupRouter);//call for signup page
 // ///app.use('/users', usersRouter);
 ///Fconsole.log("passed users");
 // ///
-// ///app.use('/owners', ownerRouter);
+app.use('/owners', ownerRouter);
+
+app.use('/wind', windRouter);
 // ///console.log("passed users");
 
 //app.use('/weathersim', express.static('./public/javascripts/WeatherSim.js'));

@@ -13,7 +13,7 @@ CREATE TABLE `antom`.`house` (
     `latitude` float,
     `lastwindspeed` float,
     `meanwind` float,
-    `stddevwind` flaot,
+    `stddevwind` float,
     `production` float,
     `consumption` float,
     `battery` float,
