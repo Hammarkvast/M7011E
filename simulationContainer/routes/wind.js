@@ -31,6 +31,6 @@ router.put('/updatelastwind', function(req, res, next){
         }
         res.json({'status':'success'})
     })
-})
+});
 
 module.exports = router;

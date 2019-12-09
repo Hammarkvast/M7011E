@@ -33,6 +33,16 @@ router.get('/getOwner', function(req, res, next){
     })
 });
 
+router.get('/getOwnerID', function(req, res, next){
+    var sql = 'SELECT id FROM owners';
+    db.query(sql, function (err, rows, fields){
+        if(err) {
+            res.status(500).send({error: 'couldnt recieve ownerIDs'})
+        }
+        res.json(rows)
+    })
+});
+
 router.get('/getHouseElectricity', function(req, res, next){
     var id = req.query.id;
     var sql = 'SELECT * FROM house INNER JOIN owners ON house.houseid = owners.houseid WHERE house.houseid='+id;
