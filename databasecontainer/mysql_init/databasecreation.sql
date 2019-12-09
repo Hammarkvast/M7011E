@@ -11,6 +11,9 @@ CREATE TABLE `antom`.`house` (
     `houseid` int UNSIGNED NOT NULL AUTO_INCREMENT,
     `longitude` float, 
     `latitude` float,
+    `lastwindspeed` float,
+    `meanwind` float,
+    `stddevwind` flaot,
     `production` float,
     `consumption` float,
     `battery` float,
@@ -21,7 +24,10 @@ CREATE TABLE `antom`.`house` (
 
 CREATE TABLE `antom`.`owners`(
     `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-    `houseid` int UNSIGNED NOT NULL, 
+    `houseid` int UNSIGNED NULL,
+    `firstname` varchar(255) CHARACTER SET UTF8 DEFAULT NULL,
+    `lastname` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+    `email` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `username`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `password`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     PRIMARY KEY (id),
