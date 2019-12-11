@@ -11,6 +11,8 @@ var ownerRouter = require('./routes/owners');
 //var WindTurbine = require('./public/javascripts/WindTurbine')
 //var productionSim = require('./public/javascripts/productionSIm');
 
+const {Simulationtest} = require('./public/javascripts/Simulation.js')
+
 //var house = require('./public/javascripts/house');
 
 var indexRouter = require('./routes/index');
@@ -55,6 +57,11 @@ app.use('/wind', windRouter);
 //app.use('/WindTurbine', express.static('./public/javascripts/WindTurbine.js'));
 
 //app.use('/house', express.static('./public/javascripts/house.js'));
+
+//app.use('/Simulation', express.static('./public/javascripts/Simulation,js'));
+var jada  = Simulationtest({});
+console.log("Alla mina höga förhoppningar!! :(" + jada[0]);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
