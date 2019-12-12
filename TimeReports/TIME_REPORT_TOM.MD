@@ -17,4 +17,5 @@
 | 2019-12-03  | 4       | Fixed bug, and also started to test the api with postman |
 | 2019-12-04  | 4       | Did more work on the api, slowly progressing forward. |
 | 2019-12-06  | 3.5       | Setup tables for total electricity consumption and production, also added functionality that adds all production and consumption together and adds them to the table. Started building signup page. |
-
+| 2019-12-08  | 5       | Finished the signup page, which now can be added to the webpage for the prosumer and company. |
+| 2019-12-09  | 4       | Increased api functionality so that simulation data can be shown for the prosumer and company. |
