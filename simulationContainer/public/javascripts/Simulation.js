@@ -15,11 +15,17 @@ async function Simulationtest({}){
         res.sendStatus(500);
         return err;
     }
-    for (i = 0; i < ; i++){
-        console.log("result: " + result[i].id);
+    console.log("testing testing: "+ result.length);
+    console.log(result);
+    
+    for (i=0; i<result.length; i++){
+        console.log("row: "+ result[i])
+        console.log("value: " + result[i].id);
     }
+
+    console.log("testing testint itnet ")
     return result[0];
-    })
+    })  
 
 }
 
