@@ -1,15 +1,18 @@
 let WeatherSim = require('./WeatherSim.js');
 
 module.exports = class ProductionSim{
-    weather;
-    constructor(){
-        const weather = new WeatherSim();
-        this.weather = weather;
+    //weather;
+    constructor(windspeed, efficiency){
+        this. windspeed = windspeed;
+        this.efficiency = efficiency;
+
+        //const weather = new WeatherSim();
+        //this.weather = weather;
     };
 
     currentproduction(){
-        let windspeed = this.weather.weather();
-        let production_kwh = windspeed * 8;
+        //let windspeed = this.weather.weather();
+        let production_kwh = this.windspeed * this.efficiency;
         return production_kwh;
     }
 }

@@ -7,31 +7,40 @@
 
 -- CREATE DATABASE `antom`;
 
-CREATE TABLE `antom`.`house` (
-    `houseid` int UNSIGNED NOT NULL AUTO_INCREMENT,
-    `longitude` float, 
-    `latitude` float,
-    `lastwindspeed` float,
-    `meanwind` float,
-    `stddevwind` float,
-    `production` float,
-    `consumption` float,
-    `battery` float,
-    PRIMARY KEY (houseid)
-);
 
 -- ALTER TABLE house OWNER TO antom;
 
 CREATE TABLE `antom`.`owners`(
-    `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-    `houseid` int UNSIGNED NULL,
+    `ownerid` int UNSIGNED NOT NULL AUTO_INCREMENT,
     `firstname` varchar(255) CHARACTER SET UTF8 DEFAULT NULL,
     `lastname` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `email` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `username`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `password`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (houseid) REFERENCES house(houseid)   
+    PRIMARY KEY (ownerid)
+);
+
+CREATE TABLE `antom`.`house` (
+    `houseid` int UNSIGNED NOT NULL AUTO_INCREMENT,
+    `ownerid` int UNSIGNED NULL,
+    `longitude` float, 
+    `latitude` float,
+    `lastwindspeed` float,
+    `meanwind` float,
+    `stddevwind` float,
+    `broken` boolean,    
+    `brokencount` int,    
+    `brokenprobability` float,    
+    `productionefficiency` float,
+    `production` float,
+    `meanconsumption` float,
+    `stddevconsumption` float,
+    `consumption` float,
+    `griddelta` float,
+    `batteryMax` int,
+    `battery` float,
+    PRIMARY KEY (houseid),
+    FOREIGN KEY (ownerid) REFERENCES owners(ownerid)
 );
 
 CREATE TABLE `antom`.`totalelectricity`(

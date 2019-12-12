@@ -3,9 +3,9 @@ var gaussian = require("gaussian");
 module.exports = class Consumption {
     distribution;
     prevConsumption;
-    constructor(){
-        let prevConsumption = 45;
-        const distribution = gaussian(0, 0.8);
+    constructor(previousConsumption,mean, stddev){
+        let prevConsumption = previousConsumption;
+        const distribution = gaussian(mean, stddev);
         this.distribution = distribution;
         this.prevConsumption = prevConsumption;
     }
