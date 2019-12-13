@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var session = require('express-session'); 
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -19,8 +20,16 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var windRouter = require('./routes/wind');
 var signupRouter = require('./routes/signup');
+var signinRouter = require('./routes/signin');
 
 var app = express();
+
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/signup', signupRouter);//call for signup page
+app.use('/signin', signinRouter);//call for signup page
 // app.get('*', function(req,res){
   
   // console.log("Enter check")

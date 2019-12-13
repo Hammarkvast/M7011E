@@ -3,6 +3,7 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY package*.json /app/
 RUN npm install
+RUN npm install express-session
 RUN npm i gaussian
 RUN npm install request
 RUN npm install mysql

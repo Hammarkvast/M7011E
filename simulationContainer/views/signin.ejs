@@ -1,0 +1,48 @@
+
+<html lang = "en">
+<head>
+  <meta charset = "utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel='stylesheet' href='/stylesheets/slider.css' />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<div class="jumbotron text-center">
+  <h1>My First Bootstrap Page</h1>
+  <p>Resize this responsive page to see the effect!</p>
+</div>
+
+<div class="container p-3 my-3 bg-dark text-white">
+    <form class="form-horizontal" role="form" method="post" action="/signin" onSubmit="return checkblank(this);">
+        <% if (message.length > 0) { %>
+          <div class="alert alert-success col-sm-12"><%= message %></div>
+        <% } %>
+        <div id="signupalert" style="display:none" class="alert alert-danger">
+          <p>Error:</p>
+          <span></span>
+        </div>
+      <div class="input-group mb-3">  
+        <div class="input-group-prepend">
+          <span class="input-group-text">Person</span>
+       <div class="form-group">
+         <label for="usr">Username:</label>
+         <input type="text" class="form-control" id="username" name = "username">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+             <input type="password" class="form-control" id="password" name = "password">
+        </div> 
+        <div class="form-group">
+          <!-- Button -->                                       
+          <div class="col-md-offset-3 col-md-9">
+              <button id="btn-signin" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign In</button>
+              
+          </div>
+      </div>
+    </form>
+</div>
+</html>
