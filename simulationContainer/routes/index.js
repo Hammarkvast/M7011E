@@ -15,10 +15,15 @@ router.get('/', function(req, res, next) {
         message = err.message + err.log
         res.render('test', {message: message}); 
       }
-      let precentage = result[0].battery / result[0].batterymax;
-      precentage = precentage * 100;
+      let battery =  result[0].battery;
+      let batterymax =  result[0].batteryMax;
+      let percentage = battery / batterymax;
+      percentage = percentage * 100;
+
+      console.log("battery: "+ batterymax  + "  batterymax: " + batterymax+ "  precentage: " + percentage)
+      
       //res.render("test", {message: percentage});
-      res.render("test", {message: 20});
+      res.render("test", {message: percentage});
 			//response.send(percentage);
       });
 

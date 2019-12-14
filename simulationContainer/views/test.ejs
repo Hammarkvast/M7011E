@@ -35,9 +35,9 @@
           </div>
     </div>
     <div class="col-sm-4">
-      <h4> battery level 70%</h4>
+      <h4 id = "header" > battery level 70%</h4>
         <div class="progress">
-            <div class="progress-bar bg-secondary" style="width:70%"></div>
+            <div class="progress-bar bg-secondary" value='70' style="width:70%" id = "prog"> </div>
         </div>
     </div>
     <div class="col-sm-4">
@@ -49,14 +49,42 @@
 
 <script>
 var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-output.innerHTML = slider.value; // Display the default slider value
-
-// Update the current slider value (each time you drag the slider handle)
-slider.oninput = function() {
-  output.innerHTML = this.value;
-} 
+console.log("wasd");
+//var output = document.getElementById("demo");
+//output.innerHTML = slider.value; // Display the default slider value
+// console.log(window.getComputedStyle(document.getElementById("prog")));
+// document.getElementById("prog")
+////Update the current slider value (each time you drag the slider handle)
+// slider.oninput = function() {
+  // output.innerHTML = this.value;
+  // 
+// } 
 </script>
 
+<% if(message) { %>
+  <script>
+  $(function() {
+
+    var progressed = <%= message %>; 
+  
+    var interval = setInterval(function() {
+    
+        $("#prog")
+    
+        .css("width", progressed + "%")
+    
+        .attr("aria-valuenow", progressed)
+    
+        .text(progressed + "% progress");
+    
+        if (progressed >= 100)
+    
+            clearInterval(interval);
+    
+    }, 100);
+  });
+  document.getElementById("header").innerHTML = "battery level = "  + <%= message %>;
+  </script>
+ <%}%>
 
  </html>
