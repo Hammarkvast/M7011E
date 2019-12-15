@@ -37,6 +37,7 @@ CREATE TABLE `antom`.`house` (
     `stddevconsumption` float,
     `consumption` float,
     `griddelta` float,
+    `gridbatterypercentage` float,
     `batteryMax` int,
     `battery` float,
     PRIMARY KEY (houseid),
@@ -47,6 +48,8 @@ CREATE TABLE `antom`.`totalelectricity`(
     `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
     `totalproduction` float,
     `totalconsumption` float,
+    `totalnetproduction` float,
+    `totalelectricityPrice` float,
     PRIMARY KEY (id)
 );
 -- ALTER TABLE owners OWNER TO antom;   

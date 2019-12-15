@@ -2,31 +2,35 @@ const ProductionSim = require('./ProductionSim.js');
 
 module.exports = class BatterySim{
    
-    constructor(battery, batterymax, production, consumption){
+    constructor(battery, batterymax, production, consumption, batterygridpercentage){
         this.battery = battery;
         this.batterymax = batterymax;
         this.production = production;
         this.consumption= consumption;
+        this.batterygridpercentage = batterygridpercentage;
     }
 
     batteryfunc(){
-        console.log("consumption battery: " + this.consumption);
-        console.log("production battery: " + this.production);
-        console.log("battery battery: " + this.battery);
-        console.log("batteryMax battery: " + this.batterymax);
+        // console.log("consumption battery: " + this.consumption);
+        // console.log("production battery: " + this.production);
+        // console.log("battery battery: " + this.battery);
+        // console.log("batteryMax battery: " + this.batterymax);
+
         let val = this.production - this.consumption;
-        let batterytemp = this.battery + val;
+
+        let batterytemp = this.battery + (val*this.batterygridpercentage);
+        let griddelta = val - (val*this.batterygridpercentage);
         console.log("jada check val: "+ val + "   batterytemp: "+batterytemp);
         if (batterytemp > this.batterymax){ 
             this.battery = this.batterymax;
-            let griddelta = batterytemp -this.battery;
+            griddelta += batterytemp -this.battery;
             let batteryarray =  [this.battery, griddelta];  
             console.log("BA1: "+batteryarray);
             return batteryarray;
         } 
         else if (batterytemp <= 0){
             this.battery = 0;
-            let griddelta = batterytemp; 
+            griddelta += batterytemp; 
             let batteryarray =  [this.battery, griddelta];  
             console.log("BA2: "+batteryarray);
             return batteryarray;

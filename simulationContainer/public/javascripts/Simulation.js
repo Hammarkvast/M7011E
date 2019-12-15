@@ -29,6 +29,7 @@ async function Simulationtest({}){
         await brokensimulation(result[i].ownerid);
         await batterysimulation(result[i].ownerid);
     }
+    await pricesimulation();
 
     console.log("testing testint itnet ")
     return result[0];
@@ -215,7 +216,7 @@ async function batterysimulation(id){
         
         let houseid = result[0].houseid;
         
-        var sql2 = "SELECT batteryMax, battery, consumption, production FROM house WHERE houseid = "+ houseid +";";
+        var sql2 = "SELECT gridbatterypercentage, batteryMax, battery, consumption, production FROM house WHERE houseid = "+ houseid +";";
 
         
         await db.query(sql2, async function(err2,result2){
@@ -225,7 +226,7 @@ async function batterysimulation(id){
                 return err2;
             }
             
-            let battsim = new BatterySim(result2[0].battery, result2[0].batteryMax, result2[0].production, result2[0].consumption);
+            let battsim = new BatterySim(result2[0].battery, result2[0].batteryMax, result2[0].production, result2[0].consumption, result2[0].gridbatterypercentage);
             let battery = [];
             battery = battsim.batteryfunc();
 
@@ -249,6 +250,30 @@ async function batterysimulation(id){
     })
 }
 
+
+async function pricesimulation(){
+    var sql = "SELECT SUM(griddelta) FROM house;";
+    await db.query(sql, async function(err,result){
+        if (err){
+            console.log(err);
+            res.sendstatus(500);
+            return err;
+        }
+        
+        let priceSim = new priceSim(result[0]);
+        let price = priceSim.price();
+        
+        var sql2 = "UPDATE antom.totalelectricity SET totalnetproduction = " + result[0] +". totalelectricityprice" + price ;
+        await db.query(sql2, async function(err2,result2){
+            if (err2){
+                console.log(err2);
+                res.sendstatus(500);
+                return err2;
+            }
+            
+        }) 
+    })
+}
 
 
 module.exports = { Simulationtest };

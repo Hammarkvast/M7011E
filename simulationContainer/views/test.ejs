@@ -27,6 +27,33 @@
 </div>
 
 <div class="container p-3 my-3 bg-dark text-white">
+
+  <div class="row">
+    <div class="col-sm-2">
+        <h4> current windspeed </h4>
+        <p id = "windspeed" > </p>
+    </div>
+    <div class="col-sm-2">
+      <h4> Current Production</h4>
+      <p id = "production" > </p>
+    </div>
+    <div class="col-sm-2">
+      <h4>Current consumption</h4>
+      <p id = consumption></p>
+    </div>
+    <div class="col-sm-2">
+      <h4>current netproduction</h4>
+      <p id = netproduction></p>
+    </div>
+    <div class="col-sm-2">
+      <h4>Current battery amount</h4>
+      <p id = battery></p>
+    </div>
+    <div class="col-sm-2">
+      <h4>Current electricity Price</h4>
+      <p id = electricityprice></p>
+    </div>
+  </div>
   <div class="row">
     <div class="col-sm-4">
         <h4>batttery vs grid </h4>
@@ -65,7 +92,7 @@ console.log("wasd");
   <script>
   $(function() {
 
-    var progressed = <%= message %>; 
+    var progressed = <%= percentage %>; 
   
     var interval = setInterval(function() {
     
@@ -75,7 +102,7 @@ console.log("wasd");
     
         .attr("aria-valuenow", progressed)
     
-        .text(progressed + "% progress");
+        .text(progressed + "%");
     
         if (progressed >= 100)
     
@@ -83,7 +110,13 @@ console.log("wasd");
     
     }, 100);
   });
-  document.getElementById("header").innerHTML = "battery level = "  + <%= message %>;
+  document.getElementById("header").innerHTML = "battery level = "  + <%= percentage %>;
+  document.getElementById("windspeed").innerHTML = <%= windspeed %> + "m/s";
+  document.getElementById("production").innerHTML = <%= production %> + "Kwh";
+  document.getElementById("consumption").innerHTML = <%= consumption %> + "Kwh";
+  document.getElementById("netproduction").innerHTML = <%= netproduction %>+ "Kwh";
+  document.getElementById("battery").innerHTML = <%= battery %> + "kwh";
+  document.getElementById("electricityprice").innerHTML = <%= electricityprice %> + "kr/kwh";
   </script>
  <%}%>
 
