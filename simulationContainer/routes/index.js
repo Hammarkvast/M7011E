@@ -44,9 +44,32 @@ router.get('/', function(req, res, next) {
 
 // router.get('/signup', function(req, res, next) {
   // let message = "index.js";
-  // res.render("signup", {message: message});
+  // res.render("signup", {message: message});yy
 // });
 
+
+router.post('/', function(req, res, next) {
+  console.log("session loggedin: " + req.session.loggedin);
+  
+  console.log("session id: " + req.session.databaseid);
+  if (req.session.loggedin){
+    message = '';
+    console.log("signupenetercehcl ")
+      var post  = req.body;
+      var slider= post.slider; 
+      console.log("post check slider value = " + slider);
+    var sql = "UPDATE antom.house SET gridbatterypercentage = "+ slider + " WHERE ownerid ="+req.session.databaseid+";";
+    db.query(sql, function(err, result){
+        if (err){
+            console.log(err);
+            res.sendStatus(500);
+            return;
+    }
+        //res.json({'status':'success'})
+    });
+  }
+    res.render("test");
+});
 
 
 router.get('/owners/owner', function(req, res, next) {

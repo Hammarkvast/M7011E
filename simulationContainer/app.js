@@ -48,13 +48,8 @@ app.use('/', indexRouter);
 app.use('/signup', signupRouter);//call for signup page
 app.use('/signin', signinRouter);//call for signup page
 // app.get('*', function(req,res){
-  
-  // console.log("Enter check")
-  // console.log(res);
 // })
 // ///app.use('/users', usersRouter);
-///Fconsole.log("passed users");
-// ///
 app.use('/owners', ownerRouter);
 
 app.use('/wind', windRouter);
@@ -79,7 +74,6 @@ app.use(function(req, res, next) {
 });
 
 //app.use('/', indexRouter);
-
 
 // error handler
 app.use(function(err, req, res, next) {

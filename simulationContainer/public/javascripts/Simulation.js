@@ -9,6 +9,8 @@ let ProductionSim = require('./ProductionSim.js');
 let Consumption = require('./Consumption.js');
 let BrokenSim = require('./BrokenSim.js');
 let BatterySim = require('./BatterySim.js');
+let PriceSim = require('./PriceSim.js');
+
 
 async function Simulationtest({}){
 
@@ -29,7 +31,7 @@ async function Simulationtest({}){
         await brokensimulation(result[i].ownerid);
         await batterysimulation(result[i].ownerid);
     }
-    await pricesimulation();
+    // await pricesimulation();
 
     console.log("testing testint itnet ")
     return result[0];
@@ -259,9 +261,9 @@ async function pricesimulation(){
             res.sendstatus(500);
             return err;
         }
-        
-        let priceSim = new priceSim(result[0]);
-        let price = priceSim.price();
+        console.log("price sim consile log: " + result[0]);
+        let priceSimvar = new PriceSim(result[0]);
+        let price = priceSimvar.price();
         
         var sql2 = "UPDATE antom.totalelectricity SET totalnetproduction = " + result[0] +". totalelectricityprice" + price ;
         await db.query(sql2, async function(err2,result2){
