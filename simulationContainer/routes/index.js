@@ -76,6 +76,8 @@ router.get('/owners/owner', function(req, res, next) {
    res.render("owner");
 });
 
+
+
 /*
 //router.post('/',function(req,res){
   request("https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/162860/period/latest-hour/data.json", function (error, response, body) {
