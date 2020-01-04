@@ -19,3 +19,10 @@
 | 2019-12-06  | 3.5       | Setup tables for total electricity consumption and production, also added functionality that adds all production and consumption together and adds them to the table. Started building signup page. |
 | 2019-12-08  | 5       | Finished the signup page, which now can be added to the webpage for the prosumer and company. |
 | 2019-12-09  | 4       | Increased api functionality so that simulation data can be shown for the prosumer and company. |
+| 2019-12-12  | 4       | More work on API. |
+| 2019-12-17  | 1.5       | Made a trello page for the websites, and discussed their contents|
+| 2019-12-27  | 7       | Made research on how to make it possible for a user to upload a picture of their house, but ran into problems when doing the implementation. Also started on designing the navigation bar. |
+| 2019-12-28  | 4       | Did more work on navigation bar, realized i had implemented for an older bootstrap version, which made it so i had to start over. Also had to make research on ejs. |
+| 2019-12-29  | 5       | Made a simple navigation bar that works with the bootstrap version we are working with. |
+| 2020-01-01  | 3       | Tried to fix the some design stuffs on the sign in page. |
+| 2020-01-04  | 3       | Fixed the some design stuffs on the sign in page. Started a bit on the report|
