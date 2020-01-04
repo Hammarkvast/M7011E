@@ -1,6 +1,6 @@
 # TimeReports
 | Date  |      Hours    | Activity                                       |
-| ----------- | ------- |------------------------------------------------
+| ----------- | ------- |-----------------------------------------------
 | 2019-11-08  | 2.5     | Set up a vps with Amazon web serivces and started a little bit with node.js.|
 |2019-11-11   | 4.5| Setup docker constainer with node and aplpine.|
 |2019-11-12| 1.5 | set up express and researched RESTful api.|
@@ -18,4 +18,7 @@
 | 2019-12-2   |  3   | for some reason the database is emty with no tables and no data |
 | 2019-12-3   |  3.5   |managed to solve the problem with empty database adn started writing the api |
 | 2019-12-4   | 4    | writing some of the api and adding table to mysql database |
-| 2019-12-2   |     | |
+| 2019-12-6   | 4.5  | Started with some front end development|
+| 2019-12-8   | 5  |Created a sign up page|
+| 2019-12-9   |  4  | Started with adding simulation data to database|
+| 2019-12-11  | 3.5  | Continued with adding simulation data to database |
