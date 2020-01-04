@@ -12,37 +12,39 @@
 
 
 <div class="jumbotron text-center">
-  <h1>My First Bootstrap Page</h1>
+  <h3>My First Bootstrap Page</h3>
   <p>Resize this responsive page to see the effect!</p>
 </div>
 
 <div class="container p-3 my-3 bg-dark text-white">
     <form class="form-horizontal" role="form" method="post" action="/signin" onSubmit="return checkblank(this);">
-        <% if (message.length > 0) { %>
-          <div class="alert alert-success col-sm-12"><%= message %></div>
-        <% } %>
-        <div id="signupalert" style="display:none" class="alert alert-danger">
-          <p>Error:</p>
-          <span></span>
-        </div>
-      <div class="input-group mb-3">  
-        <div class="input-group-prepend">
-          <span class="input-group-text">Person</span>
-       <div class="form-group">
-         <label for="usr">Username:</label>
-         <input type="text" class="form-control" id="username" name = "username">
-        </div>
-        <div class="form-group">
-            <label for="pwd">Password:</label>
-             <input type="password" class="form-control" id="password" name = "password">
-        </div> 
-        <div class="form-group">
-          <!-- Button -->                                       
-          <div class="col-md-offset-3 col-md-9">
-              <button id="btn-signin" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign In</button>
-              
-          </div>
+      <% if (message.length > 0) { %>
+        <div class="alert alert-success col-sm-12"><%= message %></div>
+      <% } %>
+      <div id="signupalert" style="display:none" class="alert alert-danger">
+        <p>Error:</p>
+        <span></span>
       </div>
+    <div class="input-group mb-3">  
+    </div> 
+     <div class="form-group">
+       <label for="usr">Username:</label>
+       <input type="text" class="form-control" id="username" name = "username">
+      </div>
+      <div class="form-group">
+          <label for="pwd">Password:</label>
+           <input type="password" class="form-control" id="password" name = "password" >
+      </div> 
+      <div class="form-group">
+        <!-- Button -->                                       
+        <div class="col-md-offset-3 col-md-9">
+            <button id="btn-signin" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign in</button>
+            <p class="text-muted" >
+              Dont have an account? <a href="signup.ejs" class="text-reset">Register here</a>
+            </p>
+        </div>
+    </div>
     </form>
+    </div>
 </div>
 </html>
