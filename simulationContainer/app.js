@@ -5,6 +5,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ownerRouter = require('./routes/owners');
+
+
+// const result = dotenv.config()
+//  
+// if (result.error) {
+  // throw result.error
+// }
+//  
+// console.log(result.parsed);
+
+console.log("dotenv test: " + process.env.DB_HOST)
 //var totalElectrictyRouter = require('./routes/totalelectricity');
 //var weathersim = require('./public/javascripts/WeatherSim');
 //var productionSim = require('./public/javascripts/ProductionSim')
