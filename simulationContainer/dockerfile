@@ -8,6 +8,7 @@ RUN npm i gaussian
 RUN npm install request
 RUN npm install --save-dev nodemon
 RUN npm install mysql
+RUN npm install dotenv
 COPY . .
 EXPOSE 8080
 CMD ["npm","run", "watch"]
