@@ -4,6 +4,7 @@ var db = require('../public/javascripts/db');
 var bodyParser = require('body-parser');
 console.log("jadajdada")
 router.use(bodyParser.json());
+var bcrypt = require('bcrypt');
 
 
 //GET all owners.
@@ -22,22 +23,26 @@ router.post('/', function(req,res,next){
       var lname= post.lastname;
       var emial= post.mobemail;
       console.log("post check");
-      //var sql = "INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "')";
- 
-      var sql = "INSERT INTO `antom`.`owners`(`firstname`,`lastname`,`email`,`username`,`password`) VALUES  ('" + fname + "','" + lname + "','" + emial + "','" + name + "','" + pass + "')";
-      var query = db.query(sql, function(err, result) { 
-         if (err){
-            console.log("ERROR but what");
-            console.log("error log js: "+ err.log);
-            console.log("error message js: " + err.message);
-
-            message = err.message + err.log
-            res.render('signup', {message: message}); 
-         }
-         message = "Succesfully! Your account has been created.";
-         res.render('signup',{message: message});
-      });
-});
+      var sql = "";
+      bcrypt.hash(pass, 10, function(err, hash) {
+         var sql = "INSERT INTO `antom`.`owners`(`firstname`,`lastname`,`email`,`username`,`password`) VALUES  ('" + fname + "','" + lname + "','" + emial + "','" + name + "','" + hash + "')";
+         // Store hash in database
+         //var sql = "INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "')";
+         
+         var query = db.query(sql, function(err, result) { 
+            if (err){
+               console.log("ERROR but what");
+               console.log("error log js: "+ err.log);
+               console.log("error message js: " + err.message);
+               
+               message = err.message + err.log
+               res.render('signup', {message: message}); 
+            }
+            message = "Succesfully! Your account has been created.";
+            res.render('signup',{message: message});
+         });
+      });   
+   });
  
    
 
