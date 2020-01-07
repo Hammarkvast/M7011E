@@ -5,8 +5,8 @@ services:
   mydb:
     image: mysql:8.0.17
     environment:
-      MYSQL_ROOT_PASSWORD: jada  #lägg lösenordet här
-      MYSQL_DATABASE: antom
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}  #lägg lösenordet här
+      MYSQL_DATABASE: ${DB_DATABASE}
     ports:
       - "3308:3306"
     volumes: 
