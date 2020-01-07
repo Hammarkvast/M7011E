@@ -1,6 +1,4 @@
 
-
-
 <html lang = "en">
     <%- include('partials/head') -%>
 <body>
@@ -90,37 +88,20 @@ console.log("wasd");
   // 
 // } 
 </script>
-<% if(message) { %>
-  <script>
-  $(function() {
+<script type="text/javascript" src="javascripts/apicall.js"></script>
+<script type="text/javascript" src="javascripts/webdata.js"></script>
 
-    var progressed = <%= percentage %>; 
+<script>
   
-    var interval = setInterval(function() {
-    
-        $("#prog")
-    
-        .css("width", progressed + "%")
-    
-        .attr("aria-valuenow", progressed)
-    
-        .text(progressed + "%");
-    
-        if (progressed >= 100)
-    
-            clearInterval(interval);
-    
-    }, 100);
-  });
-  document.getElementById("header").innerHTML = "battery level = "  + <%= percentage %>;
-  document.getElementById("windspeed").innerHTML = <%= windspeed %> + "m/s";
-  document.getElementById("production").innerHTML = <%= production %> + "Kwh";
-  document.getElementById("consumption").innerHTML = <%= consumption %> + "Kwh";
-  document.getElementById("netproduction").innerHTML = <%= netproduction %>+ "Kwh";
-  document.getElementById("battery").innerHTML = <%= battery %> + "kwh";
-  document.getElementById("electricityprice").innerHTML = <%= electricityprice %> + "kr/kwh";
-  </script>
- <%}%>
- <%- include('partials/script') -%>
+  getuserdata();
+  getelectricityprice();
+  timeout = 5001;
+  setInterval(async () => {
+    getuserdata();
+    getelectricityprice();
+  }, timeout);
+</script>
+
+ <!-- <%- include('partials/script') -%> -->
 </body>
  </html>

@@ -30,7 +30,6 @@ app.use(session({
 	saveUninitialized: true
 }));
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 
@@ -52,11 +51,12 @@ app.use('/signin', signinRouter);//call for signup page
 // ///app.use('/users', usersRouter);
 app.use('/owners', ownerRouter);
 
-app.use('/wind', windRouter);
+app.use('/windtessst', windRouter);
 // ///console.log("passed users");
 
 //app.use('/weathersim', express.static('./public/javascripts/WeatherSim.js'));
-
+// console.log("Det är inte lätt när det är svårt");
+//console.log("ännu eett testtestestestestestest")
 //app.use('/productionSim', express.static('./public/javascripts/ProductionSim.js'));
 
 //app.use('/WindTurbine', express.static('./public/javascripts/WindTurbine.js'));
@@ -66,6 +66,7 @@ app.use('/wind', windRouter);
 //app.use('/Simulation', express.static('./public/javascripts/Simulation,js'));
 var jada  = Simulationtest({});
 console.log("Alla mina höga förhoppningar!! :(" + jada[0]);
+
 
 
 // catch 404 and forward to error handler
