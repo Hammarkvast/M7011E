@@ -1,32 +1,12 @@
- <!-- Latest compiled and minified CSS -->
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
- <!-- jQuery library -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- 
- <!-- Popper JS -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
- 
- <!-- Latest compiled JavaScript -->
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
-
 
 <html lang = "en">
-<head>
-  <meta charset = "utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel='stylesheet' href='/stylesheets/slider.css' />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-</head>
+    <%- include('partials/head') -%>
+<body>
 <div class="jumbotron text-center">
   <h1>My First Bootstrap Page</h1>
   <p>Resize this responsive page to see the effect!</p>
 </div>
-
+<%- include('partials/navigation') -%>
 <div class="container p-3 my-3 bg-dark text-white">
 
   <div class="row">
@@ -95,7 +75,7 @@ console.log("wasd");
 <script type="text/javascript" src="javascripts/apicall.js"></script>
 <script type="text/javascript" src="javascripts/webdata.js"></script>
 
-  <script>
+<script>
   
   getuserdata();
   getelectricityprice();
@@ -104,7 +84,8 @@ console.log("wasd");
     getuserdata();
     getelectricityprice();
   }, timeout);
-  </script>
- 
+</script>
 
+ <!-- <%- include('partials/script') -%> -->
+</body>
  </html>

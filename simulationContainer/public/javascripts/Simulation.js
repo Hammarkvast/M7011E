@@ -13,30 +13,33 @@ let PriceSim = require('./PriceSim.js');
 
 
 async function Simulationtest({}){
-
-    var sql = "SELECT ownerid FROM owners;";
-    await db.query(sql, async function(err,result){
-    if (err){
-        console.log(err);
-        res.sendStatus(500);
-        return err;
-    }
-    console.log("testing testing: "+ result.length);
-    console.log(result);
-    
-    for (i=0; i<result.length; i++){
-        await WeatherSimulation(result[i].ownerid);
-        await prodSimulation(result[i].ownerid);
-        await consumptionSimulation(result[i].ownerid);
-        await brokensimulation(result[i].ownerid);
-        await batterysimulation(result[i].ownerid);
-    }
-    // await pricesimulation();
-
-    console.log("testing testint itnet ")
-    return result[0];
-    })  
-
+    timeout = 5000;
+    setInterval(async () => {
+        
+        var sql = "SELECT ownerid FROM owners;";
+        await db.query(sql, async function(err,result){
+            if (err){
+                console.log(err);
+                res.sendStatus(500);
+                return err;
+            }
+            console.log("testing testing: "+ result.length);
+            console.log(result);
+            
+            for (i=0; i<result.length; i++){
+                await WeatherSimulation(result[i].ownerid);
+                await prodSimulation(result[i].ownerid);
+                await consumptionSimulation(result[i].ownerid);
+                await brokensimulation(result[i].ownerid);
+                await batterysimulation(result[i].ownerid);
+            }
+            // await pricesimulation();
+            
+            console.log("testing testint itnet ")
+            return result[0];
+        })  
+        
+    }, timeout);
 }
 
 async function WeatherSimulation(id){

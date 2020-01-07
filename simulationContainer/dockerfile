@@ -6,8 +6,9 @@ RUN npm install
 RUN npm install express-session
 RUN npm i gaussian
 RUN npm install request
+RUN npm install --save-dev nodemon
 RUN npm install mysql
 COPY . .
 EXPOSE 8080
-CMD ["npm","start"]
+CMD ["npm","run", "watch"]
 

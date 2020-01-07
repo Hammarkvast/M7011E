@@ -2,6 +2,10 @@ version: "3"
 services: 
   server:
     build: .
+    # command: nodemon --watch public/ -e js,ejs ./bin/www
+    # command: sh -c "nodemon -L -V ./bin/www"
+   # volumes: 
+    #  - .:.
     ports:
       - "8080:8080"
     network_mode: host 

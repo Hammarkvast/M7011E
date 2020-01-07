@@ -4,11 +4,14 @@ var router = express.Router();
 const request = require("request");
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if (req.session.loggedin){
-    var sql = "SELECT lastwindspeed, production, consumption, gridbatterypercentage, griddelta, battery, batteryMax FROM house WHERE ownerid = '"+ req.session.databaseid+"';";
-    var query = db.query(sql, function(err, result) { 
-      if (err){
-        console.log("ERROR but what");
+  interval  = 5000;
+ // setInterval(() => {
+    
+    if (req.session.loggedin){
+      var sql = "SELECT lastwindspeed, production, consumption, gridbatterypercentage, griddelta, battery, batteryMax FROM house WHERE ownerid = '"+ req.session.databaseid+"';";
+      var query = db.query(sql, function(err, result) { 
+        if (err){
+          console.log("ERROR but what");
         console.log("error log js: "+ err.log);
         console.log("error message js: " + err.message);
         
@@ -19,27 +22,28 @@ router.get('/', function(req, res, next) {
       let batterymax =  result[0].batteryMax;
       let percentage = battery / batterymax;
       percentage = percentage * 100;
-
+      
       console.log("battery: "+ batterymax  + "  batterymax: " + batterymax+ "  precentage: " + percentage)
       
       //res.render("test", {message: percentage});
-      res.render("test", {
-        percentage: percentage,
-        production: result[0].production,
-        consumption: result[0].consumption,
-        gridbatterypercentage: result[0].gridbatterypercentage,
-        windspeed: result[0].lastwindspeed,
-        netproduction: result[0].griddelta,
-        electricityprice: 5,
-        battery: result[0].battery,
-      });
+      res.render("test");//, {
+      //   percentage: percentage,
+      //   production: result[0].production,
+      //   consumption: result[0].consumption,
+      //   gridbatterypercentage: result[0].gridbatterypercentage,
+      //   windspeed: result[0].lastwindspeed,
+      //   netproduction: result[0].griddelta,
+      //   electricityprice: 5,
+      //   battery: result[0].battery,
+      // });
 			//response.send(percentage);
       });
-
-  } else{
-    console.log("redirext test test")
-    res.redirect("/signin");
-  }
+    
+    } else{
+      console.log("redirext test test")
+      res.redirect("/signin");
+    }
+  //}, interval);
 });
 
 // router.get('/signup', function(req, res, next) {
@@ -55,9 +59,9 @@ router.post('/', function(req, res, next) {
   if (req.session.loggedin){
     message = '';
     console.log("signupenetercehcl ")
-      var post  = req.body;
-      var slider= post.slider; 
-      console.log("post check slider value = " + slider);
+    var post  = req.body;
+    var slider= post.slider; 
+    console.log("post check slider value = " + slider);
     var sql = "UPDATE antom.house SET gridbatterypercentage = "+ slider + " WHERE ownerid ="+req.session.databaseid+";";
     db.query(sql, function(err, result){
         if (err){
