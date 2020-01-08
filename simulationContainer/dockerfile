@@ -2,6 +2,7 @@ FROM node:alpine
 RUN mkdir -p /app
 WORKDIR /app
 COPY package*.json /app/
+RUN apk add --no-cache make gcc g++ python
 RUN npm install
 RUN npm install express-session
 RUN npm i gaussian
@@ -9,6 +10,8 @@ RUN npm install request
 RUN npm install --save-dev nodemon
 RUN npm install mysql
 RUN npm install dotenv
+RUN npm install bcrypt
+RUN apk del make gcc g++ python
 COPY . .
 EXPOSE 8080
 CMD ["npm","run", "watch"]

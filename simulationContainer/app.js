@@ -4,8 +4,8 @@ var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bcrypt = require('bcrypt')
 var ownerRouter = require('./routes/owners');
-
 
 // const result = dotenv.config()
 //  
