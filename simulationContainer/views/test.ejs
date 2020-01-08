@@ -15,9 +15,15 @@
     </div>
     <div class="col-sm-2">
       <h5>username</h5>
+      <p id="username" ></p>
     </div>
     <div class="col-sm-2">
-      <h5>address</h5>
+      <h5>First name</h5>
+      <p id="firstname"></p>
+    </div>
+    <div class="col-sm-2">
+      <h5>Last name</h5>
+      <p id="lastname"></p>
     </div>
   </div>
 
@@ -95,6 +101,7 @@ console.log("wasd");
   
   getuserdata();
   getelectricityprice();
+  getownerdata();
   timeout = 5001;
   setInterval(async () => {
     getuserdata();

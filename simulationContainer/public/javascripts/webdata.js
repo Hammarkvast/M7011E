@@ -36,6 +36,12 @@ function putvalues(values){
 
 }
 
+function putOwnerData(user){
+  document.getElementById("firstname").innerHTML = user.firstname;
+  document.getElementById("lastname").innerHTML = user.lastname;
+  document.getElementById("username").innerHTML = user.username;
+}
+
 function putElectricity(electricityprice){
 
   document.getElementById("electricityprice").innerHTML = electricityprice.totalelectricityPrice + "kr/kwh";

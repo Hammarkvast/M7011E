@@ -5,6 +5,17 @@ var bodyParser = require('body-parser');
 console.log("jadajdada")
 router.use(bodyParser.json());
 
+router.get('/getOwnerData', function(req, res, next){
+    var sql = "SELECT firstname, lastname, username FROM owners WHERE ownerid = '" + req.session.databaseid + "';";
+    db.query(sql, async function(err, rows, result){
+        if(err){
+            console.log(err);
+            res.sendStatus(500);
+            return err;
+        }
+        res.send(rows);
+    })
+});
 
 //GET all owners.
 

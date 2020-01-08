@@ -38,7 +38,8 @@ router.post('/', function(req,res,next){
             req.session.databaseid = result[0].ownerid;
             res.redirect("/");
          } else {
-				res.send('Incorrect Username and/or Password!');
+            message = "Wrong username and/or password!";
+            res.render('signin',{message: message});
 			}
 
          message = "Succesfully! Your account has been created.";

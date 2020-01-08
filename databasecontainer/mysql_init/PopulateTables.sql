@@ -1,4 +1,4 @@
-INSERT INTO `owners` ( `username`, `password`) VALUES ("a", "a1");
+INSERT INTO `owners` ( `username`, `password`,`firstname`, `lastname`) VALUES ("a", "a1", "Adam", "Andersson");
 INSERT INTO `owners` ( `username`, `password`) VALUES ("b", "b1");
 INSERT INTO `owners` ( `username`, `password`) VALUES ("c", "c1");
 

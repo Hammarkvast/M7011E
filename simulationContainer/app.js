@@ -32,6 +32,7 @@ var usersRouter = require('./routes/users');
 var windRouter = require('./routes/wind');
 var signupRouter = require('./routes/signup');
 var signinRouter = require('./routes/signin');
+var signoutRouter = require('./routes/signout');
 
 var app = express();
 
@@ -57,6 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/signup', signupRouter);//call for signup page
 app.use('/signin', signinRouter);//call for signup page
+app.use('/signout', signoutRouter);//call for signup page
 // app.get('*', function(req,res){
 // })
 // ///app.use('/users', usersRouter);

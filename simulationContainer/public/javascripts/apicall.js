@@ -15,6 +15,13 @@ async function getuserdata(){
     });
 }
 
+async function getownerdata(){
+  await $.getJSON('/owners/getOwnerData', function(userdata){
+    console.log(userdata);
+    putOwnerData(userdata[0]);
+  });
+}
+
 async function getelectricityprice(){
     console.log("testfunction entercheck electricity price")
     await $.getJSON('/owners/getElectricityPrice', function(userdata) {
