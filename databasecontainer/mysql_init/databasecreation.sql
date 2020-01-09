@@ -17,6 +17,7 @@ CREATE TABLE `antom`.`owners`(
     `email` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `username`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `password`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+    `manager` int,
     PRIMARY KEY (ownerid)
 );
 
@@ -43,6 +44,17 @@ CREATE TABLE `antom`.`house` (
     PRIMARY KEY (houseid),
     FOREIGN KEY (ownerid) REFERENCES owners(ownerid)
 );
+
+CREATE TABLE `antom`.`powerplant`(
+    `powerplanyid` INT UNSIGNED NOT null AUTO_INCREMENT,
+    `meanproduction` float,
+    `stddevproduction` float,
+    `production` float,
+    `griddelta` float,
+    `gridbufferpercentage` float,
+    `bufferMax` int,
+    `buffer` float,
+)
 
 CREATE TABLE `antom`.`totalelectricity`(
     `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
