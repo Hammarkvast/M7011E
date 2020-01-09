@@ -7,7 +7,7 @@ module.exports = class BatterySim{
         this.batterymax = batterymax;
         this.production = production;
         this.consumption= consumption;
-        this.batterygridpercentage = batterygridpercentage;
+        this.batterygridpercentage = batterygridpercentage/100;
     }
 
     batteryfunc(){
@@ -36,7 +36,7 @@ module.exports = class BatterySim{
             return batteryarray;
         }
         else{
-            let batteryarray =  [batterytemp, 0]; 
+            let batteryarray =  [batterytemp, griddelta]; 
             console.log("BA3: "+batteryarray);
             return batteryarray;
         }

@@ -20,12 +20,16 @@ module.exports = class WeatherSim{
         //this.timespan = timespan;
         this.distribution = distribution;
         this.previouspeed = previouspeed;
+        this.highwind = highwind;
+        this.minWind = minWind;
     }
 
     weather(){
         if (this.previouspeed>this.highwind){
-            let difference = this.previouspeed-this.highwind
-            this.previouspeed += this.distribution.ppf(Math.random()-this.decprob(difference));
+            let difference = this.previouspeed-this.highwind;
+            let deltawindpeed = this.distribution.ppf(Math.random()-this.decprob(difference));
+            console.log("current speed = "+ this.previouspeed + " delta windspeed =  " + deltawindpeed);
+            this.previouspeed += deltawindpeed;
         } else{
             this.previouspeed += this.distribution.ppf(Math.random());
         }

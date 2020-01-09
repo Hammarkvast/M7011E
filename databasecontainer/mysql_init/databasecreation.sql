@@ -46,7 +46,7 @@ CREATE TABLE `antom`.`house` (
 );
 
 CREATE TABLE `antom`.`powerplant`(
-    `powerplanyid` INT UNSIGNED NOT null AUTO_INCREMENT,
+    `powerplantid` INT UNSIGNED NOT null AUTO_INCREMENT,
     `meanproduction` float,
     `stddevproduction` float,
     `production` float,
@@ -54,7 +54,8 @@ CREATE TABLE `antom`.`powerplant`(
     `gridbufferpercentage` float,
     `bufferMax` int,
     `buffer` float,
-)
+    PRIMARY KEY(powerplantid)
+);
 
 CREATE TABLE `antom`.`totalelectricity`(
     `id` int UNSIGNED NOT NULL AUTO_INCREMENT,

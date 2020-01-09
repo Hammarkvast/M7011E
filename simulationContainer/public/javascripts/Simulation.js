@@ -10,6 +10,7 @@ let Consumption = require('./Consumption.js');
 let BrokenSim = require('./BrokenSim.js');
 let BatterySim = require('./BatterySim.js');
 let PriceSim = require('./PriceSim.js');
+let coalPowerPLantSim = require('./CoalPowerPlantSim.js')
 
 
 async function Simulationtest({}){
@@ -34,6 +35,7 @@ async function Simulationtest({}){
                 await batterysimulation(result[i].ownerid);
             }
             // await pricesimulation();
+            await coalPLant();
             
             console.log("testing testint itnet ")
             return result[0];
@@ -66,7 +68,7 @@ async function WeatherSimulation(id){
             let weather = new WeatherSim(result2[0].lastwindspeed, result2[0].meanwind, result2[0].stddevwind);
             let lastwindspeed = weather.weather()
             console.log("lastwindspeed: " + lastwindspeed)
-            var sql3 = "UPDATE antom.house SET lastwindspeed = "+ lastwindspeed + " WHERE houseid ="+id+";";
+            var sql3 = "UPDATE antom.house SET lastwindspeed = "+ lastwindspeed + " WHERE houseid ="+houseid+";";
 
             await db.query(sql3, function(err2,result){
             if (err2){
@@ -104,7 +106,7 @@ async function prodSimulation(id){
             let prod = new ProductionSim(result2[0].lastwindspeed, result2[0].productionefficiency);
             let production = prod.currentproduction();
             console.log("production: " + production)
-            var sql3 = "UPDATE antom.house SET production = "+ production + " WHERE houseid ="+id+";";
+            var sql3 = "UPDATE antom.house SET production = "+ production + " WHERE houseid ="+houseid+";";
 
             await db.query(sql3, function(err2,result){
             if (err2){
@@ -142,7 +144,7 @@ async function consumptionSimulation(id){
             let consumptionsim = new Consumption(result2[0].consumption, 8, 0.8);
             let consumption = consumptionsim.consumption();
             console.log("production: " + consumption)
-            var sql3 = "UPDATE antom.house SET consumption = "+ consumption + " WHERE houseid ="+id+";";
+            var sql3 = "UPDATE antom.house SET consumption = "+ consumption + " WHERE houseid ="+houseid+";";
 
             await db.query(sql3, function(err2,result){
             if (err2){
@@ -195,7 +197,7 @@ async function brokensimulation(id){
             }
 
             console.log("broken: " + broken)
-            var sql3 = "UPDATE antom.house SET broken = "+ broken +",brokencount = "+ count+ " WHERE houseid ="+id+";";
+            var sql3 = "UPDATE antom.house SET broken = "+ broken +",brokencount = "+ count+ " WHERE houseid ="+houseid+";";
 
             await db.query(sql3, function(err2,result){
             if (err2){
@@ -241,7 +243,7 @@ async function batterysimulation(id){
             batterylevel = battery[0];
             griddelta = battery[1];            
 
-            var sql3 = "UPDATE antom.house SET battery = "+ batterylevel +",griddelta = "+ griddelta+ " WHERE houseid ="+id+";";
+            var sql3 = "UPDATE antom.house SET battery = "+ batterylevel +",griddelta = "+ griddelta+ " WHERE houseid ="+houseid+";";
 
             await db.query(sql3, function(err2,result){
             if (err2){
@@ -255,6 +257,43 @@ async function batterysimulation(id){
     })
 }
 
+
+async function coalPLant(){
+    var sql =  "SELECT * FROM powerplant;"; 
+    await db.query(sql, async function(err,result){
+        if (err){
+            console.log(err);
+            res.sendstatus(500);
+            return err;
+        }
+        
+        for(i = 0; i<result.length; i++){
+            await coalPLantSimulation(result[i])
+        }    
+    })        
+}
+
+async function coalPLantSimulation(values){
+
+    let powerplant = new coalPowerPLantSim(values.production, values.meanproduction, values.stddevproduction);
+    let produced = powerplant.producion();
+    let buffersim = new BatterySim(values.buffer, values.bufferMax, produced, 0, values.gridbufferpercentage);
+
+    let batteryresult = buffersim.batteryfunc();
+    
+
+
+    var sql =  "update antom.powerplant SET production = "+ produced + ", buffer = "+ batteryresult[0]+", griddelta = " + batteryresult[1]+ "where powerplantid = "+values.powerplantid+";"; 
+    await db.query(sql, async function(err,result){
+        if (err){
+            console.log(err);
+            res.sendstatus(500);
+            return err;
+        }
+        
+        console.log("mayby success coal plant");
+    })
+}
 
 async function pricesimulation(){
     var sql = "SELECT SUM(griddelta) FROM house;";

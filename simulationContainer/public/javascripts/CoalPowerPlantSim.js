@@ -3,17 +3,16 @@ var gaussian = require("gaussian");
 module.exports = class Consumption {
     distribution;
     prevConsumption;
-    constructor(previousConsumption,mean, stddev){
-        let prevConsumption = previousConsumption;
+    constructor(previousProduction,mean, stddev){
         const distribution = gaussian(mean, stddev);
         this.distribution = distribution;
-        this.prevConsumption = prevConsumption;
+        this.previosProduction = previousProduction;
     }
 
-    consumption(){
-        let prevconscdf = this.distribution.cdf(this.prevConsumption);
-        prevconscdf+= (Math.random()-0.5);
-        return this.distribution.ppf(prevconscdf);
+    producion(){
+        let prevProdcdf = this.distribution.cdf(this.previosProduction);
+        prevProdcdf+= (Math.random()-0.5);
+        return this.distribution.ppf(prevProdcdf);
     }
 
     runConsumptionSim(){
