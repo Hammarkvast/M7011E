@@ -33,6 +33,7 @@ var windRouter = require('./routes/wind');
 var signupRouter = require('./routes/signup');
 var signinRouter = require('./routes/signin');
 var signoutRouter = require('./routes/signout');
+var signinManagerRouter = require('./routes/signin_manager');
 
 var app = express();
 
@@ -59,6 +60,8 @@ app.use('/', indexRouter);
 app.use('/signup', signupRouter);//call for signup page
 app.use('/signin', signinRouter);//call for signup page
 app.use('/signout', signoutRouter);//call for signup page
+app.use('/signin_manager', signinManagerRouter);
+
 // app.get('*', function(req,res){
 // })
 // ///app.use('/users', usersRouter);
