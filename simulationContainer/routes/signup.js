@@ -5,7 +5,9 @@ var bodyParser = require('body-parser');
 console.log("jadajdada")
 router.use(bodyParser.json());
 var bcrypt = require('bcrypt');
-
+var fs = require('fs');
+var multer  = require('multer');
+var upload = multer({ dest: __dirname + '/../public/pictures'});
 
 //GET all owners.
 
@@ -13,7 +15,7 @@ router.get('/', function(req, res, next) {
       res.render('signup', {message: "signup.js"});
 });
 
-router.post('/', async function(req,res,next){
+router.post('/',upload.single('uploaded_image'), async function(req,res,next){
    message = '';
     console.log("signupenetercehcl ")
    var post  = req.body;
@@ -22,9 +24,24 @@ router.post('/', async function(req,res,next){
    var fname= post.firstname;
    var lname= post.lastname;
    var emial= post.email;
+   
+   
+   console.log(req.file);
+   file = req.file;
+// 
+   var imgname = file.filename;
+   var imgtype = file.mimetype;   
+
+   let buff = fs.readFileSync(file.path);
+   let base64data = buff.toString('base64');
+ //  console.log("name of file: "+ imgname+ " ,type of file: "+ imgtype)
+//   console.log(base64data);
+
+   
+
    console.log("post check");
    await bcrypt.hash(pass, 10, async function(err, hash) {
-      var sql = "INSERT INTO `antom`.`owners`(`firstname`,`lastname`,`email`,`username`,`password`) VALUES  ('" + fname + "','" + lname + "','" + emial + "','" + name + "','" + hash + "')";
+      var sql = "INSERT INTO `antom`.`owners`(`firstname`,`lastname`,`email`,`username`,`password`) VALUES  ('" + fname + "','" + lname + "','" + emial + "','" + name + "','" + hash +"')";
       // Store hash in database
       //var sql = "INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "')";
       console.log("BCRYPT ENTER CHECK ");
@@ -56,8 +73,8 @@ router.post('/', async function(req,res,next){
          console.log("reult: " + result2[0].ownerid);
          console.log("reult2: " + result2.ownerid);
 
-         var sql3 = "INSERT INTO `house` (`ownerid`,`longitude`, `latitude`, `lastwindspeed`, `meanwind`, `stddevwind`,`broken`, `brokencount`, `brokenprobability`, `productionefficiency`,`production`,`meanconsumption`, `stddevconsumption`, `consumption`, `griddelta`,`gridbatterypercentage`, `batteryMax`, `battery`)" 
-         sql3 = sql3 + " VALUES (" + result2[0].ownerid + ", 65.373, 22.811, 3.5, 6, 0.05, 0, 0, 0.05, 8, 55.3, 50, 0.8, 54.55, 0, 50.0, 200,100.0);"
+         var sql3 = "INSERT INTO `house` (`ownerid`,`longitude`, `latitude`, `lastwindspeed`, `meanwind`, `stddevwind`,`broken`, `brokencount`, `brokenprobability`, `productionefficiency`,`production`,`meanconsumption`, `stddevconsumption`, `consumption`, `griddelta`,`gridbatterypercentage`, `batteryMax`, `battery`,`imgname`,`imgtype`,`image`)" 
+         sql3 = sql3 + " VALUES (" + result2[0].ownerid + ", 65.373, 22.811, 3.5, 6, 0.05, 0, 0, 0.05, 8, 55.3, 50, 0.8, 54.55, 0, 50.0, 200,100.0,'" + imgname +  "','" + imgtype +  "','" + base64data + "');"
          console.log(sql3);
          query = await db.query(sql3, async function(err3, result3){
          

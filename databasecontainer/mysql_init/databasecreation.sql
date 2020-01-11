@@ -30,7 +30,7 @@ CREATE TABLE `antom`.`house` (
     `meanwind` float,
     `stddevwind` float,
     `broken` boolean,    
-    `brokencount` int,    
+    `brokencount` int,      
     `brokenprobability` float,    
     `productionefficiency` float,
     `production` float,
@@ -41,6 +41,9 @@ CREATE TABLE `antom`.`house` (
     `gridbatterypercentage` float,
     `batteryMax` int,
     `battery` float,
+    `imgname` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+    `imgtype` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+    `image` LONGBLOB,
     PRIMARY KEY (houseid),
     FOREIGN KEY (ownerid) REFERENCES owners(ownerid)
 );

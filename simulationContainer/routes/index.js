@@ -2,41 +2,33 @@ var db = require('../public/javascripts/db');
 var express = require('express');
 var router = express.Router();
 const request = require("request");
+var fs = require('fs');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   interval  = 5000;
  // setInterval(() => {
     
     if (req.session.loggedin){
-      var sql = "SELECT lastwindspeed, production, consumption, gridbatterypercentage, griddelta, battery, batteryMax FROM house WHERE ownerid = '"+ req.session.databaseid+"';";
+      var sql = "SELECT imgname, imgtype, image FROM house WHERE ownerid = '"+ req.session.databaseid+"';";
       var query = db.query(sql, function(err, result) { 
         if (err){
           console.log("ERROR but what");
         console.log("error log js: "+ err.log);
         console.log("error message js: " + err.message);
-        
         message = err.message + err.log
         res.render('test', {message: message}); 
       }
-      let battery =  result[0].battery;
-      let batterymax =  result[0].batteryMax;
-      let percentage = battery / batterymax;
-      percentage = percentage * 100;
-      
-      console.log("battery: "+ batterymax  + "  batterymax: " + batterymax+ "  precentage: " + percentage)
-      
-      //res.render("test", {message: percentage});
-      res.render("test");//, {
-      //   percentage: percentage,
-      //   production: result[0].production,
-      //   consumption: result[0].consumption,
-      //   gridbatterypercentage: result[0].gridbatterypercentage,
-      //   windspeed: result[0].lastwindspeed,
-      //   netproduction: result[0].griddelta,
-      //   electricityprice: 5,
-      //   battery: result[0].battery,
-      // });
-			//response.send(percentage);
+      //console.log(result[0].image)
+      //var buf = Buffer.from(result[0].image, 'base64');
+      //  var imgurl = __dirname +"/../public/images/website/"+result[0].imgname+".png";
+      var data = "data:" + result[0].imgtype + ";base64,"+result[0].image;
+      //if (result[0].imgtype == 'image/png'){
+          
+      //fs.writeFileSync(imgurl, imgurl);
+        //}
+      res.render("test", {imageurl: data} );//, {
+        
+          //res.render("test", {message: percentage});
       });
     
     } else{
