@@ -28,7 +28,7 @@ router.post('/', function(req,res,next){
                 req.session.loggedin = true;
                 req.session.username = name;
                 req.session.databaseid = result[0].ownerid;
-                res.redirect("/");
+                res.redirect("/managerhome");
             }else {
                 message = "Wrong username, manager, or you dont have the rights to access this page";
                 res.render('signin_manager', {message: message});

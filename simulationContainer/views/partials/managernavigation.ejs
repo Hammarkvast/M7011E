@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="http://127.0.0.1:3000/managerhome">GL Electrics</a>
+  
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:3000/handleusers">Handle users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:3000/blackouts">Blackouts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:3000/profile">Profile</a>
+          </li>
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Manager
+        </a>
+        <div class="dropdown-menu">
+          <form id = "my_form" method="GET" role="form" action="/signout/manager">
+          <button type="submit" class="btn btn-link btn-logout">&nbsp Logout</button>
+        </form>
+        </div>
+      </li>
+    </ul>
+  </nav> 

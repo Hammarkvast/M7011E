@@ -16,4 +16,14 @@ router.get('/', function(req, res){
     }
 })
 
+router.get('/manager', function(req, res){
+    if (req.session){
+        req.session.destroy(function(err){
+            if(err){
+                return err;
+            }
+        })
+        res.redirect('/signin_manager');
+    }
+})
 module.exports = router;
