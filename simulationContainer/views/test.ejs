@@ -75,8 +75,12 @@
         </div>
     </div>
     <div class="col-sm-4">
-      <h3>Column 3</h3>
-      <p>Lorem ipsum dolor..</p>
+      
+     <!-- <% if (imageurl.length > 0) { %> -->
+        <picture>
+          <img id ="image" src="" alt= "your house" width = 250px;>
+        </picture>
+      <!-- <% } %> -->
     </div>
   </div>
 </div>
@@ -98,16 +102,26 @@ console.log("wasd");
 <script type="text/javascript" src="javascripts/webdata.js"></script>
 
 <script>
+  console.log("entercheck new script tag jaaaaaaaaaaaaddddddddddaaaaaaaaaaaaaa")
+  var image =  document.getElementById("image");
+  var imgurl = '<%= imageurl %>';
+  console.log("jagvetintevadsomblirfel" + imgurl);
+  image.src =  imgurl;
+  // image.srcset = ><%= message %>;
   
   getuserdata();
   getelectricityprice();
   getownerdata();
   timeout = 5001;
-  setInterval(async () => {
+  setInterval(() => {
     getuserdata();
     getelectricityprice();
   }, timeout);
 </script>
+
+
+<!-- <% if (imageurl.length > 0) { %> -->
+<!-- <% } %> -->
 
  <!-- <%- include('partials/script') -%> -->
 </body>
