@@ -33,7 +33,11 @@ var windRouter = require('./routes/wind');
 var signupRouter = require('./routes/signup');
 var signinRouter = require('./routes/signin');
 var signoutRouter = require('./routes/signout');
-
+var signinManagerRouter = require('./routes/signin_manager');
+var managerpageRouter = require('./routes/indexmanager');
+var handleusersRouter = require('./routes/handleusers');
+var blackoutsRouter = require('./routes/blackouts');
+var profileRouter = require('./routes/profile');
 var app = express();
 
 app.use(session({
@@ -55,10 +59,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/blackouts', blackoutsRouter);
+app.use('/handleusers', handleusersRouter);
 app.use('/', indexRouter);
+app.use('/managerhome', managerpageRouter); //call for managers home page
 app.use('/signup', signupRouter);//call for signup page
 app.use('/signin', signinRouter);//call for signup page
 app.use('/signout', signoutRouter);//call for signup page
+app.use('/signin_manager', signinManagerRouter);
+app.use('/profile', profileRouter);
+
 // app.get('*', function(req,res){
 // })
 // ///app.use('/users', usersRouter);
