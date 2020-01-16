@@ -22,3 +22,22 @@
 | 2019-12-8   | 5  |Created a sign up page|
 | 2019-12-9   |  4  | Started with adding simulation data to database|
 | 2019-12-11  | 3.5  | Continued with adding simulation data to database |
+| 2019-12-12  | 8  | Fixed so that all simulation data get out in the database |
+| 2019-12-13  | 4  | Created a sign in page adn added user sessions |
+| 2019-12-14  | 2  | Fixed so that the battery level on the startpage is based on actual database values |
+| 2019-12-15  | 2.5 | Started with being able to see database values on the webpage and change how much elctricity goes to the grid vs battery |
+| 2019-12-19  | 2 | continued with grid vs battery |
+| 2019-12-20  | 6  | percentage to/from grid or battery also tried to setup nodemon so we wouldnt have to restart the docker-container manually each time we have made a change. |
+| 2019-12-22  | 3.5 | Continued to attempt to set up nodemon but couldn’t get it to work properly |
+| 2019-12-29  | 3.5  | Tried to fic so that data would be coniually updated both on website end in database  |
+| 2020-01-02  | 2  | continued with continious data updates |
+| 2020-01-06  | 5  | Even more with continious data updates |
+| 2020-01-07  | 7  | Finished continuous data so it works. Fixed so that our database password isn’t hardcoded but is taken from a file that’s put in gitignore. Fixed so that password isn’t stored in plain text|
+| 2020-01-08  | 7  | Assigning house to new users and balancing our simulation |
+| 2020-01-09  | 5  |Added support for the manager in our application and created a caol powerplant simulation and added that to to the simulation  |
+| 2020-01-10  | 7  | Spent the entrire time trying to add functionality so that a prosumer should be able to add a picture to the house and to show it on the website |
+| 2020-01-11  | 7  | Finnished  with adding a picture to the website. |
+| 2020-01-12  | 3  |  |
+| 2020-01-13  | 2  | started with creating a site where the manager could handle users |
+| 2020-01-15  | 7  | continued with creating a site where the manager could handle users. but ran into weird ajax problems and then ran into a deadend and had to scap it and resart from the begining|
+| 2020-01-16  | 7  | written raport and fixed escaped all inputs to database|
