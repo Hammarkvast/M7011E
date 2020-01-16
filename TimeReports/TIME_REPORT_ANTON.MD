@@ -37,7 +37,7 @@
 | 2020-01-09  | 5  |Added support for the manager in our application and created a caol powerplant simulation and added that to to the simulation  |
 | 2020-01-10  | 7  | Spent the entrire time trying to add functionality so that a prosumer should be able to add a picture to the house and to show it on the website |
 | 2020-01-11  | 7  | Finnished  with adding a picture to the website. |
-| 2020-01-12  | 3  |  |
+| 2020-01-12  | 3  | Fixed some bugs|
 | 2020-01-13  | 2  | started with creating a site where the manager could handle users |
 | 2020-01-15  | 7  | continued with creating a site where the manager could handle users. but ran into weird ajax problems and then ran into a deadend and had to scap it and resart from the begining|
 | 2020-01-16  | 7  | written raport and fixed escaped all inputs to database|
