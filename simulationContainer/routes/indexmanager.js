@@ -7,7 +7,7 @@ const request = require("request");
 
 router.get('/', function(req, res, next){
     if(req.session.loggedin){
-        res.render("managerpage");
+        res.render('managerpage');
     }else{
         res.redirect('/signin_manager');
     }

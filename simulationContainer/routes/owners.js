@@ -6,7 +6,7 @@ console.log("jadajdada")
 router.use(bodyParser.json());
 
 router.get('/getOwnerData', function(req, res, next){
-    var sql = "SELECT firstname, lastname, username FROM owners WHERE ownerid = '" + req.session.databaseid + "';";
+    var sql = "SELECT firstname, lastname, username FROM owners WHERE ownerid = " + db.escape(req.session.databaseid) + ";";
     db.query(sql, async function(err, rows, result){
         if(err){
             console.log(err);
@@ -20,7 +20,7 @@ router.get('/getOwnerData', function(req, res, next){
 //GET all owners.
 
 router.get('/getUserData', function(req, res, next) {
-    var sql = "SELECT lastwindspeed, production, consumption, gridbatterypercentage, griddelta, battery, batteryMax FROM house WHERE ownerid = '"+ req.session.databaseid+"';";
+    var sql = "SELECT lastwindspeed, production, consumption, gridbatterypercentage, griddelta, battery, batteryMax FROM house WHERE ownerid = "+ db.escape(req.session.databaseid)+";";
     db.query(sql, async function(err,rows,result){
     if (err){
         console.log(err);

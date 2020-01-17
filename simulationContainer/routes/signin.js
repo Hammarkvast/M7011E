@@ -23,7 +23,7 @@ router.post('/', function(req,res,next){
       console.log("post check");
       //var sql = "INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "')";
  
-      var sql = "SELECT * FROM owners WHERE username = '"+ name + "';";
+      var sql = "SELECT * FROM owners WHERE username = "+ db.escape(name) + ";";
       var query = db.query(sql, function(err, result) { 
          if (err){
             console.log("ERROR but what");

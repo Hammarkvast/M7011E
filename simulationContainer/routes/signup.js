@@ -41,7 +41,7 @@ router.post('/',upload.single('uploaded_image'), async function(req,res,next){
 
    console.log("post check");
    await bcrypt.hash(pass, 10, async function(err, hash) {
-      var sql = "INSERT INTO `antom`.`owners`(`firstname`,`lastname`,`email`,`username`,`password`) VALUES  ('" + fname + "','" + lname + "','" + emial + "','" + name + "','" + hash +"')";
+      var sql = "INSERT INTO `antom`.`owners`(`firstname`,`lastname`,`email`,`username`,`password`) VALUES  (" + db.escape(fname) + "," + db.escape(lname) + "," + db.escape(emial) + "," + db.escape(name) + "," + db.escape(hash) +")";
       // Store hash in database
       //var sql = "INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "')";
       console.log("BCRYPT ENTER CHECK ");
@@ -58,7 +58,7 @@ router.post('/',upload.single('uploaded_image'), async function(req,res,next){
       });
 
       console.log("username = " + name)
-      var sql2 = "SELECT ownerid FROM owners WHERE username = '" + name + "';"
+      var sql2 = "SELECT ownerid FROM owners WHERE username = " + db.escape(name) + ";"
       query = await db.query(sql2, async function(err2, result2){
          
          if (err2){
@@ -74,7 +74,7 @@ router.post('/',upload.single('uploaded_image'), async function(req,res,next){
          console.log("reult2: " + result2.ownerid);
 
          var sql3 = "INSERT INTO `house` (`ownerid`,`longitude`, `latitude`, `lastwindspeed`, `meanwind`, `stddevwind`,`broken`, `brokencount`, `brokenprobability`, `productionefficiency`,`production`,`meanconsumption`, `stddevconsumption`, `consumption`, `griddelta`,`gridbatterypercentage`, `batteryMax`, `battery`,`imgname`,`imgtype`,`image`)" 
-         sql3 = sql3 + " VALUES (" + result2[0].ownerid + ", 65.373, 22.811, 3.5, 6, 0.05, 0, 0, 0.05, 8, 55.3, 50, 0.8, 54.55, 0, 50.0, 200,100.0,'" + imgname +  "','" + imgtype +  "','" + base64data + "');"
+         sql3 = sql3 + " VALUES (" + db.escape(result2[0].ownerid) + ", 65.373, 22.811, 3.5, 6, 0.05, 0, 0, 0.05, 8, 55.3, 50, 0.8, 54.55, 0, 50.0, 200,100.0," + db.escape(imgname) +  "," + db.escape(imgtype) +  "," + db.escape(base64data) + ");"
          console.log(sql3);
          query = await db.query(sql3, async function(err3, result3){
          

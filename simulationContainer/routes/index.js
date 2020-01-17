@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
  // setInterval(() => {
     
     if (req.session.loggedin){
-      var sql = "SELECT imgname, imgtype, image FROM house WHERE ownerid = '"+ req.session.databaseid+"';";
+      var sql = "SELECT imgname, imgtype, image FROM house WHERE ownerid = "+ db.escape(req.session.databaseid)+";";
       var query = db.query(sql, function(err, result) { 
         if (err){
           console.log("ERROR but what");
@@ -54,7 +54,7 @@ router.post('/', function(req, res, next) {
     var post  = req.body;
     var slider= post.slider; 
     console.log("post check slider value = " + slider);
-    var sql = "UPDATE antom.house SET gridbatterypercentage = "+ slider + " WHERE ownerid ="+req.session.databaseid+";";
+    var sql = "UPDATE antom.house SET gridbatterypercentage = "+ db.escape(slider) + " WHERE ownerid ="+db.escape(req.session.databaseid)+";";
     db.query(sql, function(err, result){
         if (err){
             console.log(err);

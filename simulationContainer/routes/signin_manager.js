@@ -17,7 +17,7 @@ router.post('/', function(req,res,next){
     var name = post.username;
     var pass = post.password;
     console.log("HEJHEJ");
-    var sql = "SELECT * FROM owners WHERE username = '"+ name +"' AND manager = 1;";
+    var sql = "SELECT * FROM owners WHERE username = "+ db.escape(name) +" AND manager = 1;";
     var query = db.query(sql, function(err, result){
         if(err){
             message = err.message + err.log;
@@ -28,7 +28,7 @@ router.post('/', function(req,res,next){
                 req.session.loggedin = true;
                 req.session.username = name;
                 req.session.databaseid = result[0].ownerid;
-                res.redirect("/managerhome");
+                res.redirect('/managerhome');
             }else {
                 message = "Wrong username, manager, or you dont have the rights to access this page";
                 res.render('signin_manager', {message: message});
