@@ -20,7 +20,7 @@ router.post('/', function(req,res,next){
       var pass= post.password;
       //var sql = "INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "')";
  
-      var sql = "SELECT * FROM owners WHERE username = '"+ name + "';";
+      var sql = "SELECT * FROM owners WHERE username = "+ db.escape(name) + ";";
       var query = db.query(sql, function(err, result) { 
          if (err){
             console.log("error log js: "+ err.log);

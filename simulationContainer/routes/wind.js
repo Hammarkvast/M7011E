@@ -22,7 +22,7 @@ router.put('/updatelastwind', function(req, res, next){
     var id = req.body.id;
     var lastwindspeed = req.body.lws;
     console.log("req body: "+ req.body);
-    var sql = "UPDATE antom.house SET lastwindspeed = "+ lastwindspeed + " WHERE houseid ="+id+";";
+    var sql = "UPDATE antom.house SET lastwindspeed = "+ db.escape(lastwindspeed) + " WHERE houseid ="+db.escape(id)+";";
     db.query(sql, function(err, result){
         if (err){
             console.log(err);

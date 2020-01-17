@@ -43,7 +43,7 @@ async function Simulationtest({}){
 }
 
 async function WeatherSimulation(id){
-    var sql =  "SELECT houseid FROM house WHERE ownerid  = "+id+";"; 
+    var sql =  "SELECT houseid FROM house WHERE ownerid  = "+db.escape(id)+";"; 
     await db.query(sql, async function(err,result){
         if (err){
             console.log(err);
@@ -53,7 +53,7 @@ async function WeatherSimulation(id){
         
         let houseid = result[0].houseid;
         
-        var sql2 = "SELECT lastwindspeed, meanwind, stddevwind, battery FROM house WHERE houseid = "+ houseid +";";
+        var sql2 = "SELECT lastwindspeed, meanwind, stddevwind, battery FROM house WHERE houseid = "+ db.escape(houseid) +";";
 
         
         await db.query(sql2, async function(err2,result2){
@@ -65,7 +65,12 @@ async function WeatherSimulation(id){
             
             let weather = new WeatherSim(result2[0].lastwindspeed, result2[0].meanwind, result2[0].stddevwind);
             let lastwindspeed = weather.weather()
+<<<<<<< HEAD
             var sql3 = "UPDATE antom.house SET lastwindspeed = "+ lastwindspeed + " WHERE houseid ="+houseid+";";
+=======
+            console.log("lastwindspeed: " + lastwindspeed)
+            var sql3 = "UPDATE antom.house SET lastwindspeed = "+ db.escape(lastwindspeed) + " WHERE houseid ="+db.escape(houseid)+";";
+>>>>>>> 89535c25bb60a18928f9bc92b17d26efa6fdb863
 
             await db.query(sql3, function(err2,result){
             if (err2){
@@ -79,7 +84,7 @@ async function WeatherSimulation(id){
 }
 
 async function prodSimulation(id){
-    var sql =  "SELECT houseid FROM house WHERE ownerid  = "+id+";"; 
+    var sql =  "SELECT houseid FROM house WHERE ownerid  = "+db.escape(id)+";"; 
     await db.query(sql, async function(err,result){
         if (err){
             console.log(err);
@@ -89,7 +94,7 @@ async function prodSimulation(id){
         
         let houseid = result[0].houseid;
         
-        var sql2 = "SELECT lastwindspeed, productionefficiency FROM house WHERE houseid = "+ houseid +";";
+        var sql2 = "SELECT lastwindspeed, productionefficiency FROM house WHERE houseid = "+ db.escape(houseid) +";";
 
         
         await db.query(sql2, async function(err2,result2){
@@ -102,7 +107,7 @@ async function prodSimulation(id){
             let prod = new ProductionSim(result2[0].lastwindspeed, result2[0].productionefficiency);
             let production = prod.currentproduction();
             console.log("production: " + production)
-            var sql3 = "UPDATE antom.house SET production = "+ production + " WHERE houseid ="+houseid+";";
+            var sql3 = "UPDATE antom.house SET production = "+ db.escape(production) + " WHERE houseid ="+db.escape(houseid)+";";
 
             await db.query(sql3, function(err2,result){
             if (err2){
@@ -116,7 +121,7 @@ async function prodSimulation(id){
 }
 // 
 async function consumptionSimulation(id){
-    var sql =  "SELECT houseid FROM house WHERE ownerid  = "+id+";"; 
+    var sql =  "SELECT houseid FROM house WHERE ownerid  = "+db.escape(id)+";"; 
     await db.query(sql, async function(err,result){
         if (err){
             console.log(err);
@@ -126,7 +131,7 @@ async function consumptionSimulation(id){
         
         let houseid = result[0].houseid;
         
-        var sql2 = "SELECT consumption FROM house WHERE houseid = "+ houseid +";";
+        var sql2 = "SELECT consumption FROM house WHERE houseid = "+ db.escape(houseid) +";";
 
         
         await db.query(sql2, async function(err2,result2){
@@ -138,7 +143,12 @@ async function consumptionSimulation(id){
             
             let consumptionsim = new Consumption(result2[0].consumption, 8, 0.8);
             let consumption = consumptionsim.consumption();
+<<<<<<< HEAD
             var sql3 = "UPDATE antom.house SET consumption = "+ consumption + " WHERE houseid ="+houseid+";";
+=======
+            console.log("production: " + consumption)
+            var sql3 = "UPDATE antom.house SET consumption = "+ db.escape(consumption) + " WHERE houseid ="+db.escape(houseid)+";";
+>>>>>>> 89535c25bb60a18928f9bc92b17d26efa6fdb863
 
             await db.query(sql3, function(err2,result){
             if (err2){
@@ -153,7 +163,7 @@ async function consumptionSimulation(id){
 
 // 
 async function brokensimulation(id){
-    var sql =  "SELECT houseid FROM house WHERE ownerid  = "+id+";"; 
+    var sql =  "SELECT houseid FROM house WHERE ownerid  = "+db.escape(id)+";"; 
     await db.query(sql, async function(err,result){
         if (err){
             console.log(err);
@@ -163,7 +173,7 @@ async function brokensimulation(id){
         
         let houseid = result[0].houseid;
         
-        var sql2 = "SELECT broken, brokencount, brokenprobability FROM house WHERE houseid = "+ houseid +";";
+        var sql2 = "SELECT broken, brokencount, brokenprobability FROM house WHERE houseid = "+ db.escape(houseid) +";";
 
         
         await db.query(sql2, async function(err2,result2){
@@ -189,7 +199,12 @@ async function brokensimulation(id){
                 broken = 0;
             }
 
+<<<<<<< HEAD
             var sql3 = "UPDATE antom.house SET broken = "+ broken +",brokencount = "+ count+ " WHERE houseid ="+houseid+";";
+=======
+            console.log("broken: " + broken)
+            var sql3 = "UPDATE antom.house SET broken = "+ db.escape(broken) +",brokencount = "+ db.escape(count)+ " WHERE houseid ="+db.escape(houseid)+";";
+>>>>>>> 89535c25bb60a18928f9bc92b17d26efa6fdb863
 
             await db.query(sql3, function(err2,result){
             if (err2){
@@ -204,7 +219,7 @@ async function brokensimulation(id){
 
 
 async function batterysimulation(id){
-    var sql =  "SELECT houseid FROM house WHERE ownerid  = "+id+";"; 
+    var sql =  "SELECT houseid FROM house WHERE ownerid  = "+db.escape(id)+";"; 
     await db.query(sql, async function(err,result){
         if (err){
             console.log(err);
@@ -214,7 +229,7 @@ async function batterysimulation(id){
         
         let houseid = result[0].houseid;
         
-        var sql2 = "SELECT gridbatterypercentage, batteryMax, battery, consumption, production FROM house WHERE houseid = "+ houseid +";";
+        var sql2 = "SELECT gridbatterypercentage, batteryMax, battery, consumption, production FROM house WHERE houseid = "+ db.escape(houseid) +";";
 
         
         await db.query(sql2, async function(err2,result2){
@@ -232,7 +247,7 @@ async function batterysimulation(id){
             batterylevel = battery[0];
             griddelta = battery[1];            
 
-            var sql3 = "UPDATE antom.house SET battery = "+ batterylevel +",griddelta = "+ griddelta+ " WHERE houseid ="+houseid+";";
+            var sql3 = "UPDATE antom.house SET battery = "+ db.escape(batterylevel) +",griddelta = "+ db.escape(griddelta)+ " WHERE houseid ="+db.escape(houseid)+";";
 
             await db.query(sql3, function(err2,result){
             if (err2){
@@ -271,7 +286,7 @@ async function coalPLantSimulation(values){
     
 
 
-    var sql =  "update antom.powerplant SET production = "+ produced + ", buffer = "+ batteryresult[0]+", griddelta = " + batteryresult[1]+ "where powerplantid = "+values.powerplantid+";"; 
+    var sql =  "update antom.powerplant SET production = "+ db.escape(produced) + ", buffer = "+ db.escape(batteryresult[0])+", griddelta = " + db.escape(batteryresult[1])+ "where powerplantid = "+db.escape(values.powerplantid)+";"; 
     await db.query(sql, async function(err,result){
         if (err){
             console.log(err);
@@ -293,7 +308,7 @@ async function pricesimulation(){
         let priceSimvar = new PriceSim(result[0]);
         let price = priceSimvar.price();
         
-        var sql2 = "UPDATE antom.totalelectricity SET totalnetproduction = " + result[0] +". totalelectricityprice" + price ;
+        var sql2 = "UPDATE antom.totalelectricity SET totalnetproduction = " + db.escape(result[0]) +". totalelectricityprice" + db.escape(price) ;
         await db.query(sql2, async function(err2,result2){
             if (err2){
                 console.log(err2);
