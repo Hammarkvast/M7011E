@@ -53,12 +53,7 @@ router.post('/',upload.single('uploaded_image'), async function(req,res,next){
          }
       });
 
-<<<<<<< HEAD
-      var sql2 = "SELECT ownerid FROM owners WHERE username = '" + name + "';"
-=======
-      console.log("username = " + name)
       var sql2 = "SELECT ownerid FROM owners WHERE username = " + db.escape(name) + ";"
->>>>>>> 89535c25bb60a18928f9bc92b17d26efa6fdb863
       query = await db.query(sql2, async function(err2, result2){
          
          if (err2){
