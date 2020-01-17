@@ -7,12 +7,12 @@ var logger = require('morgan');
 var bcrypt = require('bcrypt')
 var ownerRouter = require('./routes/owners');
 
-const cors = require("cors");
+//const cors = require("cors");
 
-var corsOptions = {
-  origin: "*" ,
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+// var corsOptions = {
+  // origin: "*" ,
+  // optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
 // const result = dotenv.config()
 //  
 // if (result.error) {
@@ -66,13 +66,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/blackouts', blackoutsRouter);
-app.use('/handleusers',cors(), handleusersRouter);
+// app.use('/handleusers',cors(), handleusersRouter);
+app.use('/handleusers', handleusersRouter);
 app.use('/', indexRouter);
 app.use('/managerhome', managerpageRouter); //call for managers home page
 app.use('/signup', signupRouter);//call for signup page
 app.use('/signin', signinRouter);//call for signup page
 app.use('/signout', signoutRouter);//call for signup page
-app.use('/signin_manager',cors(), signinManagerRouter);
+// app.use('/signin_manager',cors(), signinManagerRouter);
+app.use('/signin_manager', signinManagerRouter);
 app.use('/profile', profileRouter);
 app.use('/updatecredentials', updatecredentialsRouter);
 

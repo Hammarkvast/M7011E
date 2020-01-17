@@ -65,13 +65,8 @@ async function WeatherSimulation(id){
             
             let weather = new WeatherSim(result2[0].lastwindspeed, result2[0].meanwind, result2[0].stddevwind);
             let lastwindspeed = weather.weather()
-<<<<<<< HEAD
-            var sql3 = "UPDATE antom.house SET lastwindspeed = "+ lastwindspeed + " WHERE houseid ="+houseid+";";
-=======
             console.log("lastwindspeed: " + lastwindspeed)
             var sql3 = "UPDATE antom.house SET lastwindspeed = "+ db.escape(lastwindspeed) + " WHERE houseid ="+db.escape(houseid)+";";
->>>>>>> 89535c25bb60a18928f9bc92b17d26efa6fdb863
-
             await db.query(sql3, function(err2,result){
             if (err2){
                 console.log(err2);
@@ -143,12 +138,9 @@ async function consumptionSimulation(id){
             
             let consumptionsim = new Consumption(result2[0].consumption, 8, 0.8);
             let consumption = consumptionsim.consumption();
-<<<<<<< HEAD
-            var sql3 = "UPDATE antom.house SET consumption = "+ consumption + " WHERE houseid ="+houseid+";";
-=======
-            console.log("production: " + consumption)
+
             var sql3 = "UPDATE antom.house SET consumption = "+ db.escape(consumption) + " WHERE houseid ="+db.escape(houseid)+";";
->>>>>>> 89535c25bb60a18928f9bc92b17d26efa6fdb863
+
 
             await db.query(sql3, function(err2,result){
             if (err2){
@@ -198,13 +190,8 @@ async function brokensimulation(id){
             }else{
                 broken = 0;
             }
-
-<<<<<<< HEAD
-            var sql3 = "UPDATE antom.house SET broken = "+ broken +",brokencount = "+ count+ " WHERE houseid ="+houseid+";";
-=======
-            console.log("broken: " + broken)
+            
             var sql3 = "UPDATE antom.house SET broken = "+ db.escape(broken) +",brokencount = "+ db.escape(count)+ " WHERE houseid ="+db.escape(houseid)+";";
->>>>>>> 89535c25bb60a18928f9bc92b17d26efa6fdb863
 
             await db.query(sql3, function(err2,result){
             if (err2){
