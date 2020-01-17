@@ -24,7 +24,6 @@ async function Simulationtest({}){
                 res.sendStatus(500);
                 return err;
             }
-            console.log("testing testing: "+ result.length);
             console.log(result);
             
             for (i=0; i<result.length; i++){
@@ -37,7 +36,6 @@ async function Simulationtest({}){
             // await pricesimulation();
             await coalPLant();
             
-            console.log("testing testint itnet ")
             return result[0];
         })  
         
@@ -67,7 +65,6 @@ async function WeatherSimulation(id){
             
             let weather = new WeatherSim(result2[0].lastwindspeed, result2[0].meanwind, result2[0].stddevwind);
             let lastwindspeed = weather.weather()
-            console.log("lastwindspeed: " + lastwindspeed)
             var sql3 = "UPDATE antom.house SET lastwindspeed = "+ lastwindspeed + " WHERE houseid ="+houseid+";";
 
             await db.query(sql3, function(err2,result){
@@ -76,7 +73,6 @@ async function WeatherSimulation(id){
                 res.sendstatus(500);
                 return err2;
             }
-            console.log("mayby success");
             })
         }) 
     })
@@ -114,7 +110,6 @@ async function prodSimulation(id){
                 res.sendstatus(500);
                 return err2;
             }
-            console.log("mayby success2");
             })
         }) 
     })
@@ -143,7 +138,6 @@ async function consumptionSimulation(id){
             
             let consumptionsim = new Consumption(result2[0].consumption, 8, 0.8);
             let consumption = consumptionsim.consumption();
-            console.log("production: " + consumption)
             var sql3 = "UPDATE antom.house SET consumption = "+ consumption + " WHERE houseid ="+houseid+";";
 
             await db.query(sql3, function(err2,result){
@@ -152,7 +146,6 @@ async function consumptionSimulation(id){
                 res.sendstatus(500);
                 return err2;
             }
-            console.log("mayby success3");
             })
         }) 
     })
@@ -196,7 +189,6 @@ async function brokensimulation(id){
                 broken = 0;
             }
 
-            console.log("broken: " + broken)
             var sql3 = "UPDATE antom.house SET broken = "+ broken +",brokencount = "+ count+ " WHERE houseid ="+houseid+";";
 
             await db.query(sql3, function(err2,result){
@@ -205,7 +197,6 @@ async function brokensimulation(id){
                 res.sendstatus(500);
                 return err2;
             }
-            console.log("mayby success4");
             })
         }) 
     })
@@ -237,8 +228,6 @@ async function batterysimulation(id){
             let battery = [];
             battery = battsim.batteryfunc();
 
-            console.log("battery: " + battery)
-            console.log("result battery: "+ result2[0].battery + "  "+ result2[0].batteryMax) ;
 
             batterylevel = battery[0];
             griddelta = battery[1];            
@@ -251,7 +240,6 @@ async function batterysimulation(id){
                 res.sendstatus(500);
                 return err2;
             }
-            console.log("mayby success5");
             })
         }) 
     })
@@ -291,7 +279,6 @@ async function coalPLantSimulation(values){
             return err;
         }
         
-        console.log("mayby success coal plant");
     })
 }
 
@@ -303,7 +290,6 @@ async function pricesimulation(){
             res.sendstatus(500);
             return err;
         }
-        console.log("price sim consile log: " + result[0]);
         let priceSimvar = new PriceSim(result[0]);
         let price = priceSimvar.price();
         

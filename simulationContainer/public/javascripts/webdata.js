@@ -1,8 +1,5 @@
-console.log("testtest");
+
 function putvalues(values){
-  console.log("entercheck putvalues function");
-  console.log(values);
-  console.log("tedt: " + values.lastwindspeed);
   let percentage = values.battery / values.batteryMax;
   percentage = percentage * 100;
   console.log("percentage: " + percentage + " battery: " + values.battery + " batteryMax: " + values.batteryMax)

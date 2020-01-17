@@ -13,7 +13,6 @@ module.exports = class WeatherSim{
         let highwind = 16;
         const distribution = new gaussian(mean, stddev);
 
-        console.log("jjjjjjaaaaaaaaaaaaddddddddddddaaaaaaa"+ mean + "      " + stddev)
        // const date = new Date();
 
         //this.date=date;

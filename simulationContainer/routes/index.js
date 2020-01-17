@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
       var sql = "SELECT imgname, imgtype, image FROM house WHERE ownerid = '"+ req.session.databaseid+"';";
       var query = db.query(sql, function(err, result) { 
         if (err){
-          console.log("ERROR but what");
         console.log("error log js: "+ err.log);
         console.log("error message js: " + err.message);
         message = err.message + err.log
@@ -32,7 +31,6 @@ router.get('/', function(req, res, next) {
       });
     
     } else{
-      console.log("redirext test test")
       res.redirect("/signin");
     }
   //}, interval);
@@ -45,12 +43,8 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-  console.log("session loggedin: " + req.session.loggedin);
-  
-  console.log("session id: " + req.session.databaseid);
   if (req.session.loggedin){
     message = '';
-    console.log("signupenetercehcl ")
     var post  = req.body;
     var slider= post.slider; 
     console.log("post check slider value = " + slider);
