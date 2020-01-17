@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  mydb:
+    image: mysql:8.0.17
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}  #lägg lösenordet här
+      MYSQL_DATABASE: ${DB_DATABASE}
+    ports:
+      - "3308:3306"
+    volumes: 
+      - ./mysql_init/databasecreation.sql:/docker-entrypoint-initdb.d/1-databasecreation.sql
+      - ./mysql_init/PopulateTables.sql:/docker-entrypoint-initdb.d/2-PopulateTables.sql
+    container_name: mydb

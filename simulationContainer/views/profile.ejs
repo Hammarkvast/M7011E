@@ -1,0 +1,33 @@
+<html lang = "en">
+<head>
+  <meta charset = "utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel='stylesheet' href='/stylesheets/slider.css' />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="jumbotron text-center">
+  <h3>Welcome dear master</h3>
+  <p>PROFILE PAGE</p>
+</div> 
+    <%- include('partials/managernavigation') -%>
+
+    <div class = "container p*3 my-3 bg-dark text-white">
+        <div class = "row">
+            <div class="col-sm-4">
+              <form role="form" action="/updatecredentials" method="get" >
+                <h5>Manager</h5>
+                <button type="submit" class = "btn btn-primary" >Update credentials</button><br>
+              </form>
+              </div>
+        </div>
+    </div>
+
+    <%- include('partials/script') -%>
+</body>
+
+</html>
