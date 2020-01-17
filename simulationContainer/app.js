@@ -38,6 +38,8 @@ var managerpageRouter = require('./routes/indexmanager');
 var handleusersRouter = require('./routes/handleusers');
 var blackoutsRouter = require('./routes/blackouts');
 var profileRouter = require('./routes/profile');
+var updatecredentialsRouter = require('./routes/updatecredentials');
+
 var app = express();
 
 app.use(session({
@@ -68,7 +70,7 @@ app.use('/signin', signinRouter);//call for signup page
 app.use('/signout', signoutRouter);//call for signup page
 app.use('/signin_manager', signinManagerRouter);
 app.use('/profile', profileRouter);
-
+app.use('/updatecredentials', updatecredentialsRouter);
 // app.get('*', function(req,res){
 // })
 // ///app.use('/users', usersRouter);

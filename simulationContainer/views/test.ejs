@@ -11,7 +11,11 @@
 <div class="container p-3 my-3 bg-dark text-white">
   <div class = "row">
     <div class= "col-sm-2">
-      <h5>PICTURE OF HOUSE</h5>
+     <!-- <% if (imageurl.length > 0) { %> -->
+      <picture>
+        <img id ="image" src="" alt= "your house" width = 150px;>
+      </picture>
+    <!-- <% } %> -->
       </form>
     </div>
     <div class="col-sm-2">
@@ -79,7 +83,7 @@
       
      <!-- <% if (imageurl.length > 0) { %> -->
         <picture>
-          <img id ="image" src="" alt= "your house" width = 250px;>
+          <img id ="image" src="" alt= "your house" width = 100px;>
         </picture>
       <!-- <% } %> -->
     </div>
@@ -124,6 +128,5 @@ console.log("wasd");
 <!-- <% if (imageurl.length > 0) { %> -->
 <!-- <% } %> -->
 
- <!-- <%- include('partials/script') -%> -->
 </body>
  </html>
