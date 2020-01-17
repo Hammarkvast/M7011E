@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var db = require('../public/javascripts/db');
 var bodyParser = require('body-parser');
-console.log("jadajdada")
 router.use(bodyParser.json());
 
 router.get('/getOwnerData', function(req, res, next){

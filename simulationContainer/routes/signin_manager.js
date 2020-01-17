@@ -3,7 +3,6 @@ var express = require('express');
 var router = express.Router();
 var db = require('../public/javascripts/db');
 var bodyParser = require('body-parser');
-console.log("jadajdada")
 router.use(bodyParser.json());
 var bcrypt = require('bcrypt');
 
@@ -16,8 +15,12 @@ router.post('/', function(req,res,next){
     var post = req.body;
     var name = post.username;
     var pass = post.password;
+<<<<<<< HEAD
+    var sql = "SELECT * FROM owners WHERE username = '"+ name +"' AND manager = 1;";
+=======
     console.log("HEJHEJ");
     var sql = "SELECT * FROM owners WHERE username = "+ db.escape(name) +" AND manager = 1;";
+>>>>>>> 89535c25bb60a18928f9bc92b17d26efa6fdb863
     var query = db.query(sql, function(err, result){
         if(err){
             message = err.message + err.log;

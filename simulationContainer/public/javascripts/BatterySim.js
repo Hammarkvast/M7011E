@@ -20,24 +20,20 @@ module.exports = class BatterySim{
 
         let batterytemp = this.battery + (val*this.batterygridpercentage);
         let griddelta = val - (val*this.batterygridpercentage);
-        console.log("jada check val: "+ val + "   batterytemp: "+batterytemp);
         if (batterytemp > this.batterymax){ 
             this.battery = this.batterymax;
             griddelta += batterytemp -this.battery;
             let batteryarray =  [this.battery, griddelta];  
-            console.log("BA1: "+batteryarray);
             return batteryarray;
         } 
         else if (batterytemp <= 0){
             this.battery = 0;
             griddelta += batterytemp; 
             let batteryarray =  [this.battery, griddelta];  
-            console.log("BA2: "+batteryarray);
             return batteryarray;
         }
         else{
             let batteryarray =  [batterytemp, griddelta]; 
-            console.log("BA3: "+batteryarray);
             return batteryarray;
         }
     }

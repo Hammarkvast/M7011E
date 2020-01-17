@@ -21,7 +21,6 @@ var corsOptions = {
 //  
 // console.log(result.parsed);
 
-console.log("dotenv test: " + process.env.DB_HOST)
 //var totalElectrictyRouter = require('./routes/totalelectricity');
 //var weathersim = require('./public/javascripts/WeatherSim');
 //var productionSim = require('./public/javascripts/ProductionSim')
@@ -99,7 +98,6 @@ app.use('/windtessst', windRouter);
 
 //app.use('/Simulation', express.static('./public/javascripts/Simulation,js'));
 var jada  = Simulationtest({});
-console.log("Alla mina höga förhoppningar!! :(" + jada[0]);
 
 
 
