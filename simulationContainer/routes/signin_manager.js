@@ -15,11 +15,7 @@ router.post('/', function(req,res,next){
     var post = req.body;
     var name = post.username;
     var pass = post.password;
-<<<<<<< HEAD
-    var sql = "SELECT * FROM owners WHERE username = '"+ name +"' AND manager = 1;";
-=======
     var sql = "SELECT * FROM owners WHERE username = "+ db.escape(name) +" AND manager = 1;";
->>>>>>> 26f01f1edc7f8a04b79a8c5984e47829c1ac6fc6
     var query = db.query(sql, function(err, result){
         if(err){
             message = err.message + err.log;
