@@ -7,6 +7,12 @@ var logger = require('morgan');
 var bcrypt = require('bcrypt')
 var ownerRouter = require('./routes/owners');
 
+const cors = require("cors");
+
+var corsOptions = {
+  origin: "*" ,
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 // const result = dotenv.config()
 //  
 // if (result.error) {
@@ -54,7 +60,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 //app.set('view engine', 'hbs');
 
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -62,15 +67,19 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/blackouts', blackoutsRouter);
-app.use('/handleusers', handleusersRouter);
+app.use('/handleusers',cors(), handleusersRouter);
 app.use('/', indexRouter);
 app.use('/managerhome', managerpageRouter); //call for managers home page
 app.use('/signup', signupRouter);//call for signup page
 app.use('/signin', signinRouter);//call for signup page
 app.use('/signout', signoutRouter);//call for signup page
-app.use('/signin_manager', signinManagerRouter);
+app.use('/signin_manager',cors(), signinManagerRouter);
 app.use('/profile', profileRouter);
 app.use('/updatecredentials', updatecredentialsRouter);
+
+app.listen(80, function () {
+  console.log('CORS-enabled web server listening on port 80')
+})
 // app.get('*', function(req,res){
 // })
 // ///app.use('/users', usersRouter);
