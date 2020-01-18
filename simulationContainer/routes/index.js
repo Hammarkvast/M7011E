@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
         console.log("error log js: "+ err.log);
         console.log("error message js: " + err.message);
         message = err.message + err.log
-        res.render('test', {message: message}); 
+        res.render('mainpage', {message: message}); 
       }
       //console.log(result[0].image)
       //var buf = Buffer.from(result[0].image, 'base64');
@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
           
       //fs.writeFileSync(imgurl, imgurl);
         //}
-      res.render("test", {imageurl: data} );//, {
+      res.render("mainpage", {imageurl: data} );//, {
         
           //res.render("test", {message: percentage});
       });
@@ -62,7 +62,7 @@ router.post('/', function(req, res, next) {
 });
 
 
-router.get('/owners/owner', function(req, res, next) {
+router.get('/API/owner', function(req, res, next) {
    res.render("owner");
 });
 

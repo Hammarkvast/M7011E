@@ -2,10 +2,8 @@
 // var router = express.Router();
 // var db = require('./db');
 // var bodyParser = require('body-parser');
-console.log("test")
 async function getuserdata(){
-    console.log("testfunction entercheck")
-    await $.getJSON('/owners/getUserData', function(userdata) {
+    await $.getJSON('/API/getUserData', function(userdata) {
       // userdata = JSON.stringify(userdata);
       //userdata = JSON.parse(userdata);
       console.log(userdata);
@@ -16,18 +14,15 @@ async function getuserdata(){
 }
 
 async function getownerdata(){
-  await $.getJSON('/owners/getOwnerData', function(userdata){
-    console.log(userdata);
+  await $.getJSON('/API/getOwnerData', function(userdata){
     putOwnerData(userdata[0]);
   });
 }
 
 async function getelectricityprice(){
-    console.log("testfunction entercheck electricity price")
-    await $.getJSON('/owners/getElectricityPrice', function(userdata) {
+    await $.getJSON('/API/getElectricityPrice', function(userdata) {
       // userdata = JSON.stringify(userdata);
       //userdata = JSON.parse(userdata);
-      console.log(userdata);
       //averageData = averageCountyWeather;
       // userdata = JSON.parse(userdata);
       putElectricity(userdata[0]);

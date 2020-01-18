@@ -5,7 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bcrypt = require('bcrypt')
-var ownerRouter = require('./routes/owners');
+var APIRouter = require('./routes/API');
 
 //const cors = require("cors");
 
@@ -84,7 +84,7 @@ app.listen(80, function () {
 // app.get('*', function(req,res){
 // })
 // ///app.use('/users', usersRouter);
-app.use('/owners', ownerRouter);
+app.use('/API', APIRouter);
 
 app.use('/windtessst', windRouter);
 // ///console.log("passed users");
