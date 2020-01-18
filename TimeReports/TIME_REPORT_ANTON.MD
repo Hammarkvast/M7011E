@@ -41,3 +41,5 @@
 | 2020-01-13  | 2  | started with creating a site where the manager could handle users |
 | 2020-01-15  | 7  | continued with creating a site where the manager could handle users. but ran into weird ajax problems and then ran into a deadend and had to scap it and resart from the begining|
 | 2020-01-16  | 7  | written raport and fixed escaped all inputs to database|
+| 2020-01-17  | 7  | Made some minor fixes and tried to deploy our aplication to the vps|
+| 2020-01-18  | 7  | Deployed the aplication, written some report and made some minor improvents|
