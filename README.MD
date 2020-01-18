@@ -1,5 +1,6 @@
 # Setup guide
 In order to be able to set everything up you need to get docker on your machine.
+
 **Install docker**
 
 `https://docs.docker.com/get-docker/`
