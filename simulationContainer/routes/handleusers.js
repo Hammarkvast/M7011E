@@ -23,11 +23,11 @@ router.get('/',function(req, res, next){
 
 
 router.post('/visit', async function(req,res,next){
-  console.log(req.body);
+  //console.log(req.body);
   console.log("--------------------------------------------------------------------------------------------------------------------------------");
   // console.log(res);
   //res.send();
-  res.render('managerpage ');
+  res.render('managerpage');
 });
  
 router.post('/block', async function(req,res,next){
