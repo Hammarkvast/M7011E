@@ -76,9 +76,9 @@ app.use('/signin_manager',cors(), signinManagerRouter);
 app.use('/profile', profileRouter);
 app.use('/updatecredentials', updatecredentialsRouter);
 
-app.listen(80, function () {
-  console.log('CORS-enabled web server listening on port 80')
-})
+//app.listen(80, function () {
+//  console.log('CORS-enabled web server listening on port 80')
+//})
 // app.get('*', function(req,res){
 // })
 // ///app.use('/users', usersRouter);

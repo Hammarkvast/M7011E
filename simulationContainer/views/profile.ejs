@@ -4,9 +4,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel='stylesheet' href='/stylesheets/slider.css' />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <style>
+  table{
+     width: 800px; 
+     border: 1px solid black;
+     margin: 0 auto;
+     text-align: center;
+  }
+  table tr td{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+   table tr td:last-child { 
+    border: none; 
+   } 
+  </style>
 </head>
 
 <body>
@@ -27,7 +39,21 @@
         </div>
     </div>
 
-    <%- include('partials/script') -%>
+    <table>
+      <tr style="border-bottom: 1px solid black">
+        <th>Username</th>
+        <th>User ID</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td>AdamA</td>
+        <td>5</td>
+        <td>
+          <button class = "btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </table>
+
 </body>
 
 </html>
