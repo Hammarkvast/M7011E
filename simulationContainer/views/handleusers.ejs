@@ -7,6 +7,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="javascripts/apicall.js"></script>
+  <script type="text/javascript" src="javascripts/getmanagerwebdata.js"></script>
 </head>
 
 <body>
@@ -14,8 +16,77 @@
   <h3>Welcome dear master</h3>
   <p>HANDLE USERS PAGE</p>
 </div> 
-    <%- include('partials/managernavigation') -%>
-    <%- include('partials/script') -%>
+<%- include('partials/managernavigation') -%>
+
+  <!-- <script> -->
+  <!-- // console.log("entercheck script"); -->
+  <!-- // function visit(element){ -->
+    <!-- // console.log("entercheck"); -->
+    <!-- // console.log(element.value); -->
+    <!-- // $.ajax({ -->
+      <!-- // url: "http://localhost:3000/handleusers/visit", -->
+      <!-- // type: "POST", -->
+      <!-- // data: {id: element.value}, //send this to server -->
+      <!-- // success: function() { -->
+        <!-- /  console.log(returned); // here can get the return of route -->
+      <!-- // }, -->
+      <!-- // error: function() { -->
+      <!-- // } -->
+    <!-- // }); -->
+  <!-- // } -->
+<!--  -->
+  <!-- function block(element){ -->
+    <!-- console.log("enterCheck block") -->
+    <!-- //console.log(element); -->
+    <!-- $.ajax({ -->
+        <!-- url: "http://localhost:3000/handleusers/block", -->
+        <!-- type: "POST", -->
+        <!-- data: {id: element.value}, //send this to server -->
+        <!-- success: function(returned) { -->
+            <!-- console.log(returned); // here can get the return of route -->
+        <!-- }, -->
+        <!-- error: function() { -->
+<!--  -->
+        <!-- } -->
+    <!-- }); -->
+<!-- } -->
+  <!-- </script> -->
+<div class="container p-3 my-3">
+
+    <table class = ".table-hover" id = "table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>online</th>
+          <th>blackout</th>
+          <th>blocked</th>
+          <th>visit</th>
+          <th>block</th>
+          <th></th>
+          
+        </tr>
+      </thead>
+      <tbody>
+
+
+      </tbody>
+      <script>
+        gethandleuserdata();
+      </script>
+      <!-- <% if (message.length > 0){ %> -->
+        <!-- <% for (var i = 0 ; i<test.length; i++){ %> -->
+          <!-- <tr> -->
+            <!-- <td> <%= test[i].username%></td> -->
+            <!-- <td> <%= test[i].username%></td> -->
+            <!-- <td> <%= test[i].username%></td> -->
+            <!-- <td> <%= test[i].username%></td> -->
+            <!-- <td> <button id="btnVisit" class="btn btn-lg btn-primary btn-block" type="button">visit</button> </td> -->
+            <!-- <td> <button id="btnBlock" class="btn btn-lg btn-primary btn-block" type="button">block</button> </td> -->
+          <!-- </tr> -->
+        <!-- <%}%> -->
+      <!-- <%}%> -->
+    </table>
+</div>
 </body>
 
 </html>

@@ -29,3 +29,11 @@ async function getelectricityprice(){
     });
 }
 
+
+async function gethandleuserdata(){
+  await $.getJSON('/API/getmanagerhandleusers', function(userdata){
+    console.log(userdata);
+    puthandleusers(userdata);
+  });
+}
+

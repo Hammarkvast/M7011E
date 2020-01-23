@@ -60,14 +60,16 @@ router.get('/getElectricityPrice', function(req, res, next) {
         res.send(rows);
     })
 });
-router.get('/', function(req, res, next) {
+router.get('/getmanagerhandleusers', function(req, res, next) {
      //var id = req.param.id;
     // console.log("enter check owner")
     // res.render('owner.ejs');
-    var sql = 'SELECT * FROM  owners';
+    var sql = 'SELECT ownerid, username, UNIX_TIMESTAMP(lasttime),UNIX_TIMESTAMP(blockedtime), secondsblocked FROM  owners';
     //res.status(200);
     db.query(sql, function(err, rows, fields){
         if(err) {
+            console.log("error log js: "+ err.log);
+            console.log("error message js: " + err.message);
             res.status(500).send({error: 'Something failed!'});
         }
         res.json(rows);

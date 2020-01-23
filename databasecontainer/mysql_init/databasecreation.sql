@@ -17,6 +17,9 @@ CREATE TABLE `antom`.`owners`(
     `email` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `username`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `password`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+    `lasttime` DATETIME NOT NULL,
+    `blockedtime` DATETIME NOT NULL,
+    `secondsblocked` int,
     `manager` int,
     PRIMARY KEY (ownerid)
 );
@@ -68,4 +71,6 @@ CREATE TABLE `antom`.`totalelectricity`(
     `totalelectricityPrice` float,
     PRIMARY KEY (id)
 );
+
+SET @@time_zone = 'SYSTEM';
 -- ALTER TABLE owners OWNER TO antom;   
