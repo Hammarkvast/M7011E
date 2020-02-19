@@ -143,4 +143,42 @@ router.post('/addProductionConsumption', function(req, res, next){
     })
 });
 
+router.get('/getVisitOwnerData', function(req, res, next){
+    var sql = "SELECT firstname, lastname, username FROM owners WHERE ownerid = " + db.escape(req.session.databaseid) + ";";
+    db.query(sql, async function(err, rows, result){
+        if(err){
+            console.log(err);
+            res.sendStatus(500);
+            return err;
+        }
+        res.send(rows);
+    })
+});
+
+//GET all owners.
+
+router.get('/getVisitUserData', function(req, res, next) {
+    var sql = "SELECT lastwindspeed, production, consumption, gridbatterypercentage, griddelta, battery, batteryMax FROM house WHERE ownerid = "+ db.escape(req.session.databaseid)+";";
+    db.query(sql, async function(err,rows,result){
+    if (err){
+        console.log(err);
+        res.sendStatus(500);
+        return err;
+    }
+    res.send(rows);
+    })
+
+});
+
+router.get('/getVisitElectricityPrice', function(req, res, next) {
+    console.log(req);
+    // var sql = 'SELECT totalelectricityPrice FROM totalelectricity;';
+ //   // res.status(200);
+    // db.query(sql, function(err, rows, fields){
+        // if(err) {
+            // res.status(500).send({error: 'Something failed!'});
+        // }
+    res.send({test: "test"});
+    // })
+});
 module.exports = router;

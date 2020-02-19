@@ -109,9 +109,14 @@ var slider = document.getElementById("myRange");
   var imgurl = '<%= imageurl %>';
   image.src =  imgurl;
   var id = <%= id %>;
-  getuserdata();
-  getelectricityprice();
-  getownerdata();
+  console.log("userid: "+ id);  
+  getvisituserdata(id);
+  getvisitownerdata(id);
+  getvisitelectricityprice(id);
+  //getuserdata();
+  //getelectricityprice();
+  //getownerdata();
+
 //   timeout = 5001;
 //   setInterval(() => {
     // getuserdata();
