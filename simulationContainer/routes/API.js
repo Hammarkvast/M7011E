@@ -16,6 +16,18 @@ router.get('/getOwnerData', function(req, res, next){
     })
 });
 
+router.get('/getAllOwners', function(req,res,next){
+    var sql = "SELECT username, ownerid FROM owners WHERE manager!=1";
+    db.query(sql, function(err, rows, result){
+        if(err){
+            console.log(err);
+            res.sendStatus(500);
+            return err;
+        }
+        res.send(rows);
+    })
+})
+
 //GET all owners.
 
 router.get('/getUserData', function(req, res, next) {

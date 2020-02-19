@@ -13,4 +13,9 @@ router.get('/', function(req, res, next){
     }
 });
 
+router.delete('/deleteOwner', function(req, res, next){
+    
+})
+
+
 module.exports = router;
