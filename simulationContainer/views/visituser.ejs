@@ -92,8 +92,8 @@
 <script>
 var slider = document.getElementById("myRange");
 </script>
-<script type="text/javascript" src="javascripts/apicall.js"></script>
-<script type="text/javascript" src="javascripts/webdata.js"></script>
+<script type="text/javascript" src="../javascripts/apicall.js"></script>
+<script type="text/javascript" src="../javascripts/webdata.js"></script>
 
 <script>
   var image =  document.getElementById("image");
@@ -108,11 +108,11 @@ var slider = document.getElementById("myRange");
   //getelectricityprice();
   //getownerdata();
 
-//   timeout = 5001;
-//   setInterval(() => {
-    // getuserdata();
-    // getelectricityprice();
-//   }, timeout);
+  timeout = 5001;
+  setInterval(() => {
+    getvisituserdata();
+    getvisitelectricityprice();
+  }, timeout);
 </script>
 
 
