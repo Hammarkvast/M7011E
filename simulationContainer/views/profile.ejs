@@ -7,6 +7,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="javascripts/apicall.js"></script>
+  <script type="text/javascript" src="javascripts/getuserprofiledata.js"></script>
   <style>
     table{
        width: 800px; 
@@ -41,19 +43,25 @@
               </div>
         </div>
     </div>
-    <table>
+    <table id ="profiletable">
       <tr style="border-bottom: 1px solid black">
         <th>Username</th>
         <th>User ID</th>
         <th></th>
       </tr>
-      <tr>
+      <tbody>
+
+      </tbody>
+      <script>
+        getalluserdata();
+      </script> 
+<!--      <tr>
         <td>AdamA</td>
         <td>5</td>
         <td>
           <button class = "btn btn-danger">Delete</button>
-        </td>
-      </tr>
+        </td> 
+      </tr> -->
     </table>
 </body>
 

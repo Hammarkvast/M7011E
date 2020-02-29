@@ -49,6 +49,13 @@ async function getvisituserdata(userid){
     });
 }
 
+async function getalluserdata(){
+  await $.getJSON('/API/getAllOwners', function(userdata){
+    console.log("hej!");
+    putuserprofiledata(userdata);
+  })
+}
+
 async function getvisitownerdata(userid){
   await $.getJSON('/API/getVisitOwnerData',{userid}, function(userdata){
     putOwnerData(userdata[0]);

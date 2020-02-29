@@ -17,13 +17,14 @@ router.get('/getOwnerData', function(req, res, next){
 });
 
 router.get('/getAllOwners', function(req,res,next){
-    var sql = "SELECT username, ownerid FROM owners WHERE manager!=1";
+    var sql = "SELECT username, ownerid FROM owners WHERE manager IS NULL";
     db.query(sql, function(err, rows, result){
         if(err){
             console.log(err);
             res.sendStatus(500);
             return err;
         }
+        console.log(rows);
         res.send(rows);
     })
 })
