@@ -38,16 +38,33 @@ function puthandleusers(values){
       
       var btn = document.createElement("BUTTON");   // Create a <button> element
       my_form.appendChild(btn);
-      btn.type = "submit";
-      btn.formAction = "handleusers/visit";
+    //   btn.form = "myForm"
       btn.innerHTML = "VISIT";
       btn.className = "btn btn-lg btn-primary btn-block";
-      console.log(btn.formaction);
+      btn.type = "submit";
+      btn.formAction = "handleusers/visit";
+   
       // btn.value = 1;
+      my_form_block=document.createElement('FORM');
+      my_form_block.name='myFormBlock';
+      my_form_block.id='myFormBlock';
+      my_form_block.method='POST';
+      my_form_block.onSubmit = "return checkblank(this);"
+      // my_form.action='http://www.another_page.com/index.htm';
+  
+      my_tb_block=document.createElement('INPUT');
+      my_tb_block.type='HIDDEN';
+      my_tb_block.name='hidden_block';
+      my_tb_block.value= values[i].ownerid;
+      my_form_block.appendChild(my_tb_block);
+      //my_form.submit();  
+      
       // btn.onclick = function(){visit(btn)};
       
       var btn1 = document.createElement("BUTTON");
-      btn1.form="myForm" // Create a <button> element
+//   btn1.form="myForm" // Create a <button> element
+      //btn1.form = "myFormblock";
+      my_form_block.appendChild(btn1)
       btn1.innerHTML = "BLOCK";
       btn1.className = "btn btn-lg btn-primary btn-block"; 
       btn1.type = "submit";
@@ -62,7 +79,7 @@ function puthandleusers(values){
       newCell2.appendChild(newText2);
       newCell3.appendChild(newText3);
       newCell4.appendChild(my_form);
-      newCell5.appendChild(btn1);
+      newCell5.appendChild(my_form_block);
       console.log(btn.formaction);
       console.log(btn);
       console.log(btn1.formaction);
