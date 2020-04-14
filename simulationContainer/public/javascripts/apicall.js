@@ -51,7 +51,7 @@ async function getvisituserdata(userid){
 
 async function getalluserdata(){
   await $.getJSON('/API/getAllOwners', function(userdata){
-    console.log("hej!");
+    //console.log("hej!");
     putuserprofiledata(userdata);
   })
 }

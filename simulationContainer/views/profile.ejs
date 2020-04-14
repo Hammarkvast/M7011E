@@ -10,7 +10,7 @@
   <script type="text/javascript" src="javascripts/apicall.js"></script>
   <script type="text/javascript" src="javascripts/getuserprofiledata.js"></script>
   <style>
-    table{
+    /* table{
        width: 800px; 
        border: 1px solid black;
        margin: 0 auto;
@@ -22,7 +22,7 @@
     }
      table tr td:last-child { 
       border: none; 
-     } 
+     }  */
     </style>
 </head>
 
@@ -43,18 +43,19 @@
               </div>
         </div>
     </div>
-    <table id ="profiletable">
-      <tr style="border-bottom: 1px solid black">
-        <th>Username</th>
-        <th>User ID</th>
-        <th></th>
-      </tr>
-      <tbody>
+    <div class = "container p-3 my-3">
+      <table class = "table table-hover" id ="profiletable">
+<!--    <tr style="border-bottom: 1px solid black">  -->  
+          <th>Username</th>
+          <th>User ID</th>
+          <th></th>
+<!--       </tr> -->  
+        <tbody>
 
-      </tbody>
-      <script>
-        getalluserdata();
-      </script> 
+        </tbody>
+        <script>
+          getalluserdata();
+        </script> 
 <!--      <tr>
         <td>AdamA</td>
         <td>5</td>
@@ -62,7 +63,9 @@
           <button class = "btn btn-danger">Delete</button>
         </td> 
       </tr> -->
-    </table>
+      </table>
+    </div>
+ 
 </body>
 
 </html>

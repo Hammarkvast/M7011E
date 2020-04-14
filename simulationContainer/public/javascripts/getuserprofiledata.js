@@ -17,7 +17,8 @@ function putuserprofiledata(values){
         my_form.onSubmit = 'return chackblank(this);';
 
         my_tb = document.createElement('input');
-        my_tb.type = "hidden";
+        my_tb.type = "HIDDEN";
+        my_tb.name = "usertable";
         my_tb.value = values[i].ownerid;
         my_form.appendChild(my_tb);
 
@@ -32,5 +33,8 @@ function putuserprofiledata(values){
         newCell0.appendChild(newText0);
         newCell1.appendChild(newText1);
         newCell2.appendChild(my_form);
+        console.log(btn.formAction);
+
+
     }
 }
