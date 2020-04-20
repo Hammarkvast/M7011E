@@ -1,0 +1,52 @@
+
+<html lang = "en">
+<head>
+  <meta charset = "utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel='stylesheet' href='/stylesheets/slider.css' />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../javascripts/apicall.js"></script>
+  <script type="text/javascript" src="../javascripts/getmanagerwebdata.js"></script>
+</head>
+
+<body>
+<div class="jumbotron text-center">
+  <h3>Welcome dear master</h3>
+  <p>BLOCK USERS PAGE</p>
+</div> 
+<%- include('partials/managernavigation') -%>
+
+<div class="container p-3 my-3 bg-dark text-white">
+    <div class = "col-sm-6 col-xs-3">
+        <div class = "center-block">
+            <h4>Seconds to block user </h4>
+            <form class="form-horizontal" role="form" method="post" action="/handleusers/block/blocked" onSubmit="return checkblank(this);">
+                <div class = "form-group" >
+                    <input type="hidden" id="Id" name="Id">
+                </div>
+                <div class=form-group>
+                    <div class="slidecontainer">
+                        <div>
+                            <input type="range" min="0" max="100" value="50" id="slider" name="slider" onchange='document.getElementById("slidertext").value = "Slider Value = " + document.getElementById("slider").value;'/>
+                        </div>
+                        <div>
+                            <input type="text" name="slidertext" id="slidertext" value="Slider Value = 1" disabled />
+                        </div>
+                    </div>
+                    <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Block</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+  var id = <%= id %>;
+  console.log(id);
+  document.getElementById("Id").value=id;
+</script>
+</body>
+
+</html>

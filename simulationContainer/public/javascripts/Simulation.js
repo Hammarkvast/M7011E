@@ -17,7 +17,7 @@ async function Simulationtest({}){
     timeout = 5000;
     setInterval(async () => {
         
-        var sql = "SELECT ownerid FROM owners;";
+        var sql = "SELECT ownerid,blockedtime, secondsblocked FROM owners;";
         await db.query(sql, async function(err,result){
             if (err){
                 console.log(err);
@@ -31,7 +31,8 @@ async function Simulationtest({}){
                 await prodSimulation(result[i].ownerid);
                 await consumptionSimulation(result[i].ownerid);
                 await brokensimulation(result[i].ownerid);
-                await batterysimulation(result[i].ownerid);
+                await batterysimulation(result[i].ownerid, result[i].blockedtime, result[i].secondsblocked);
+                await blackoutcheck(result[i].ownerid);
             }
             // await pricesimulation();
             await coalPLant();
@@ -205,7 +206,7 @@ async function brokensimulation(id){
 }
 
 
-async function batterysimulation(id){
+async function batterysimulation(id,blockedtime, secondsblocked){
     var sql =  "SELECT houseid FROM house WHERE ownerid  = "+db.escape(id)+";"; 
     await db.query(sql, async function(err,result){
         if (err){
@@ -226,7 +227,7 @@ async function batterysimulation(id){
                 return err2;
             }
             
-            let battsim = new BatterySim(result2[0].battery, result2[0].batteryMax, result2[0].production, result2[0].consumption, result2[0].gridbatterypercentage);
+            let battsim = new BatterySim(result2[0].battery, result2[0].batteryMax, result2[0].production, result2[0].consumption, result2[0].gridbatterypercentage,blockedtime, secondsblocked);
             let battery = [];
             battery = battsim.batteryfunc();
 
@@ -282,6 +283,56 @@ async function coalPLantSimulation(values){
         }
         
     })
+}
+
+
+async function blackoutcheck(id){
+    var sql =  "SELECT houseid FROM house WHERE ownerid  = "+db.escape(id)+";"; 
+    await db.query(sql, async function(err,result){
+        if (err){
+            console.log(err);
+            res.sendstatus(500);
+            return err;
+        }
+        // if gridnet <= 0 and battery = 0 and consumption greater than simulation blackout
+        var sql2 = "select consumption, production, battery FROM house WHERE houseid = "+db.escape(result[0].houseid)+";"
+        let gridnet = 0;
+        let consumption =0;
+        let production = 0;
+        let battery = 0;
+        await db.query(sql2, async function(err,result2){
+            if (err){
+                console.log(err);
+                res.sendstatus(500);
+                return err;
+            }
+            consumption = result2[0].consumption;
+            production = result2[0].production;
+            battery = result2[0].battery;
+        });
+
+        var sql3 = "SELECT totalnetproduction FROM totalelectricity WHERE id = 1;" 
+        await db.query(sql3, async function(err,result3){
+            if (err){
+                console.log(err);
+                res.sendstatus(500);
+                return err;
+            }
+            gridnet = result3[0].totalnetproduction;
+        });
+        if (gridnet <=0 && production < consumption && battery <=0){
+            var sqlblackout = "UPDATE house SET blackout = 1;"
+        }else{
+            var sqlblackout = "UPDATE house SET blackout = 0;"
+        }
+        await db.query(sqlblackout, async function(err,result4){
+            if (err){
+                console.log(err);
+                res.sendstatus(500);
+                return err;
+            }
+        });
+    });
 }
 
 async function pricesimulation(){

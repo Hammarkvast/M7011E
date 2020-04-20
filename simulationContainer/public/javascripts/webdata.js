@@ -3,7 +3,7 @@ function putvalues(values){
   let percentage = values.battery / values.batteryMax;
   percentage = percentage * 100;
   console.log("percentage: " + percentage + " battery: " + values.battery + " batteryMax: " + values.batteryMax)
-  document.getElementById("header").innerHTML = "battery level = "  + percentage 
+  document.getElementById("header").innerHTML = "battery level"  
   document.getElementById("windspeed").innerHTML = values.lastwindspeed + "m/s";
   document.getElementById("production").innerHTML = values.production + "Kwh";
   document.getElementById("consumption").innerHTML = values.consumption + "Kwh";
@@ -13,7 +13,7 @@ function putvalues(values){
   $(function() {
 
     var progressed = percentage; 
-  
+    progressed = progressed.toFixed(0);
     var interval = setInterval(function() {
     
         $("#prog")

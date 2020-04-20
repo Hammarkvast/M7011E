@@ -68,7 +68,14 @@
       </thead>
       <tbody>
         <script>
-          gethandleuserdata();
+          
+        gethandleuserdata();
+        getmanageruserblocked()
+        timeout = 1000;
+        setInterval(() => {
+          getmanageruserblocked();
+          updatehandleuserdata();
+        }, timeout);
         </script>
       </tbody>
       <!-- <% if (message.length > 0){ %> -->

@@ -1,5 +1,5 @@
 function puthandleusers(values){
-   //d = new Date()
+   d = new Date()
     for (i = 0;i <values.length; i++ ){
       var tableRef = document.getElementById('table').getElementsByTagName('tbody')[0];
       var newRow   = tableRef.insertRow(-1);
@@ -11,16 +11,22 @@ function puthandleusers(values){
       var newCell5  = newRow.insertCell(5);
       blockedstring = "not blocked";
       onlinestring = "not online";
-      if ((values[i].timeblockedcol + values[i].blocked)<Date.now()){
-          blockedstring = BLOCKED;
+      blackoutstring = "no blackout"
+      console.log(values[i].blockedtime);
+      console.log(values[i].secondsblocked);
+      if ((values[i].blockedtime + values[i].secondsblocked*1000)>d.getTime()){
+          blockedstring = "BLOCKED";
       } 
       if (values[i].lasttimecol<(Date.now()+10)){
-          onlinestring = ONLINE;
+          onlinestring = "ONLINE";
+      }
+      if (values[i].blackout==1){
+          onlinestring = "BLACKOUT";
       }
       var newText0  = document.createTextNode(values[i].username);
-      var newText1  = document.createTextNode(blockedstring);
-      var newText2  = document.createTextNode(onlinestring);
-      var newText3  = document.createTextNode(onlinestring);
+      var newText1  = document.createTextNode(onlinestring);
+      var newText2  = document.createTextNode(blackoutstring);
+      var newText3  = document.createTextNode(blockedstring);
 
       my_form=document.createElement('FORM');
       my_form.name='myForm';
@@ -84,5 +90,46 @@ function puthandleusers(values){
       console.log(btn);
       console.log(btn1.formaction);
       console.log(btn1);
+    }
+}
+
+function putupdatehandleusers(values){
+   d = new Date()
+    for (i = 0;i <values.length; i++ ){
+      blockedstring = "not blocked";
+      onlinestring = "not online";
+      console.log(values[i].blockedtime);
+      console.log(values[i].secondsblocked);
+      if ((values[i].blockedtime + values[i].secondsblocked*1000)>d.getTime()){
+          blockedstring = "BLOCKED";
+      } 
+      if (values[i].lasttimecol<(Date.now()+10)){
+          onlinestring = "ONLINE";
+      }
+
+      var newText1  = document.createTextNode(onlinestring);
+      var newText3  = document.createTextNode(blockedstring);
+      var rowIndex = i+1;
+      let onlinecell = document.getElementById('table').rows[rowIndex].cells[1];
+      let blockedcell = document.getElementById('table').rows[rowIndex].cells[3];
+      onlinecell.removeChild(onlinecell.childNodes[0]);
+      blockedcell.removeChild(blockedcell.childNodes[0]);
+      onlinecell.appendChild(newText1);
+      blockedcell.appendChild(newText3);
+    }
+}
+
+function putupdateblocked(values){
+
+    for (i = 0;i <values.length; i++ ){
+      blackoutstring = "no blackout"
+      if (values[i].blackout == 1){
+        blackoutstring = "BLACKOUT"
+      }
+      var newText2  = document.createTextNode(blackoutstring);
+      var rowIndex = i+1;
+      let blackoutcell = document.getElementById('table').rows[rowIndex].cells[2];
+      blackoutcell.removeChild(blackoutcell.childNodes[0]);
+      blackoutcell.appendChild(newText2);
     }
 }

@@ -37,12 +37,23 @@ async function gethandleuserdata(){
   });
 }
 
+async function updatehandleuserdata(){
+  await $.getJSON('/API/getmanagerhandleusers', function(userdata){
+    console.log(userdata);
+    putupdatehandleusers(userdata);
+  });
+}
 
+async function getmanageruserblocked(){
+  await $.getJSON('/API/getmanagerhandleuserblocked', function(userdata){
+    console.log(userdata);
+    putupdateblocked(userdata);
+  });
+}
 async function getvisituserdata(userid){
     await $.getJSON('/API/getVisitUserData',{userid}, function(userdata) {
       // userdata = JSON.stringify(userdata);
       //userdata = JSON.parse(userdata);
-      console.log(userdata);
       //averageData = averageCountyWeather;
       // userdata = JSON.parse(userdata);
       putvalues(userdata[0]);

@@ -2,12 +2,14 @@ const ProductionSim = require('./ProductionSim.js');
 
 module.exports = class BatterySim{
    
-    constructor(battery, batterymax, production, consumption, batterygridpercentage){
+    constructor(battery, batterymax, production, consumption, batterygridpercentage,blockedtime, secondsblocked){
         this.battery = battery;
         this.batterymax = batterymax;
         this.production = production;
         this.consumption= consumption;
         this.batterygridpercentage = batterygridpercentage/100;
+        this.blockedtime = blockedtime;
+        this.secondsblocked = secondsblocked;
     }
 
     batteryfunc(){
@@ -15,7 +17,20 @@ module.exports = class BatterySim{
         // console.log("production battery: " + this.production);
         // console.log("battery battery: " + this.battery);
         // console.log("batteryMax battery: " + this.batterymax);
-
+        
+        var d = new Date();
+        var time = d.getTime();
+        if (this.blockedtime + this.secondsblocked*1000 > time){
+            this.batterygridpercentage = 1
+                
+            let val = this.production - this.consumption;
+            
+            let batterytemp = this.battery + (val*this.batterygridpercentage);
+            if (batterytemp > this.batterymax){
+                batterytemp = this.batterymax
+            }
+            return [batterytemp,0]
+        } 
         let val = this.production - this.consumption;
 
         let batterytemp = this.battery + (val*this.batterygridpercentage);

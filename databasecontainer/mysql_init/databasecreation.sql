@@ -17,10 +17,10 @@ CREATE TABLE `antom`.`owners`(
     `email` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `username`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `password`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-    `lasttime` DATETIME NOT NULL,
-    `blockedtime` DATETIME NOT NULL,
-    `secondsblocked` int,
-    `manager` int,
+    `lasttime` DATETIME DEFAULT NULL,
+    `blockedtime` BIGINT DEFAULT NULL,
+    `secondsblocked` int DEFAULT NULL,
+    `manager` int not NULL DEFAULT 0,
     PRIMARY KEY (ownerid)
 );
 
@@ -44,6 +44,7 @@ CREATE TABLE `antom`.`house` (
     `gridbatterypercentage` float,
     `batteryMax` int,
     `battery` float,
+    `blackout` int UNSIGNED null,
     `imgname` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `imgtype` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `image` LONGBLOB,

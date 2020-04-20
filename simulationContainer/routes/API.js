@@ -77,7 +77,7 @@ router.get('/getmanagerhandleusers', function(req, res, next) {
      //var id = req.param.id;
     // console.log("enter check owner")
     // res.render('owner.ejs');
-    var sql = 'SELECT ownerid, username, UNIX_TIMESTAMP(lasttime),UNIX_TIMESTAMP(blockedtime), secondsblocked FROM  owners';
+    var sql = 'SELECT ownerid, username, UNIX_TIMESTAMP(lasttime),blockedtime, secondsblocked FROM  owners';
     //res.status(200);
     db.query(sql, function(err, rows, fields){
         if(err) {
@@ -121,6 +121,17 @@ router.get('/getHouseElectricity', function(req, res, next){
     })
 });
 
+router.get('/getmanagerhandleuserblocked', function(req, res, next){
+    var id = req.query.id;
+    var sql = 'SELECT blackout FROM house;'
+    db.query(sql, [id], function(err, row, fields){
+        if(err){
+            console.log(err);
+            res.status(500).send({error: 'couldnt recieve house info'});
+        }
+        res.json(row)
+    })
+});
 
 // router.delete('/deleteOwner', function(req, res, next) {
 //     var id = req.param.id;
