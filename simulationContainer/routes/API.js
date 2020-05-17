@@ -39,27 +39,23 @@ router.get('/getUserData', function(req, res, next) {
         res.sendStatus(500);
         return err;
     }
-    // let battery =  result[0].battery;
-    // let batterymax =  result[0].batteryMax;
-    // let percentage = battery / batterymax;
-    // percentage = percentage * 100;
-    
-    // let test =  {
-    // percentage: percentage,
-    // production: result[0].production,
-    // consumption: result[0].consumption,
-    // gridbatterypercentage: result[0].gridbatterypercentage,
-    // windspeed: result[0].lastwindspeed,
-    // netproduction: result[0].griddelta,
-    // electricityprice: 5,
-    // battery: result[0].battery,
-    // };
-    // res.json(rows);
     res.send(rows);
     })
 
 });
 
+router.get('/getmanagerplantData', function(req, res, next) {
+    var sql = "SELECT production, gridbufferpercentage, griddelta, buffer, bufferMax FROM powerplant;";
+    db.query(sql, async function(err,rows,result){
+    if (err){
+        console.log(err);
+        res.sendStatus(500);
+        return err;
+    }
+    res.send(rows);
+    })
+
+});
 router.get('/getElectricityPrice', function(req, res, next) {
      //var id = req.param.id;
     // console.log("enter check owner")
