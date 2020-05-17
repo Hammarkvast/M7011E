@@ -8,13 +8,11 @@ module.exports = class PriceSim{
     }
 
     price(){
-        if (this.tototalgridload <200){
-            let delta = 200 - this.tototalgridload;
-            let val = (delta /1000) * 0.48;
-            return val;
-        }else {
-            return 0.48;
-        }
+        let price =  0.8-this.tototalgridload*0.001
+        if (price <0){
+            price = 0;
+        } 
+        return price;
     }
 
 

@@ -34,8 +34,8 @@ async function Simulationtest({}){
                 await batterysimulation(result[i].ownerid, result[i].blockedtime, result[i].secondsblocked);
                 await blackoutcheck(result[i].ownerid);
             }
-            // await pricesimulation();
             await coalPLant();
+            await pricesimulation();
             
             return result[0];
         })  
@@ -336,17 +336,19 @@ async function blackoutcheck(id){
 }
 
 async function pricesimulation(){
-    var sql = "SELECT SUM(griddelta) FROM house;";
+    var sql = "SELECT SUM(griddelta) AS sumgrid FROM house;";
     await db.query(sql, async function(err,result){
         if (err){
             console.log(err);
-            res.sendstatus(500);
+            result.sendstatus(500);
             return err;
         }
-        let priceSimvar = new PriceSim(result[0]);
+        let grideltavar = result[0].sumgrid;
+        console.log("JAAAA DUUU VAAAD HÄÄÄÄNNNNNDDDDEEEERRRRRR",grideltavar);
+        let priceSimvar = new PriceSim(grideltavar);
         let price = priceSimvar.price();
         
-        var sql2 = "UPDATE antom.totalelectricity SET totalnetproduction = " + db.escape(result[0]) +". totalelectricityprice" + db.escape(price) ;
+        var sql2 = "UPDATE antom.totalelectricity SET totalnetproduction = " + db.escape(grideltavar) +", totalelectricityprice =" + db.escape(price) ;
         await db.query(sql2, async function(err2,result2){
             if (err2){
                 console.log(err2);
