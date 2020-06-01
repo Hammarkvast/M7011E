@@ -41,4 +41,11 @@ function putOwnerData(user){
 function putElectricity(electricityprice){
 
   document.getElementById("electricityprice").innerHTML = electricityprice.totalelectricityPrice + "kr/kwh";
+  let manorsim = electricityprice.manorsim;
+  console.log(manorsim);
+  if (manorsim==0){
+     	$('#optradio').prop(checked,false);
+  }else{
+     	$('#optradio').prop(checked,true);
+  }
 }

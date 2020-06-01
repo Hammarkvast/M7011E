@@ -66,6 +66,7 @@ CREATE TABLE `antom`.`powerplant`(
 
 CREATE TABLE `antom`.`totalelectricity`(
     `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+    `manorsim` int DEFAULT 1,
     `totalproduction` float,
     `totalconsumption` float,
     `totalnetproduction` float,

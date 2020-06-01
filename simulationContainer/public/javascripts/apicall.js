@@ -18,6 +18,7 @@ async function getmanagerpowerplantdata(){
       // userdata = JSON.stringify(userdata);
       //userdata = JSON.parse(userdata);
       console.log(userdata);
+      console.log("inside get manager plat data");
       //averageData = averageCountyWeather;
       // userdata = JSON.parse(userdata);
       putvalues(userdata[0]);
@@ -31,6 +32,7 @@ async function getownerdata(){
 
 async function getelectricityprice(){
     await $.getJSON('/API/getElectricityPrice', function(userdata) {
+      console.log("inside get manager electricity price");
       // userdata = JSON.stringify(userdata);
       //userdata = JSON.parse(userdata);
       //averageData = averageCountyWeather;
@@ -90,6 +92,28 @@ async function getvisitelectricityprice(userid){
       //averageData = averageCountyWeather;
       // userdata = JSON.parse(userdata);
       putElectricity(userdata[0]);
+    });
+
+}
+
+
+async function settoggle(toggle){
+    await $.getJSON('/API/settoggle',{toggle}, function() {
+      // userdata = JSON.stringify(userdata);
+      //userdata = JSON.parse(userdata);
+      //averageData = averageCountyWeather;
+      // userdata = JSON.parse(userdata);
+      
+    });
+
+}
+async function setprice(price){
+    await $.getJSON('/API/setprice',{price}, function() {
+      // userdata = JSON.stringify(userdata);
+      //userdata = JSON.parse(userdata);
+      //averageData = averageCountyWeather;
+      // userdata = JSON.parse(userdata);
+      
     });
 
 }

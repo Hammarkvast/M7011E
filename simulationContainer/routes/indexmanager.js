@@ -40,5 +40,53 @@ router.post('/', function(req, res, next) {
     res.redirect("/managerhome");
 });
 
+router.post('/toggle', function(req, res, next) {
+    console.log("toggle Enter check");
+  if (req.session.loggedin){
+    var post  = req.body;
+    console.log(post);
+    var tog= post.optradio;
+    //console.log(toggle)
+    console.log("HHHHHHEEEEEERRRRRRREEEEEE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<") 
+     var sql = 'UPDATE totalelectricity SET manorsim =' + db.escape(tog)+' ;';
+    db.query(sql, function(err, result){
+        if (err){
+            console.log(err);
+            res.sendStatus(500);
+            return;
+    }
+       // res.json({'status':'success'})
+    });
+    res.redirect("/managerhome");
+  }
+    res.redirect('/signin_manager');
+});
+router.post('/price', function(req, res, next) {
+  if (req.session.loggedin){
+    var post  = req.body;
+    var price= post.elprinput;
+    console.log(post);
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+    var sql = 'SELECT manorsim from totalelectricity ';
+    db.query(sql, function(err, result){
+        if (err){
+            console.log(err);
+            result.sendStatus(500);
+         }
+        //res.json({'status':'success'})
+        if (result[0].manorsim == 0 && price != "aosivna"){
+            var sql2 = 'UPDATE totalelectricity SET totalelectricityPrice =' + db.escape(price)+';';
+            db.query(sql2, function(err, result){
+                if (err){
+                    console.log(err);
+                    result.sendStatus(500);
+                }
+                //res.json({'status':'success'})
+            });
+        }
+    });
+  }
+    res.redirect("/managerhome");
+});
 
 module.exports = router;

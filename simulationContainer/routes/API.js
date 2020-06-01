@@ -46,12 +46,14 @@ router.get('/getUserData', function(req, res, next) {
 
 router.get('/getmanagerplantData', function(req, res, next) {
     var sql = "SELECT production, gridbufferpercentage, griddelta, buffer, bufferMax FROM powerplant;";
+    console.log("inside get manager plat data API ");
     db.query(sql, async function(err,rows,result){
     if (err){
         console.log(err);
         res.sendStatus(500);
         return err;
     }
+    console.log(" inside get manager plant data not error API")
     res.send(rows);
     })
 
@@ -60,13 +62,16 @@ router.get('/getElectricityPrice', function(req, res, next) {
      //var id = req.param.id;
     // console.log("enter check owner")
     // res.render('owner.ejs');
-    var sql = 'SELECT totalelectricityPrice FROM totalelectricity;';
+    
+    console.log("get electricity price n api")
+    var sql = 'SELECT totalelectricityPrice, manorsim FROM totalelectricity;';
     //res.status(200);
     db.query(sql, function(err, rows, fields){
         if(err) {
             res.status(500).send({error: 'Something failed!'});
         }
         res.send(rows);
+        console.log("get electricity price not error api")
     })
 });
 router.get('/getmanagerhandleusers', function(req, res, next) {
@@ -202,6 +207,30 @@ router.get('/getVisitElectricityPrice', function(req, res, next) {
             res.status(500).send({error: 'Something failed!'});
         }
         res.send({rows});
+    })
+});
+router.get('/settoggle', function(req, res, next) {
+    //console.log(req);
+    var sql = 'UPDATE totalelectricity SET manorsim =' + db.escape(req.query.toggle)+' ;';
+   // res.status(200);
+    db.query(sql, function(err, rows, fields){
+        if(err) {
+            res.status(500).send({error: 'Something failed!'});
+        }
+        //res.send({rows});
+        console.log("inide set toggle API not ERROR")
+    })
+});
+router.get('/setprice', function(req, res, next) {
+    //console.log(req);
+    var sql = 'UPDATE totalelectricity SET totalelectricityPrice =' + db.escape(req.query.price)+' ;';
+   // res.status(200);
+    db.query(sql, function(err, rows, fields){
+        if(err) {
+            res.status(500).send({error: 'Something failed!'});
+        }
+        //res.send({rows});
+        console.log("inside set price Api not ERROR")
     })
 });
 module.exports = router;

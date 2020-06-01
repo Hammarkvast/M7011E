@@ -7,6 +7,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </head>
 
 <body>
@@ -54,7 +56,7 @@
     </div>
   </div>
   <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-3">
       <h4>batttery vs grid </h4>
       <form class="form-horizontal" role="form" method="post" action="/managerhome" onSubmit="return checkblank(this);">
         <div class="slidecontainer">
@@ -64,7 +66,26 @@
             <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Submit Percentage</button>
       </form>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-3">
+    <h4 id = "toggle" > toggle between manual and simulation price </h4>
+    <form id = "form-id" class="form-horizontal" role="form" method="post" action="/managerhome/toggle" onSubmit="return checkblank(this);">
+      <div class="radio">
+        <label><input type="radio" value = "0" name="optradio" >manual input(freezes price sim)</label>
+      </div>
+      <div class="radio">
+        <label><input type="radio" value="1"  name="optradio">simulating prices </label>
+      </div>
+        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Toggle</button>
+    </form>
+  </div>
+  <div class="col-sm-3">
+      <h4>batttery vs grid </h4>
+      <form class="form-horizontal" role="form" method="post" action="/managerhome/price" onSubmit="return checkblank(this);">
+        <input type="number" name="elprinput" id="elprinput" min="0" value="0"/>
+        <button id="btn-price" type="submit"  class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Submit Price</button>
+      </form>
+  </div>
+  <div class="col-sm-3">
     <h4 id = "header" > buffer level 70%</h4>
       <div class="progress">
           <div class="progress-bar bg-secondary" value='70' style="width:70%" id = "prog"> </div>
@@ -74,7 +95,6 @@
   
   <script>
   var slider = document.getElementById("myRange");
-  
   </script>
   <script type="text/javascript" src="javascripts/apicall.js"></script>
   <script type="text/javascript" src="javascripts/getmanagerpagewebdata.js"></script>
@@ -85,15 +105,17 @@
       var image = document.getElementById("image");
       var imgurl = '<%= imageurl %>';
       image.src = imgurl;
+
     getmanagerpowerplantdata();
     getelectricityprice();
     getownerdata();
     timeout = 5001;
     setInterval(() => {
+      console.log("Inside Interval");
       getmanagerpowerplantdata();
       getelectricityprice();
     }, timeout);
-  </script>
+    </script>
   
   
   
