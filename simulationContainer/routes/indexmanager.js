@@ -7,7 +7,14 @@ const request = require("request");
 
 router.get('/', function(req, res, next){
     if(req.session.loggedin && req.session.manager){
-        res.render('managerpage');
+        var sql = "SELECT imgname, imgtype, image FROM house WHERE ownerid = "+ db.escape(req.session.databaseid)+";";  
+        var query = db.query(sql, function(err, result){
+            if(err){
+                res.render('managerpage');
+            }
+            var data = "data:" + result[0].imgtype + ";base64," + result[0].image;
+            res.render("managerpage", {imageurl:data});
+        })  
     }else{
         res.redirect('/signin_manager');
     }

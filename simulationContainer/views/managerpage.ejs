@@ -15,8 +15,11 @@
 <div class="container p-3 my-3 bg-dark text-white">
   <div class = "row">
     <div class= "col-sm-2">
+       <picture>
+         <img id ="image" src="" alt= "your house" width = 150px;>
+       </picture>
+     </div>
       </form>
-    </div>
     <div class="col-sm-2">
       <h5>username</h5>
       <p id="username" ></p>
@@ -30,6 +33,7 @@
       <p id="lastname"></p>
     </div>
   </div>
+</div>
 
 </div>
 
@@ -74,10 +78,13 @@
   </script>
   <script type="text/javascript" src="javascripts/apicall.js"></script>
   <script type="text/javascript" src="javascripts/getmanagerpagewebdata.js"></script>
-  
   <script>
-     var image =  document.getElementById("image");
-  
+    getalluserdata();
+  </script> 
+  <script>
+      var image = document.getElementById("image");
+      var imgurl = '<%= imageurl %>';
+      image.src = imgurl;
     getmanagerpowerplantdata();
     getelectricityprice();
     getownerdata();
