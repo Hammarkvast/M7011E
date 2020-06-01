@@ -13,6 +13,16 @@ async function getuserdata(){
     });
 }
 
+async function getmanagerpowerplantdata(){
+    await $.getJSON('/API/getmanagerplantData', function(userdata) {
+      // userdata = JSON.stringify(userdata);
+      //userdata = JSON.parse(userdata);
+      console.log(userdata);
+      //averageData = averageCountyWeather;
+      // userdata = JSON.parse(userdata);
+      putvalues(userdata[0]);
+    });
+}
 async function getownerdata(){
   await $.getJSON('/API/getOwnerData', function(userdata){
     putOwnerData(userdata[0]);

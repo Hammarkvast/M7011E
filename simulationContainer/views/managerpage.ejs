@@ -12,8 +12,88 @@
 <body>
     <%- include('partials/managernavigation') -%>
 </body>
-<!--<div class="jumbotron text-center">
-  <h3>Welcome dear master</h3>
-  <p>You have officially signed in</p>
-</div> -->
+<div class="container p-3 my-3 bg-dark text-white">
+  <div class = "row">
+    <div class= "col-sm-2">
+      </form>
+    </div>
+    <div class="col-sm-2">
+      <h5>username</h5>
+      <p id="username" ></p>
+    </div>
+    <div class="col-sm-2">
+      <h5>First name</h5>
+      <p id="firstname"></p>
+    </div>
+    <div class="col-sm-2">
+      <h5>Last name</h5>
+      <p id="lastname"></p>
+    </div>
+  </div>
+
+</div>
+
+<div class="container p-3 my-3 bg-dark text-white">
+
+  <div class="row">
+    <div class="col-sm-4">
+      <h4> Current Production</h4>
+      <p id = "production" > </p>
+    </div>
+    <div class="col-sm-4">
+      <h4>Current buffer amount</h4>
+      <p id = buffer></p>
+    </div>
+    <div class="col-sm-4">
+      <h4>Current electricity Price</h4>
+      <p id = electricityprice></p>
+    </div>
+  </div>
+  <div class="row">
+  <div class="col-sm-6">
+      <h4>batttery vs grid </h4>
+      <form class="form-horizontal" role="form" method="post" action="/managerhome" onSubmit="return checkblank(this);">
+        <div class="slidecontainer">
+          <input type="range" min="0" max="100" value="50" id="slider" name="slider" onchange='document.getElementById("slidertext").value = "Slider Value = " + document.getElementById("slider").value;'/>
+          <!-- <input type="text" name="slidertext" id="slidertext" value="Slider Value = 1" disabled /> -->
+        </div>
+            <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Submit Percentage</button>
+      </form>
+  </div>
+  <div class="col-sm-6">
+    <h4 id = "header" > buffer level 70%</h4>
+      <div class="progress">
+          <div class="progress-bar bg-secondary" value='70' style="width:70%" id = "prog"> </div>
+      </div>
+  </div>
+</div>
+  
+  <script>
+  var slider = document.getElementById("myRange");
+  
+  </script>
+  <script type="text/javascript" src="javascripts/apicall.js"></script>
+  <script type="text/javascript" src="javascripts/getmanagerpagewebdata.js"></script>
+  
+  <script>
+     var image =  document.getElementById("image");
+  
+    getmanagerpowerplantdata();
+    getelectricityprice();
+    getownerdata();
+    timeout = 5001;
+    setInterval(() => {
+      getmanagerpowerplantdata();
+      getelectricityprice();
+    }, timeout);
+  </script>
+  
+  
+  
+  </body>
+  <!--<div class="jumbotron text-center">
+    <h3>Welcome dear master</h3>
+    <p>You have officially signed in</p>
+  </div> -->
+  
 </html>
