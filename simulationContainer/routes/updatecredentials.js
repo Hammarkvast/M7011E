@@ -38,6 +38,9 @@ router.post('/', async function(req, res, next){
                         res.redirect('/profile');
                     });
                 })
+            }else{
+                message = "Old password is incorrect";
+                res.render('updatecredentials', {message: message}); 
             }
         })
     });
