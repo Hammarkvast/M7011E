@@ -17,7 +17,7 @@ router.get('/getOwnerData', function(req, res, next){
 });
 
 router.get('/getAllOwners', function(req,res,next){
-    var sql = "SELECT username, ownerid FROM owners WHERE manager IS NULL";
+    var sql = "SELECT username, ownerid FROM owners WHERE manager = 0";
     db.query(sql, function(err, rows, result){
         if(err){
             console.log(err);
@@ -77,7 +77,7 @@ router.get('/getmanagerhandleusers', function(req, res, next) {
      //var id = req.param.id;
     // console.log("enter check owner")
     // res.render('owner.ejs');
-    var sql = 'SELECT ownerid, username, UNIX_TIMESTAMP(lasttime),blockedtime, secondsblocked FROM  owners';
+    var sql = 'SELECT ownerid, username, UNIX_TIMESTAMP(lasttime),blockedtime, secondsblocked FROM  owners WHERE manager = 0';
     //res.status(200);
     db.query(sql, function(err, rows, fields){
         if(err) {
@@ -85,6 +85,7 @@ router.get('/getmanagerhandleusers', function(req, res, next) {
             console.log("error message js: " + err.message);
             res.status(500).send({error: 'Something failed!'});
         }
+        console.log(rows)
         res.json(rows);
     })
 });

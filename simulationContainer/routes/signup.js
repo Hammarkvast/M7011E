@@ -34,7 +34,7 @@ router.post('/',upload.single('uploaded_image'), async function(req,res,next){
    let buff = fs.readFileSync(file.path);
    let base64data = buff.toString('base64');
  //  console.log("name of file: "+ imgname+ " ,type of file: "+ imgtype)
-//   console.log(base64data);
+ //  console.log(base64data);
 
    
 

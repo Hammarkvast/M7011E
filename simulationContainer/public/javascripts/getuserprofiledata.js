@@ -16,7 +16,7 @@ function putuserprofiledata(values){
         my_form.method = 'post';
         my_form.onSubmit = 'return chackblank(this);';
 
-        my_tb = document.createElement('input');
+        my_tb = document.createElement('INPUT');
         my_tb.type = "HIDDEN";
         my_tb.name = "usertable";
         my_tb.value = values[i].ownerid;

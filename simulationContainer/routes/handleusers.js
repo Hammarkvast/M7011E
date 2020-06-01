@@ -14,7 +14,7 @@ const request = require("request");
 // });
 router.get('/',function(req, res, next){
     // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3030');
-    if(req.session.loggedin){
+    if(req.session.loggedin && req.session.manager){
         res.render("handleusers");
     }else{
         res.redirect('/signin_manager');
@@ -24,7 +24,7 @@ router.get('/',function(req, res, next){
 
 router.post('/visit', async function(req,res,next){
   
-  if (req.session.loggedin){
+  if (req.session.loggedin && req.session.manager){
     body = req.body;
     id = body.hidden1;
     var sql = "SELECT imgname, imgtype, image FROM house WHERE ownerid = "+ db.escape(id)+";";
@@ -46,7 +46,7 @@ router.post('/visit', async function(req,res,next){
 });
  
 router.post('/block', async function(req,res,next){
-  if (req.session.loggedin){
+  if (req.session.loggedin && req.session.manager){
     body = req.body;
     id = body.hidden_block;
     console.log(id);
@@ -57,7 +57,7 @@ router.post('/block', async function(req,res,next){
 
 router.post('/block/blocked', async function (req, res,next){
   console.log("testing if i can post in a post");
-   if (req.session.loggedin){
+   if (req.session.loggedin && req.session.manager){
       body = req.body;
       var id = body.Id;
       console.log(id);

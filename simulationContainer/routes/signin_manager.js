@@ -15,6 +15,7 @@ router.post('/', function(req,res,next){
     var post = req.body;
     var name = post.username;
     var pass = post.password;
+    if(name){
     var sql = "SELECT * FROM owners WHERE username = "+ db.escape(name) +" AND manager = 1;";
     var query = db.query(sql, function(err, result){
         if(err){
@@ -25,6 +26,7 @@ router.post('/', function(req,res,next){
             if(compares == true){
                 req.session.loggedin = true;
                 req.session.username = name;
+                req.session.manager = true;
                 req.session.databaseid = result[0].ownerid;
                 res.redirect('/managerhome');
             }else {
@@ -33,5 +35,9 @@ router.post('/', function(req,res,next){
             }
         });
     });
-})
+}   else{
+        message = "Wrong username, manager, or you dont have the rights to access this page";
+        res.render('signin_manager', {message: message});        
+    }
+});
 module.exports = router;

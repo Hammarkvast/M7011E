@@ -20,7 +20,7 @@ router.post('/', function(req,res,next){
    var pass= post.password;
    //var sql = "INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "')";
    if (name){
-   var sql = "SELECT * FROM owners WHERE username = "+ db.escape(name) + ";";
+   var sql = "SELECT * FROM owners WHERE username = "+ db.escape(name) + " AND manager != 1;";
    var query = db.query(sql, function(err, result) { 
       if (err){
          console.log("error log js: "+ err.log);
@@ -33,6 +33,7 @@ router.post('/', function(req,res,next){
          if(compareres == true){
             req.session.loggedin = true;
             req.session.username = name;
+            req.session.manager = false;
             req.session.databaseid = result[0].ownerid;
             res.redirect("/");
          } else {

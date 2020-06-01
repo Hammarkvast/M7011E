@@ -8,7 +8,7 @@ var bcrypt = require('bcrypt');
 var fs = require('fs');
 
 router.get('/', function(req, res, next){
-    if(req.session.loggedin){
+    if(req.session.loggedin && req.session.manager){
         res.render("updatecredentials");
     }else{
         res.redirect('/signin_manager');

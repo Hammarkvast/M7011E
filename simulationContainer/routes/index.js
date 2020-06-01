@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   interval  = 5000;
  // setInterval(() => {
     
-    if (req.session.loggedin){
+    if (req.session.loggedin && !req.session.manager){
       var sql = "SELECT imgname, imgtype, image FROM house WHERE ownerid = "+ db.escape(req.session.databaseid)+";";
       var query = db.query(sql, function(err, result) { 
         if (err){
@@ -43,7 +43,7 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-  if (req.session.loggedin){
+  if (req.session.loggedin && !req.session.manager){
     message = '';
     var post  = req.body;
     var slider= post.slider; 
