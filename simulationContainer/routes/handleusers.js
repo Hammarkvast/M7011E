@@ -49,24 +49,19 @@ router.post('/block', async function(req,res,next){
   if (req.session.loggedin && req.session.manager){
     body = req.body;
     id = body.hidden_block;
-    console.log(id);
     res.render('block',{userid: id});
 
   }
 });
 
 router.post('/block/blocked', async function (req, res,next){
-  console.log("testing if i can post in a post");
    if (req.session.loggedin && req.session.manager){
       body = req.body;
       var id = body.Id;
-      console.log(id);
-      console.log(body);
       var seconds = body.slider;
       var d = new Date();
       var time = d.getTime();
       var sql = "UPDATE antom.owners SET blockedtime = " +db.escape(time)+", secondsblocked = " + db.escape(seconds)+" where ownerid = "+db.escape(id)+";"
-      console.log(sql);
       db.query(sql,function(err,result){
         if (err){
           console.log(err);

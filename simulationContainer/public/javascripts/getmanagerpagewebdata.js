@@ -2,12 +2,10 @@
 function putvalues(values){
   let percentage = values.buffer / values.bufferMax;
   percentage = percentage * 100;
-  console.log("percentage: " + percentage + " buffer: " + values.buffer + " bufferMax: " + values.bufferMax)
   document.getElementById("header").innerHTML = "Buffer level"  
   document.getElementById("production").innerHTML = values.production + "Kwh";
   //document.getElementById("netproduction").innerHTML = values.griddelta + "Kwh";
   document.getElementById("buffer").innerHTML = values.buffer + "kwh";
-  console.log(values.buffer);
 
   $(function() {
 
@@ -42,7 +40,6 @@ function putElectricity(electricityprice){
 
   document.getElementById("electricityprice").innerHTML = electricityprice.totalelectricityPrice + "kr/kwh";
   let manorsim = electricityprice.manorsim;
-  console.log(manorsim);
   if (manorsim==0){
      	$('#optradio').prop(checked,false);
   }else{

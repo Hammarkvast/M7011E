@@ -26,7 +26,6 @@ router.post('/', function(req, res, next) {
     message = '';
     var post  = req.body;
     var slider= post.slider; 
-    console.log("post check slider value = " + slider);
     var sql = "UPDATE antom.powerplant SET gridbufferpercentage = "+ db.escape(slider)+";";
     db.query(sql, function(err, result){
         if (err){

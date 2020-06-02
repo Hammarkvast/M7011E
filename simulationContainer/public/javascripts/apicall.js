@@ -6,7 +6,6 @@ async function getuserdata(){
     await $.getJSON('/API/getUserData', function(userdata) {
       // userdata = JSON.stringify(userdata);
       //userdata = JSON.parse(userdata);
-      console.log(userdata);
       //averageData = averageCountyWeather;
       // userdata = JSON.parse(userdata);
       putvalues(userdata[0]);
@@ -17,8 +16,6 @@ async function getmanagerpowerplantdata(){
     await $.getJSON('/API/getmanagerplantData', function(userdata) {
       // userdata = JSON.stringify(userdata);
       //userdata = JSON.parse(userdata);
-      console.log(userdata);
-      console.log("inside get manager plat data");
       //averageData = averageCountyWeather;
       // userdata = JSON.parse(userdata);
       putvalues(userdata[0]);
@@ -32,7 +29,6 @@ async function getownerdata(){
 
 async function getelectricityprice(){
     await $.getJSON('/API/getElectricityPrice', function(userdata) {
-      console.log("inside get manager electricity price");
       // userdata = JSON.stringify(userdata);
       //userdata = JSON.parse(userdata);
       //averageData = averageCountyWeather;
@@ -44,21 +40,18 @@ async function getelectricityprice(){
 
 async function gethandleuserdata(){
   await $.getJSON('/API/getmanagerhandleusers', function(userdata){
-    console.log(userdata);
     puthandleusers(userdata);
   });
 }
 
 async function updatehandleuserdata(){
   await $.getJSON('/API/getmanagerhandleusers', function(userdata){
-    console.log(userdata);
     putupdatehandleusers(userdata);
   });
 }
 
 async function getmanageruserblocked(){
   await $.getJSON('/API/getmanagerhandleuserblocked', function(userdata){
-    console.log(userdata);
     putupdateblocked(userdata);
   });
 }
@@ -74,7 +67,6 @@ async function getvisituserdata(userid){
 
 async function getalluserdata(){
   await $.getJSON('/API/getAllOwners', function(userdata){
-    //console.log("hej!");
     putuserprofiledata(userdata);
   })
 }

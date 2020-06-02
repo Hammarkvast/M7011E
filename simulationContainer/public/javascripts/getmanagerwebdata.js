@@ -12,8 +12,8 @@ function puthandleusers(values){
       blockedstring = "not blocked";
       onlinestring = "not online";
       blackoutstring = "no blackout"
-      console.log(values[i].blockedtime);
-      console.log(values[i].secondsblocked);
+      // console.log(values[i].blockedtime);
+      // console.log(values[i].secondsblocked);
       if ((values[i].blockedtime + values[i].secondsblocked*1000)>d.getTime()){
           blockedstring = "BLOCKED";
       } 
@@ -86,10 +86,6 @@ function puthandleusers(values){
       newCell3.appendChild(newText3);
       newCell4.appendChild(my_form);
       newCell5.appendChild(my_form_block);
-      console.log(btn.formaction);
-      console.log(btn);
-      console.log(btn1.formaction);
-      console.log(btn1);
     }
 }
 
@@ -98,8 +94,8 @@ function putupdatehandleusers(values){
     for (i = 0;i <values.length; i++ ){
       blockedstring = "not blocked";
       onlinestring = "not online";
-      console.log(values[i].blockedtime);
-      console.log(values[i].secondsblocked);
+      // console.log(values[i].blockedtime);
+      // console.log(values[i].secondsblocked);
       if ((values[i].blockedtime + values[i].secondsblocked*1000)>d.getTime()){
           blockedstring = "BLOCKED";
       } 

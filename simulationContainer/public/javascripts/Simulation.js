@@ -24,7 +24,7 @@ async function Simulationtest({}){
                 res.sendStatus(500);
                 return err;
             }
-            console.log(result);
+            // console.log(result);
             
             for (i=0; i<result.length; i++){
                 await WeatherSimulation(result[i].ownerid);
@@ -66,7 +66,7 @@ async function WeatherSimulation(id){
             
             let weather = new WeatherSim(result2[0].lastwindspeed, result2[0].meanwind, result2[0].stddevwind);
             let lastwindspeed = weather.weather()
-            console.log("lastwindspeed: " + lastwindspeed)
+            //console.log("lastwindspeed: " + lastwindspeed)
             var sql3 = "UPDATE antom.house SET lastwindspeed = "+ db.escape(lastwindspeed) + " WHERE houseid ="+db.escape(houseid)+";";
             await db.query(sql3, function(err2,result){
             if (err2){
@@ -102,7 +102,7 @@ async function prodSimulation(id){
             
             let prod = new ProductionSim(result2[0].lastwindspeed, result2[0].productionefficiency);
             let production = prod.currentproduction();
-            console.log("production: " + production)
+          //  console.log("production: " + production)
             var sql3 = "UPDATE antom.house SET production = "+ db.escape(production) + " WHERE houseid ="+db.escape(houseid)+";";
 
             await db.query(sql3, function(err2,result){
@@ -354,7 +354,6 @@ async function pricesimulation(){
                     return err;
                 }
                 let grideltavar = result[0].sumgrid;
-                console.log("JAAAA DUUU VAAAD HÄÄÄÄNNNNNDDDDEEEERRRRRR",grideltavar);
                 let priceSimvar = new PriceSim(grideltavar);
                 let price = priceSimvar.price();
                 

@@ -1,6 +1,6 @@
 function putuserprofiledata(values){
-    console.log("hallo!");
-    console.log(values);
+    // console.log("hallo!");
+    // console.log(values);
     for (i = 0; i <values.length; i++){
         var tableRef = document.getElementById('profiletable').getElementsByTagName('tbody')[0];
         var newRow = tableRef.insertRow(-1);
@@ -33,7 +33,6 @@ function putuserprofiledata(values){
         newCell0.appendChild(newText0);
         newCell1.appendChild(newText1);
         newCell2.appendChild(my_form);
-        console.log(btn.formAction);
 
 
     }

@@ -24,7 +24,7 @@ router.get('/getAllOwners', function(req,res,next){
             res.sendStatus(500);
             return err;
         }
-        console.log(rows);
+        //console.log(rows);
         res.send(rows);
     })
 })
@@ -46,14 +46,14 @@ router.get('/getUserData', function(req, res, next) {
 
 router.get('/getmanagerplantData', function(req, res, next) {
     var sql = "SELECT production, gridbufferpercentage, griddelta, buffer, bufferMax FROM powerplant;";
-    console.log("inside get manager plat data API ");
+    //console.log("inside get manager plat data API ");
     db.query(sql, async function(err,rows,result){
     if (err){
         console.log(err);
         res.sendStatus(500);
         return err;
     }
-    console.log(" inside get manager plant data not error API")
+    //console.log(" inside get manager plant data not error API")
     res.send(rows);
     })
 
@@ -63,7 +63,7 @@ router.get('/getElectricityPrice', function(req, res, next) {
     // console.log("enter check owner")
     // res.render('owner.ejs');
     
-    console.log("get electricity price n api")
+    //console.log("get electricity price n api")
     var sql = 'SELECT totalelectricityPrice, manorsim FROM totalelectricity;';
     //res.status(200);
     db.query(sql, function(err, rows, fields){
@@ -71,7 +71,7 @@ router.get('/getElectricityPrice', function(req, res, next) {
             res.status(500).send({error: 'Something failed!'});
         }
         res.send(rows);
-        console.log("get electricity price not error api")
+        //console.log("get electricity price not error api")
     })
 });
 router.get('/getmanagerhandleusers', function(req, res, next) {
@@ -86,7 +86,7 @@ router.get('/getmanagerhandleusers', function(req, res, next) {
             console.log("error message js: " + err.message);
             res.status(500).send({error: 'Something failed!'});
         }
-        console.log(rows)
+        //console.log(rows)
         res.json(rows);
     })
 });
@@ -184,7 +184,7 @@ router.get('/getVisitOwnerData', function(req, res, next){
 //GET all owners.
 
 router.get('/getVisitUserData', function(req, res, next) {
-    console.log(req.query.userid);
+    //console.log(req.query.userid);
     id = req.query.userid;
     var sql = "SELECT lastwindspeed, production, consumption, gridbatterypercentage, griddelta, battery, batteryMax FROM house WHERE ownerid = "+ db.escape(id)+";";
     db.query(sql, async function(err,rows,result){
@@ -218,7 +218,7 @@ router.get('/settoggle', function(req, res, next) {
             res.status(500).send({error: 'Something failed!'});
         }
         //res.send({rows});
-        console.log("inide set toggle API not ERROR")
+        //console.log("inide set toggle API not ERROR")
     })
 });
 router.get('/setprice', function(req, res, next) {
@@ -230,7 +230,7 @@ router.get('/setprice', function(req, res, next) {
             res.status(500).send({error: 'Something failed!'});
         }
         //res.send({rows});
-        console.log("inside set price Api not ERROR")
+      //  console.log("inside set price Api not ERROR")
     })
 });
 module.exports = router;
