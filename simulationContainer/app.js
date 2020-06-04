@@ -9,6 +9,8 @@ var APIRouter = require('./routes/API');
 
 //const cors = require("cors");
 
+//const port = normalizePort(process.env.PORT||'3000');
+//app.set('port',port);
 // var corsOptions = {
   // origin: "*" ,
   // optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -20,6 +22,7 @@ var APIRouter = require('./routes/API');
 // }
 //  
 // console.log(result.parsed);
+
 
 //var totalElectrictyRouter = require('./routes/totalelectricity');
 //var weathersim = require('./public/javascripts/WeatherSim');
@@ -78,9 +81,15 @@ app.use('/signin_manager', signinManagerRouter);
 app.use('/profile', profileRouter);
 app.use('/updatecredentials', updatecredentialsRouter);
 
+
 // app.listen(80, function () {
 //   console.log('CORS-enabled web server listening on port 80')
 // })
+
+//app.listen(80, function () {
+//  console.log('CORS-enabled web server listening on port 80')
+//})
+
 // app.get('*', function(req,res){
 // })
 // ///app.use('/users', usersRouter);

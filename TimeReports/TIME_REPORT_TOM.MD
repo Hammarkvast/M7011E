@@ -21,6 +21,7 @@
 | 2019-12-09  | 4       | Increased api functionality so that simulation data can be shown for the prosumer and company. |
 | 2019-12-12  | 4       | More work on API. |
 | 2019-12-17  | 1.5       | Made a trello page for the websites, and discussed their contents|
+| 2019-12-21  | 5       | Made sure that i was able to get into the prosumer page, had problems getting in but managed to after a long while. Also set the minimum password length for a user to be 8 characters long. Checked eventual options for redesign of webpage. |
 | 2019-12-27  | 7       | Made research on how to make it possible for a user to upload a picture of their house, but ran into problems when doing the implementation. Also started on designing the navigation bar. |
 | 2019-12-28  | 4       | Did more work on navigation bar, realized i had implemented for an older bootstrap version, which made it so i had to start over. Also had to make research on ejs. |
 | 2019-12-29  | 5       | Made a simple navigation bar that works with the bootstrap version we are working with. |
@@ -36,3 +37,4 @@
 | 2020-01-15  | 7       | Did some bugfixing. Started on writing the report.|
 | 2020-01-16  | 7       | Continued on writing the report.|
 | 2020-01-17  | 7       | Merged the simulation branch with the master branch, started deployement on aws, wrote README instruction for setting the project up.|
+| 2020-01-18  | 7       | Finished deployment, fixed formatting of README, finished the report, created github release.|
