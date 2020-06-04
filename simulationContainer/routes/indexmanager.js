@@ -40,13 +40,13 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/toggle', function(req, res, next) {
-    console.log("toggle Enter check");
+    // console.log("toggle Enter check");
   if (req.session.loggedin){
     var post  = req.body;
-    console.log(post);
+    // console.log(post);
     var tog= post.optradio;
     //console.log(toggle)
-    console.log("HHHHHHEEEEEERRRRRRREEEEEE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<") 
+    // console.log("HHHHHHEEEEEERRRRRRREEEEEE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<") 
      var sql = 'UPDATE totalelectricity SET manorsim =' + db.escape(tog)+' ;';
     db.query(sql, function(err, result){
         if (err){
@@ -64,8 +64,8 @@ router.post('/price', function(req, res, next) {
   if (req.session.loggedin){
     var post  = req.body;
     var price= post.elprinput;
-    console.log(post);
-    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+    // console.log(post);
+    // console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     var sql = 'SELECT manorsim from totalelectricity ';
     db.query(sql, function(err, result){
         if (err){

@@ -24,8 +24,8 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/', upload.single('manager_profile'), function(req, res, next){
-    console.log("Testing 123");
-    console.log(req.file);
+    // console.log("Testing 123");
+    // console.log(req.file);
     file = req.file;
     //res.send("testing 123");
     var fileType = req.file.mimetype;
