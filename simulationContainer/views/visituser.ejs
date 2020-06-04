@@ -1,6 +1,5 @@
-
 <html lang = "en">
-    <%- include('partials/head') -%>
+  <%- include('partials/head') -%>
 <body>
 <!--<div class="jumbotron text-center">
   <h1>My First Bootstrap Page</h1>
@@ -79,37 +78,40 @@
             <div class="progress-bar bg-secondary" value='70' style="width:70%" id = "prog"> </div>
         </div>
     </div>
+    <div class="col-sm-4">
+      
+     <!-- <% if (imageurl.length > 0) { %> -->
+        <picture>
+          <img id ="image" src="" alt= "your house" width = 100px;>
+        </picture>
+      <!-- <% } %> -->
+    </div>
   </div>
 </div>
 
 <script>
 var slider = document.getElementById("myRange");
-//var output = document.getElementById("demo");
-//output.innerHTML = slider.value; // Display the default slider value
-// console.log(window.getComputedStyle(document.getElementById("prog")));
-// document.getElementById("prog")
-////Update the current slider value (each time you drag the slider handle)
-// slider.oninput = function() {
-  // output.innerHTML = this.value;
-  // 
-// } 
 </script>
-<script type="text/javascript" src="javascripts/apicall.js"></script>
-<script type="text/javascript" src="javascripts/webdata.js"></script>
+<script type="text/javascript" src="../javascripts/apicall.js"></script>
+<script type="text/javascript" src="../javascripts/webdata.js"></script>
 
 <script>
   var image =  document.getElementById("image");
   var imgurl = '<%= imageurl %>';
   image.src =  imgurl;
-  // image.srcset = ><%= message %>;
-  
-  getuserdata();
-  getelectricityprice();
-  getownerdata();
+  var id = <%= id %>;
+ // console.log("userid: "+ id);  
+  getvisituserdata(id);
+  getvisitownerdata(id);
+  getvisitelectricityprice(id);
+  //getuserdata();
+  //getelectricityprice();
+  //getownerdata();
+
   timeout = 5001;
   setInterval(() => {
-    getuserdata();
-    getelectricityprice();
+    getvisituserdata(id);
+    getvisitelectricityprice(id);
   }, timeout);
 </script>
 

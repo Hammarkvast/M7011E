@@ -1,14 +1,11 @@
 
 function putvalues(values){
-  let percentage = values.battery / values.batteryMax;
+  let percentage = values.buffer / values.bufferMax;
   percentage = percentage * 100;
-  //console.log("percentage: " + percentage + " battery: " + values.battery + " batteryMax: " + values.batteryMax)
-  document.getElementById("header").innerHTML = "battery level"  
-  document.getElementById("windspeed").innerHTML = values.lastwindspeed + "m/s";
+  document.getElementById("header").innerHTML = "Buffer level"  
   document.getElementById("production").innerHTML = values.production + "Kwh";
-  document.getElementById("consumption").innerHTML = values.consumption + "Kwh";
-  document.getElementById("netproduction").innerHTML = values.griddelta + "Kwh";
-  document.getElementById("battery").innerHTML = values.battery + "kwh";
+  //document.getElementById("netproduction").innerHTML = values.griddelta + "Kwh";
+  document.getElementById("buffer").innerHTML = values.buffer + "kwh";
 
   $(function() {
 
@@ -42,4 +39,10 @@ function putOwnerData(user){
 function putElectricity(electricityprice){
 
   document.getElementById("electricityprice").innerHTML = electricityprice.totalelectricityPrice + "kr/kwh";
+  let manorsim = electricityprice.manorsim;
+  if (manorsim==0){
+     	$('#optradio').prop(checked,false);
+  }else{
+     	$('#optradio').prop(checked,true);
+  }
 }

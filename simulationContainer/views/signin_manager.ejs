@@ -11,12 +11,12 @@
 
 
 <div class="jumbotron text-center">
-  <h3>MANAGER OF GL ELECTRICS ONLY</h3>
-  <p>REGULAR PEOPLE NOT WELCOME!!!!!</p>
+  <h3>GL Electrics Manager</h3>
+  <p>Sign in with your given username and password!</p>
 </div>
 
 <div class="container p-3 my-3 bg-dark text-white">
-    <form class="form-horizontal" role="form" method="post" action="/signin_manager" onSubmit="return checkblank(this);">
+    <form name="manSignin"class="form-horizontal" role="form" method="post" action="/signin_manager" onSubmit="return checkblank(this);">
       <% if (message.length > 0) { %>
         <div class="alert alert-success col-sm-12"><%= message %></div>
       <% } %>

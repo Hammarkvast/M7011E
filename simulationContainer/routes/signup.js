@@ -25,7 +25,7 @@ router.post('/',upload.single('uploaded_image'), async function(req,res,next){
    var emial= post.email;
    
    
-   console.log(req.file);
+  // console.log(req.file);
    file = req.file;
 // 
    var imgname = file.filename;
@@ -34,7 +34,7 @@ router.post('/',upload.single('uploaded_image'), async function(req,res,next){
    let buff = fs.readFileSync(file.path);
    let base64data = buff.toString('base64');
  //  console.log("name of file: "+ imgname+ " ,type of file: "+ imgtype)
-//   console.log(base64data);
+ //  console.log(base64data);
 
    
 
@@ -66,7 +66,7 @@ router.post('/',upload.single('uploaded_image'), async function(req,res,next){
 
          var sql3 = "INSERT INTO `house` (`ownerid`,`longitude`, `latitude`, `lastwindspeed`, `meanwind`, `stddevwind`,`broken`, `brokencount`, `brokenprobability`, `productionefficiency`,`production`,`meanconsumption`, `stddevconsumption`, `consumption`, `griddelta`,`gridbatterypercentage`, `batteryMax`, `battery`,`imgname`,`imgtype`,`image`)" 
          sql3 = sql3 + " VALUES (" + db.escape(result2[0].ownerid) + ", 65.373, 22.811, 3.5, 6, 0.05, 0, 0, 0.05, 8, 55.3, 50, 0.8, 54.55, 0, 50.0, 200,100.0," + db.escape(imgname) +  "," + db.escape(imgtype) +  "," + db.escape(base64data) + ");"
-         console.log(sql3);
+         //console.log(sql3);
          query = await db.query(sql3, async function(err3, result3){
          
             if (err3){
