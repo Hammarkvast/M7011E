@@ -10,7 +10,7 @@ var bcrypt = require('bcrypt');
 //GET all owners.
 
 router.get('/', function(req, res, next) {
-      res.render('signin', {message: "signin.js"});
+      res.render('signin', {message: ""});
 });
 
 router.post('/', function(req,res,next){
@@ -29,6 +29,7 @@ router.post('/', function(req,res,next){
          message = err.message + err.log
          res.render('signin', {message: message}); 
       }
+      if(result[0] !== undefined){
       bcrypt.compare(pass, result[0].password, function(err, compareres) {
          if(compareres == true){
             req.session.loggedin = true;
@@ -41,7 +42,10 @@ router.post('/', function(req,res,next){
             res.render('signin',{message: message});
          }
         });
-      
+      }else{
+         message = "Try signin in to the managerpage instead!";
+         res.render('signin', {message: message});            
+      }
          // message = "Succesfully! Your account has been created.";
          // res.render('signin',{message: message});
       });
