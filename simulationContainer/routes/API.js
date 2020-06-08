@@ -233,4 +233,18 @@ router.get('/setprice', function(req, res, next) {
       //  console.log("inside set price Api not ERROR")
     })
 });
+router.get('/getSlider', function(req, res, next) {
+    console.log(req.session);
+    id = req.session.databaseid;
+    var sql = "SELECT gridbatterypercentage FROM house WHERE ownerid = "+ db.escape(id)+";";
+    db.query(sql, async function(err,rows,result){
+    if (err){
+        console.log(err);
+        res.sendStatus(500);
+        return err;
+    }
+    res.send(rows);
+    })
+
+});
 module.exports = router;

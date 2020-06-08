@@ -48,6 +48,7 @@ router.post('/', function(req, res, next) {
     var post  = req.body;
     var slider= post.slider; 
     var sql = "UPDATE antom.house SET gridbatterypercentage = "+ db.escape(slider) + " WHERE ownerid ="+db.escape(req.session.databaseid)+";";
+    console.log(sql);
     db.query(sql, function(err, result){
         if (err){
             console.log(err);

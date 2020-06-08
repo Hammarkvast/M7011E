@@ -109,3 +109,14 @@ async function setprice(price){
     });
 
 }
+async function setSlider(){
+    await $.getJSON('/API/getSlider', function(userdata) {
+      // userdata = JSON.stringify(userdata);
+      //userdata = JSON.parse(userdata);
+      //averageData = averageCountyWeather;
+      // userdata = JSON.parse(userdata);
+      putSlider(userdata);
+      
+    });
+
+}
