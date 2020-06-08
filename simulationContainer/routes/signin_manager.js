@@ -7,7 +7,7 @@ router.use(bodyParser.json());
 var bcrypt = require('bcrypt');
 
 router.get('/', function(req,res,next){
-    res.render('signin_manager', {message: "signin_manager.js"});
+    res.render('signin_manager', {message: ""});
 });
 
 router.post('/', function(req,res,next){
@@ -19,10 +19,13 @@ router.post('/', function(req,res,next){
     var sql = "SELECT * FROM owners WHERE username = "+ db.escape(name) +" AND manager = 1;";
     var query = db.query(sql, function(err, result){
         if(err){
+            console.log(err);
             message = err.message + err.log;
             res.render('signin_manager',{message: message});
         }
-        bcrypt.compare(pass, result[0].password, function(err, compares){
+        console.log(result[0]);
+        if(result[0] !== undefined){
+        bcrypt.compare(pass, result[0].password , function(err, compares){
             if(compares == true){
                 req.session.loggedin = true;
                 req.session.username = name;
@@ -34,6 +37,11 @@ router.post('/', function(req,res,next){
                 res.render('signin_manager', {message: message});
             }
         });
+    }else{
+        message = "You dont have access to this page!";
+        res.render('signin_manager', {message: message});        
+    }
+
     });
 }   else{
         message = "Wrong username, manager, or you dont have the rights to access this page";

@@ -67,8 +67,7 @@
         <h4>batttery vs grid </h4>
         <form class="form-horizontal" role="form" method="post" action="/" onSubmit="return checkblank(this);">
           <div class="slidecontainer">
-            <input type="range" min="0" max="100" value="50" id="slider" name="slider" onchange='document.getElementById("slidertext").value = "Slider Value = " + document.getElementById("slider").value;'/>
-            <!-- <input type="text" name="slidertext" id="slidertext" value="Slider Value = 1" disabled /> -->
+            <input type="range" min="0" max="100" value="50" id="slider" name="slider"/>
           </div>
               <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Submit Percentage</button>
         </form>
@@ -76,23 +75,13 @@
     <div class="col-sm-4">
       <h4 id = "header" > battery level 70%</h4>
         <div class="progress">
-            <div class="progress-bar bg-secondary" value='70' style="width:70%" id = "prog"> </div>
+            <div class="progress-bar bg-secondary" style="width:70%" id = "prog"> </div>
         </div>
     </div>
   </div>
 </div>
 
 <script>
-var slider = document.getElementById("myRange");
-//var output = document.getElementById("demo");
-//output.innerHTML = slider.value; // Display the default slider value
-// console.log(window.getComputedStyle(document.getElementById("prog")));
-// document.getElementById("prog")
-////Update the current slider value (each time you drag the slider handle)
-// slider.oninput = function() {
-  // output.innerHTML = this.value;
-  // 
-// } 
 </script>
 <script type="text/javascript" src="javascripts/apicall.js"></script>
 <script type="text/javascript" src="javascripts/webdata.js"></script>
@@ -106,6 +95,7 @@ var slider = document.getElementById("myRange");
   getuserdata();
   getelectricityprice();
   getownerdata();
+  setSlider();
   timeout = 5001;
   setInterval(() => {
     getuserdata();

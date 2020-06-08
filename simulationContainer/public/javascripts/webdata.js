@@ -14,21 +14,13 @@ function putvalues(values){
 
     var progressed = percentage; 
     progressed = progressed.toFixed(0);
-    var interval = setInterval(function() {
+    console.log(progressed);
     
-        $("#prog")
+    $("#prog")
+    .css("width", progressed + "%")
+    .attr("aria-valuenow", progressed)
+    .text(progressed + "%");
     
-        .css("width", progressed + "%")
-    
-        .attr("aria-valuenow", progressed)
-    
-        .text(progressed + "%");
-    
-        if (progressed >= 100)
-    
-            clearInterval(interval);
-    
-    }, 100);
   });
 
 }
@@ -42,4 +34,8 @@ function putOwnerData(user){
 function putElectricity(electricityprice){
 
   document.getElementById("electricityprice").innerHTML = electricityprice.totalelectricityPrice + "kr/kwh";
+}
+
+function putSlider(userdata){
+  document.getElementById("slider").value = userdata[0].gridbatterypercentage;
 }
