@@ -30,8 +30,16 @@
       <h5>Last name</h5>
       <p id="lastname"></p>
     </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="exampleFormControlFile1">Image upload</label>
+        <form class="form-horizontal" role="form" action="/picture" method="post" enctype="multipart/form-data">
+          <input type="file" class="form-control-file" name="house_img" accept=""/>
+          <button type="submit" class = "btn btn-primary">Upload</button>
+        </form>
+      </div>
+    </div>
   </div>
-
 </div>
 
 <div class="container p-3 my-3 bg-dark text-white">

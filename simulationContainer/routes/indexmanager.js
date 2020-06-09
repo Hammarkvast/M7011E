@@ -84,8 +84,10 @@ router.post('/price', function(req, res, next) {
             });
         }
     });
+   res.redirect("/managerhome");
   }
-    res.redirect("/managerhome");
+
+   res.redirect("/signin_manager");
 });
 
 module.exports = router;
