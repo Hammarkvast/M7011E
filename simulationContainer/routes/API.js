@@ -16,6 +16,19 @@ router.get('/getOwnerData', function(req, res, next){
     })
 });
 
+router.get('/getAllOwners', function(req,res,next){
+    var sql = "SELECT username, ownerid FROM owners WHERE manager = 0";
+    db.query(sql, function(err, rows, result){
+        if(err){
+            console.log(err);
+            res.sendStatus(500);
+            return err;
+        }
+        //console.log(rows);
+        res.send(rows);
+    })
+})
+
 //GET all owners.
 
 router.get('/getUserData', function(req, res, next) {
@@ -26,50 +39,54 @@ router.get('/getUserData', function(req, res, next) {
         res.sendStatus(500);
         return err;
     }
-    // let battery =  result[0].battery;
-    // let batterymax =  result[0].batteryMax;
-    // let percentage = battery / batterymax;
-    // percentage = percentage * 100;
-    
-    // let test =  {
-    // percentage: percentage,
-    // production: result[0].production,
-    // consumption: result[0].consumption,
-    // gridbatterypercentage: result[0].gridbatterypercentage,
-    // windspeed: result[0].lastwindspeed,
-    // netproduction: result[0].griddelta,
-    // electricityprice: 5,
-    // battery: result[0].battery,
-    // };
-    // res.json(rows);
     res.send(rows);
     })
 
 });
 
+router.get('/getmanagerplantData', function(req, res, next) {
+    var sql = "SELECT production, gridbufferpercentage, griddelta, buffer, bufferMax FROM powerplant;";
+    //console.log("inside get manager plat data API ");
+    db.query(sql, async function(err,rows,result){
+    if (err){
+        console.log(err);
+        res.sendStatus(500);
+        return err;
+    }
+    //console.log(" inside get manager plant data not error API")
+    res.send(rows);
+    })
+
+});
 router.get('/getElectricityPrice', function(req, res, next) {
      //var id = req.param.id;
     // console.log("enter check owner")
     // res.render('owner.ejs');
-    var sql = 'SELECT totalelectricityPrice FROM totalelectricity;';
+    
+    //console.log("get electricity price n api")
+    var sql = 'SELECT totalelectricityPrice, manorsim FROM totalelectricity;';
     //res.status(200);
     db.query(sql, function(err, rows, fields){
         if(err) {
             res.status(500).send({error: 'Something failed!'});
         }
         res.send(rows);
+        //console.log("get electricity price not error api")
     })
 });
-router.get('/', function(req, res, next) {
+router.get('/getmanagerhandleusers', function(req, res, next) {
      //var id = req.param.id;
     // console.log("enter check owner")
     // res.render('owner.ejs');
-    var sql = 'SELECT * FROM  owners';
+    var sql = 'SELECT ownerid, username, UNIX_TIMESTAMP(lasttime),blockedtime, secondsblocked FROM  owners WHERE manager = 0';
     //res.status(200);
     db.query(sql, function(err, rows, fields){
         if(err) {
+            console.log("error log js: "+ err.log);
+            console.log("error message js: " + err.message);
             res.status(500).send({error: 'Something failed!'});
         }
+        //console.log(rows)
         res.json(rows);
     })
 });
@@ -106,17 +123,28 @@ router.get('/getHouseElectricity', function(req, res, next){
     })
 });
 
-
-router.delete('/deleteOwner', function(req, res, next) {
-    var id = req.param.id;
-    var sql = 'DELETE * FROM house INNER JOIN owners ON house.houseid = owners.houseid WHERE house.houseid='+id;
-    db.query(sql, [id], function(err, row, fields) {
+router.get('/getmanagerhandleuserblocked', function(req, res, next){
+    var id = req.query.id;
+    var sql = 'SELECT blackout FROM house;'
+    db.query(sql, [id], function(err, row, fields){
         if(err){
-            res.status(500).send({error: 'couldnt delete the specific owner'});
+            console.log(err);
+            res.status(500).send({error: 'couldnt recieve house info'});
         }
         res.json(row)
     })
 });
+
+// router.delete('/deleteOwner', function(req, res, next) {
+//     var id = req.param.id;
+//     var sql = 'DELETE * FROM house INNER JOIN owners ON house.houseid = owners.houseid WHERE house.houseid='+id;
+//     db.query(sql, [id], function(err, row, fields) {
+//         if(err){
+//             res.status(500).send({error: 'couldnt delete the specific owner'});
+//         }
+//         res.json(row)
+//     })
+// });
 
 
 
@@ -141,4 +169,82 @@ router.post('/addProductionConsumption', function(req, res, next){
     })
 });
 
+router.get('/getVisitOwnerData', function(req, res, next){
+    var sql = "SELECT firstname, lastname, username FROM owners WHERE ownerid = " + db.escape(req.query.userid) + ";";
+    db.query(sql, async function(err, rows, result){
+        if(err){
+            console.log(err);
+            res.sendStatus(500);
+            return err;
+        }
+        res.send(rows);
+    })
+});
+
+//GET all owners.
+
+router.get('/getVisitUserData', function(req, res, next) {
+    //console.log(req.query.userid);
+    id = req.query.userid;
+    var sql = "SELECT lastwindspeed, production, consumption, gridbatterypercentage, griddelta, battery, batteryMax FROM house WHERE ownerid = "+ db.escape(id)+";";
+    db.query(sql, async function(err,rows,result){
+    if (err){
+        console.log(err);
+        res.sendStatus(500);
+        return err;
+    }
+    res.send(rows);
+    })
+
+});
+
+router.get('/getVisitElectricityPrice', function(req, res, next) {
+    //console.log(req);
+    var sql = 'SELECT totalelectricityPrice FROM totalelectricity;';
+   // res.status(200);
+    db.query(sql, function(err, rows, fields){
+        if(err) {
+            res.status(500).send({error: 'Something failed!'});
+        }
+        res.send({rows});
+    })
+});
+router.get('/settoggle', function(req, res, next) {
+    //console.log(req);
+    var sql = 'UPDATE totalelectricity SET manorsim =' + db.escape(req.query.toggle)+' ;';
+   // res.status(200);
+    db.query(sql, function(err, rows, fields){
+        if(err) {
+            res.status(500).send({error: 'Something failed!'});
+        }
+        //res.send({rows});
+        //console.log("inide set toggle API not ERROR")
+    })
+});
+router.get('/setprice', function(req, res, next) {
+    //console.log(req);
+    var sql = 'UPDATE totalelectricity SET totalelectricityPrice =' + db.escape(req.query.price)+' ;';
+   // res.status(200);
+    db.query(sql, function(err, rows, fields){
+        if(err) {
+            res.status(500).send({error: 'Something failed!'});
+        }
+        //res.send({rows});
+      //  console.log("inside set price Api not ERROR")
+    })
+});
+router.get('/getSlider', function(req, res, next) {
+    console.log(req.session);
+    id = req.session.databaseid;
+    var sql = "SELECT gridbatterypercentage FROM house WHERE ownerid = "+ db.escape(id)+";";
+    db.query(sql, async function(err,rows,result){
+    if (err){
+        console.log(err);
+        res.sendStatus(500);
+        return err;
+    }
+    res.send(rows);
+    })
+
+});
 module.exports = router;

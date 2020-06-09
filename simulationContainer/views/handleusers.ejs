@@ -7,13 +7,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="javascripts/apicall.js"></script>
+  <script type="text/javascript" src="javascripts/getmanagerwebdata.js"></script>
 </head>
 
 <body>
+<<<<<<< HEAD
 <div class="jumbotron text-center">
   <h3>Welcome dear master</h3>
   <p>HANDLE USERS PAGE</p>
 </div> 
+=======
+>>>>>>> 7932fa7669598c313b268a31c00e2062455ad15f
 <%- include('partials/managernavigation') -%>
 
   <!-- <script> -->
@@ -51,7 +56,11 @@
   <!-- </script> -->
 <div class="container p-3 my-3">
 
+<<<<<<< HEAD
     <table class = ".table-hover" id = "table">
+=======
+    <table class="table table-hover" id = "table">
+>>>>>>> 7932fa7669598c313b268a31c00e2062455ad15f
       <thead>
         <tr>
           <th>Username</th>
@@ -65,6 +74,7 @@
         </tr>
       </thead>
       <tbody>
+<<<<<<< HEAD
 
 
       </tbody>
@@ -126,6 +136,19 @@
 
 
       </script>
+=======
+        <script>
+          
+        gethandleuserdata();
+        getmanageruserblocked()
+        timeout = 1000;
+        setInterval(() => {
+          getmanageruserblocked();
+          updatehandleuserdata();
+        }, timeout);
+        </script>
+      </tbody>
+>>>>>>> 7932fa7669598c313b268a31c00e2062455ad15f
       <!-- <% if (message.length > 0){ %> -->
         <!-- <% for (var i = 0 ; i<test.length; i++){ %> -->
           <!-- <tr> -->

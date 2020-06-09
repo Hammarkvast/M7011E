@@ -17,24 +17,25 @@ async function Simulationtest({}){
     timeout = 5000;
     setInterval(async () => {
         
-        var sql = "SELECT ownerid FROM owners;";
+        var sql = "SELECT ownerid,blockedtime, secondsblocked FROM owners;";
         await db.query(sql, async function(err,result){
             if (err){
                 console.log(err);
                 res.sendStatus(500);
                 return err;
             }
-            console.log(result);
+            // console.log(result);
             
             for (i=0; i<result.length; i++){
                 await WeatherSimulation(result[i].ownerid);
                 await prodSimulation(result[i].ownerid);
                 await consumptionSimulation(result[i].ownerid);
                 await brokensimulation(result[i].ownerid);
-                await batterysimulation(result[i].ownerid);
+                await batterysimulation(result[i].ownerid, result[i].blockedtime, result[i].secondsblocked);
+                await blackoutcheck(result[i].ownerid);
             }
-            // await pricesimulation();
             await coalPLant();
+            await pricesimulation();
             
             return result[0];
         })  
@@ -66,7 +67,11 @@ async function WeatherSimulation(id){
             let weather = new WeatherSim(result2[0].lastwindspeed, result2[0].meanwind, result2[0].stddevwind);
             let lastwindspeed = weather.weather()
 <<<<<<< HEAD
+<<<<<<< HEAD
             console.log("lastwindspeed: " + lastwindspeed)
+=======
+            //console.log("lastwindspeed: " + lastwindspeed)
+>>>>>>> 7932fa7669598c313b268a31c00e2062455ad15f
             var sql3 = "UPDATE antom.house SET lastwindspeed = "+ db.escape(lastwindspeed) + " WHERE houseid ="+db.escape(houseid)+";";
 =======
             var sql3 = "UPDATE antom.house SET lastwindspeed = "+ db.escape(lastwindspeed) + " WHERE houseid ="+db.escape(houseid)+";";
@@ -106,7 +111,7 @@ async function prodSimulation(id){
             
             let prod = new ProductionSim(result2[0].lastwindspeed, result2[0].productionefficiency);
             let production = prod.currentproduction();
-            console.log("production: " + production)
+          //  console.log("production: " + production)
             var sql3 = "UPDATE antom.house SET production = "+ db.escape(production) + " WHERE houseid ="+db.escape(houseid)+";";
 
             await db.query(sql3, function(err2,result){
@@ -218,7 +223,7 @@ async function brokensimulation(id){
 }
 
 
-async function batterysimulation(id){
+async function batterysimulation(id,blockedtime, secondsblocked){
     var sql =  "SELECT houseid FROM house WHERE ownerid  = "+db.escape(id)+";"; 
     await db.query(sql, async function(err,result){
         if (err){
@@ -239,7 +244,7 @@ async function batterysimulation(id){
                 return err2;
             }
             
-            let battsim = new BatterySim(result2[0].battery, result2[0].batteryMax, result2[0].production, result2[0].consumption, result2[0].gridbatterypercentage);
+            let battsim = new BatterySim(result2[0].battery, result2[0].batteryMax, result2[0].production, result2[0].consumption, result2[0].gridbatterypercentage,blockedtime, secondsblocked);
             let battery = [];
             battery = battsim.batteryfunc();
 
@@ -297,26 +302,89 @@ async function coalPLantSimulation(values){
     })
 }
 
-async function pricesimulation(){
-    var sql = "SELECT SUM(griddelta) FROM house;";
+
+async function blackoutcheck(id){
+    var sql =  "SELECT houseid FROM house WHERE ownerid  = "+db.escape(id)+";"; 
     await db.query(sql, async function(err,result){
         if (err){
             console.log(err);
             res.sendstatus(500);
             return err;
         }
-        let priceSimvar = new PriceSim(result[0]);
-        let price = priceSimvar.price();
-        
-        var sql2 = "UPDATE antom.totalelectricity SET totalnetproduction = " + db.escape(result[0]) +". totalelectricityprice" + db.escape(price) ;
-        await db.query(sql2, async function(err2,result2){
-            if (err2){
-                console.log(err2);
+        // if gridnet <= 0 and battery = 0 and consumption greater than simulation blackout
+        var sql2 = "select consumption, production, battery FROM house WHERE houseid = "+db.escape(result[0].houseid)+";"
+        let gridnet = 0;
+        let consumption =0;
+        let production = 0;
+        let battery = 0;
+        await db.query(sql2, async function(err,result2){
+            if (err){
+                console.log(err);
                 res.sendstatus(500);
-                return err2;
+                return err;
             }
-            
-        }) 
+            consumption = result2[0].consumption;
+            production = result2[0].production;
+            battery = result2[0].battery;
+        });
+
+        var sql3 = "SELECT totalnetproduction FROM totalelectricity WHERE id = 1;" 
+        await db.query(sql3, async function(err,result3){
+            if (err){
+                console.log(err);
+                res.sendstatus(500);
+                return err;
+            }
+            gridnet = result3[0].totalnetproduction;
+        });
+        if (gridnet <=0 && production < consumption && battery <=0){
+            var sqlblackout = "UPDATE house SET blackout = 1;"
+        }else{
+            var sqlblackout = "UPDATE house SET blackout = 0;"
+        }
+        await db.query(sqlblackout, async function(err,result4){
+            if (err){
+                console.log(err);
+                res.sendstatus(500);
+                return err;
+            }
+        });
+    });
+}
+
+async function pricesimulation(){
+    var sql0 = "SELECT manorsim FROM totalelectricity"
+
+    await db.query(sql0, async function(err,result0){
+        if (err){
+            console.log(err);
+            res.sendstatus(500);
+            return err;
+        }
+        if (result0[0].manorsim == 1){
+
+            var sql = "SELECT SUM(griddelta) AS sumgrid FROM house;";
+            await db.query(sql, async function(err,result){
+                if (err){
+                    console.log(err);
+                    result.sendstatus(500);
+                    return err;
+                }
+                let grideltavar = result[0].sumgrid;
+                let priceSimvar = new PriceSim(grideltavar);
+                let price = priceSimvar.price();
+                
+                var sql2 = "UPDATE antom.totalelectricity SET totalnetproduction = " + db.escape(grideltavar) +", totalelectricityprice =" + db.escape(price) ;
+                await db.query(sql2, async function(err2,result2){
+                    if (err2){
+                        console.log(err2);
+                        res.sendstatus(500);
+                        return err2;
+                    }
+                    
+                }) 
+            })
+        }
     })
 }
 

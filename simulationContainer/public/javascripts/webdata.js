@@ -2,8 +2,8 @@
 function putvalues(values){
   let percentage = values.battery / values.batteryMax;
   percentage = percentage * 100;
-  console.log("percentage: " + percentage + " battery: " + values.battery + " batteryMax: " + values.batteryMax)
-  document.getElementById("header").innerHTML = "battery level = "  + percentage 
+  //console.log("percentage: " + percentage + " battery: " + values.battery + " batteryMax: " + values.batteryMax)
+  document.getElementById("header").innerHTML = "battery level"  
   document.getElementById("windspeed").innerHTML = values.lastwindspeed + "m/s";
   document.getElementById("production").innerHTML = values.production + "Kwh";
   document.getElementById("consumption").innerHTML = values.consumption + "Kwh";
@@ -13,22 +13,14 @@ function putvalues(values){
   $(function() {
 
     var progressed = percentage; 
-  
-    var interval = setInterval(function() {
+    progressed = progressed.toFixed(0);
+    console.log(progressed);
     
-        $("#prog")
+    $("#prog")
+    .css("width", progressed + "%")
+    .attr("aria-valuenow", progressed)
+    .text(progressed + "%");
     
-        .css("width", progressed + "%")
-    
-        .attr("aria-valuenow", progressed)
-    
-        .text(progressed + "%");
-    
-        if (progressed >= 100)
-    
-            clearInterval(interval);
-    
-    }, 100);
   });
 
 }
@@ -42,4 +34,8 @@ function putOwnerData(user){
 function putElectricity(electricityprice){
 
   document.getElementById("electricityprice").innerHTML = electricityprice.totalelectricityPrice + "kr/kwh";
+}
+
+function putSlider(userdata){
+  document.getElementById("slider").value = userdata[0].gridbatterypercentage;
 }

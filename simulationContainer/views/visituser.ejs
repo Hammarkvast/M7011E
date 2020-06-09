@@ -1,6 +1,5 @@
-
 <html lang = "en">
-    <%- include('partials/head') -%>
+  <%- include('partials/head') -%>
 <body>
 <!--<div class="jumbotron text-center">
   <h1>My First Bootstrap Page</h1>
@@ -67,7 +66,8 @@
         <h4>batttery vs grid </h4>
         <form class="form-horizontal" role="form" method="post" action="/" onSubmit="return checkblank(this);">
           <div class="slidecontainer">
-            <input type="range" min="0" max="100" value="50" id="slider" name="slider"/>
+            <input type="range" min="0" max="100" value="50" id="slider" name="slider" onchange='document.getElementById("slidertext").value = "Slider Value = " + document.getElementById("slider").value;'/>
+            <!-- <input type="text" name="slidertext" id="slidertext" value="Slider Value = 1" disabled /> -->
           </div>
               <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Submit Percentage</button>
         </form>
@@ -75,31 +75,43 @@
     <div class="col-sm-4">
       <h4 id = "header" > battery level 70%</h4>
         <div class="progress">
-            <div class="progress-bar bg-secondary" style="width:70%" id = "prog"> </div>
+            <div class="progress-bar bg-secondary" value='70' style="width:70%" id = "prog"> </div>
         </div>
+    </div>
+    <div class="col-sm-4">
+      
+     <!-- <% if (imageurl.length > 0) { %> -->
+        <picture>
+          <img id ="image" src="" alt= "your house" width = 100px;>
+        </picture>
+      <!-- <% } %> -->
     </div>
   </div>
 </div>
 
 <script>
+var slider = document.getElementById("myRange");
 </script>
-<script type="text/javascript" src="javascripts/apicall.js"></script>
-<script type="text/javascript" src="javascripts/webdata.js"></script>
+<script type="text/javascript" src="../javascripts/apicall.js"></script>
+<script type="text/javascript" src="../javascripts/webdata.js"></script>
 
 <script>
   var image =  document.getElementById("image");
   var imgurl = '<%= imageurl %>';
   image.src =  imgurl;
-  // image.srcset = ><%= message %>;
-  
-  getuserdata();
-  getelectricityprice();
-  getownerdata();
-  setSlider();
+  var id = <%= id %>;
+ // console.log("userid: "+ id);  
+  getvisituserdata(id);
+  getvisitownerdata(id);
+  getvisitelectricityprice(id);
+  //getuserdata();
+  //getelectricityprice();
+  //getownerdata();
+
   timeout = 5001;
   setInterval(() => {
-    getuserdata();
-    getelectricityprice();
+    getvisituserdata(id);
+    getvisitelectricityprice(id);
   }, timeout);
 </script>
 

@@ -12,12 +12,12 @@
 
 
 <div class="jumbotron text-center">
-  <h3>My First Bootstrap Page</h3>
-  <p>Resize this responsive page to see the effect!</p>
+  <h3>GL Electrics</h3>
+  <p>The most electrifying company.... in the world</p>
 </div>
 
 <div class="container p-3 my-3 bg-dark text-white">
-    <form class="form-horizontal" role="form" method="post" action="/signin" onSubmit="return checkblank(this);">
+    <form name="signin" class="form-horizontal" role="form" method="post" action="/signin" onSubmit="return checkblank(this);">
       <% if (message.length > 0) { %>
         <div class="alert alert-success col-sm-12"><%= message %></div>
       <% } %>
@@ -38,11 +38,16 @@
         <div class="col-md-offset-3 col-md-9">
             <button id="btn-signin" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign in</button>
             <p class="text-muted" >
-              Dont have an account? <a href="http://127.0.0.1:3000/signup" class="text-reset">Register here</a>
+              <!-- Dont have an account? <a href="http://127.0.0.1:3000/signup" class="text-reset">Register here</a> -->
+              Dont have an account? <a href="http://54.85.244.46:80/signup" class="text-reset">Register here</a>
             </p>
         </div>
     </div>
     </form>
     </div>
+
+<!-- </html> -->
+
 </div>
 </html>
+

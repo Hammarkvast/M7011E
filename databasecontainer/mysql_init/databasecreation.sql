@@ -17,7 +17,10 @@ CREATE TABLE `antom`.`owners`(
     `email` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `username`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `password`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-    `manager` int,
+    `lasttime` DATETIME DEFAULT NULL,
+    `blockedtime` BIGINT DEFAULT NULL,
+    `secondsblocked` int DEFAULT NULL,
+    `manager` int not NULL DEFAULT 0,
     PRIMARY KEY (ownerid)
 );
 
@@ -41,6 +44,7 @@ CREATE TABLE `antom`.`house` (
     `gridbatterypercentage` float,
     `batteryMax` int,
     `battery` float,
+    `blackout` int UNSIGNED null,
     `imgname` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `imgtype` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `image` LONGBLOB,
@@ -62,10 +66,13 @@ CREATE TABLE `antom`.`powerplant`(
 
 CREATE TABLE `antom`.`totalelectricity`(
     `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+    `manorsim` int DEFAULT 1,
     `totalproduction` float,
     `totalconsumption` float,
     `totalnetproduction` float,
     `totalelectricityPrice` float,
     PRIMARY KEY (id)
 );
+
+SET @@time_zone = 'SYSTEM';
 -- ALTER TABLE owners OWNER TO antom;   
