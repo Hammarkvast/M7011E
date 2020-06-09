@@ -3,6 +3,9 @@ var express = require('express');
 var router = express.Router();
 const request = require("request");
 var fs = require('fs');
+var multer = require('multer');
+var upload = multer({ dest: __dirname + '/../public/pictures'});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   interval  = 5000;
@@ -59,6 +62,35 @@ router.post('/', function(req, res, next) {
     });
   }
     res.redirect("/");
+});
+
+
+
+router.post('/picture', upload.single('house_img'), function(req, res, next){
+    console.log("Testing 123");
+    if (req.session.loggedin && !req.session.manager){
+      // console.log(req.file);
+      file = req.file;
+      //res.send("testing 123");
+      var fileType = req.file.mimetype;
+      var fileName = req.file.filename;
+      //var id = req.body.id;
+      let buff = fs.readFileSync(file.path);
+      let base64data = buff.toString('base64');
+      //console.log(filetype);
+      //console.log(fileName);
+      //console.log(base64data);
+      var sql = 'UPDATE house SET imgname =' + db.escape(fileName) + ', imgtype = ' + db.escape(fileType) + ', image =' + db.escape(base64data) + 'WHERE houseid =' + db.escape(req.session.databaseid) + ';';
+      db.query(sql, function (err){
+          if(err){
+              console.log("error detected: " + err);
+              res.status(500).send({error: err});
+          }
+      });
+      res.redirect("/");
+  }
+  res.redirect("/signin");
+
 });
 
 
