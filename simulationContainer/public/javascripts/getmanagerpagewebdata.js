@@ -11,7 +11,6 @@ function putvalues(values){
 
     var progressed = percentage; 
     progressed = progressed.toFixed(0);
-    var interval = setInterval(function() {
     
         $("#prog")
     
@@ -21,11 +20,6 @@ function putvalues(values){
     
         .text(progressed + "%");
     
-        if (progressed >= 100)
-    
-            clearInterval(interval);
-    
-    }, 100);
   });
 
 }
