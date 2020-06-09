@@ -14,11 +14,7 @@ const request = require("request");
 // });
 router.get('/',function(req, res, next){
     // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3030');
-<<<<<<< HEAD
-    if(req.session.loggedin){
-=======
     if(req.session.loggedin && req.session.manager){
->>>>>>> 7932fa7669598c313b268a31c00e2062455ad15f
         res.render("handleusers");
     }else{
         res.redirect('/signin_manager');
@@ -27,19 +23,6 @@ router.get('/',function(req, res, next){
 
 
 router.post('/visit', async function(req,res,next){
-<<<<<<< HEAD
-  console.log(req.body);
-  console.log("--------------------------------------------------------------------------------------------------------------------------------");
-  // console.log(res);
-  //res.send();
-  res.render('managerpage ');
-});
- 
-router.post('/block', async function(req,res,next){
-  console.log(req.body);
-  res.send();
-  res.send('/signin_manager');
-=======
   
   if (req.session.loggedin && req.session.manager){
     body = req.body;
@@ -90,7 +73,6 @@ router.post('/block/blocked', async function (req, res,next){
    }else{
      res.redirect("/signin");
    }
->>>>>>> 7932fa7669598c313b268a31c00e2062455ad15f
 });
 
 module.exports = router;

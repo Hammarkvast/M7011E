@@ -12,13 +12,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-<div class="jumbotron text-center">
-  <h3>Welcome dear master</h3>
-  <p>HANDLE USERS PAGE</p>
-</div> 
-=======
->>>>>>> 7932fa7669598c313b268a31c00e2062455ad15f
 <%- include('partials/managernavigation') -%>
 
   <!-- <script> -->
@@ -56,11 +49,7 @@
   <!-- </script> -->
 <div class="container p-3 my-3">
 
-<<<<<<< HEAD
-    <table class = ".table-hover" id = "table">
-=======
     <table class="table table-hover" id = "table">
->>>>>>> 7932fa7669598c313b268a31c00e2062455ad15f
       <thead>
         <tr>
           <th>Username</th>
@@ -74,69 +63,6 @@
         </tr>
       </thead>
       <tbody>
-<<<<<<< HEAD
-
-
-      </tbody>
-      <script>
-      
-      var tableRef = document.getElementById('table').getElementsByTagName('tbody')[0];
-      var newRow   = tableRef.insertRow(-1);
-      var newCell0  = newRow.insertCell(0);
-      var newCell1  = newRow.insertCell(1);
-      var newCell2  = newRow.insertCell(2);
-      var newCell3  = newRow.insertCell(3);
-      var newCell4  = newRow.insertCell(4);
-      var newCell5  = newRow.insertCell(5);
-      
-      var newText0  = document.createTextNode('New row0');
-      var newText1  = document.createTextNode('New row1');
-      var newText2  = document.createTextNode('New row2');
-      var newText3  = document.createTextNode('New row3');
-
-      my_form=document.createElement('FORM');
-      my_form.name='myForm';
-      my_form.method='POST';
-      // my_form.action='http://www.another_page.com/index.htm';
-  
-      my_tb=document.createElement('INPUT');
-      my_tb.type='HIDDEN';
-      my_tb.name='hidden1';
-      my_tb.value= 1;
-      my_form.appendChild(my_tb);
-      //my_form.submit();  
-      
-      var btn = document.createElement("BUTTON");   // Create a <button> element
-        btn.innerHTML = "VISIT";
-        btn.className = "btn btn-lg btn-primary btn-block";
-        btn.type = "submit";
-        btn.formaction = "handleusers/visit";
-        my_form.appendChild(btn);
-        // btn.value = 1;
-        // btn.onclick = function(){visit(btn)};
-        
-        var btn1 = document.createElement("BUTTON");   // Create a <button> element
-        btn1.innerHTML = "BLOCK";
-        btn1.className = "btn btn-lg btn-primary btn-block"; 
-        btn.type = "submit";
-        btn1.formaction = "handleusers/block";
-        my_form.appendChild(btn1);
-        // btn1.value = 1;
-        // btn1.onclick = function(){ block(btn1)};
-        document.body.appendChild(my_form);
-
-      newCell0.appendChild(newText0);
-      newCell1.appendChild(newText1);
-      newCell2.appendChild(newText2);
-      newCell3.appendChild(newText3);
-      newCell4.appendChild(btn);
-      newCell5.appendChild(btn1);
-
-
-
-
-      </script>
-=======
         <script>
           
         gethandleuserdata();
@@ -148,7 +74,6 @@
         }, timeout);
         </script>
       </tbody>
->>>>>>> 7932fa7669598c313b268a31c00e2062455ad15f
       <!-- <% if (message.length > 0){ %> -->
         <!-- <% for (var i = 0 ; i<test.length; i++){ %> -->
           <!-- <tr> -->

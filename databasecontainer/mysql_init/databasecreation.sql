@@ -47,7 +47,7 @@ CREATE TABLE `antom`.`house` (
     `blackout` int UNSIGNED null,
     `imgname` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `imgtype` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-    `image` LONGBLOB,
+    `image` MEDIUMBLOB,
     PRIMARY KEY (houseid),
     FOREIGN KEY (ownerid) REFERENCES owners(ownerid)
 );
