@@ -42,9 +42,12 @@ router.post('/', function(req,res,next){
             res.render('signin',{message: message});
          }
         });
-      }else{
+      }else if(name == "man"){
          message = "Try signin in to the managerpage instead!";
          res.render('signin', {message: message});            
+      }else{
+         message = "Wrong username and/or password. Try again!";
+         res.render('signin', {message: message});                   
       }
          // message = "Succesfully! Your account has been created.";
          // res.render('signin',{message: message});
