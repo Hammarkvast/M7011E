@@ -14,10 +14,14 @@ function puthandleusers(values){
       blackoutstring = "no blackout"
       // console.log(values[i].blockedtime);
       // console.log(values[i].secondsblocked);
-      if ((values[i].blockedtime + values[i].secondsblocked*1000)>d.getTime()){
+      let currtime = d.getTime();
+      console.log(values);
+      console.log("Lasttime: "+ values[i].lasttime + "\n currnet time: " + currtime);
+
+      if ((values[i].blockedtime + values[i].secondsblocked*1000)>currtime){
           blockedstring = "BLOCKED";
       } 
-      if (values[i].lasttimecol<(Date.now()+10)){
+      if ((values[i].lasttime+10000)>currtime){
           onlinestring = "ONLINE";
       }
       if (values[i].blackout==1){
@@ -91,15 +95,19 @@ function puthandleusers(values){
 
 function putupdatehandleusers(values){
    d = new Date()
+    console.log("updhaus vl:" + values.length)
     for (i = 0;i <values.length; i++ ){
       blockedstring = "not blocked";
       onlinestring = "not online";
       // console.log(values[i].blockedtime);
       // console.log(values[i].secondsblocked);
-      if ((values[i].blockedtime + values[i].secondsblocked*1000)>d.getTime()){
+      let currtime = d.getTime();
+      console.log(values);
+      console.log("Lasttime: "+ values[i].lasttime + "\n currnet time: " + currtime);
+      if ((values[i].blockedtime + values[i].secondsblocked*1000)>currtime) {
           blockedstring = "BLOCKED";
       } 
-      if (values[i].lasttimecol<(Date.now()+10)){
+      if ((values[i].lasttime+10000)>currtime){
           onlinestring = "ONLINE";
       }
 
@@ -116,7 +124,7 @@ function putupdatehandleusers(values){
 }
 
 function putupdateblocked(values){
-
+    console.log("blackout vl:" + values.length)
     for (i = 0;i <values.length; i++ ){
       blackoutstring = "no blackout"
       if (values[i].blackout == 1){
@@ -124,7 +132,9 @@ function putupdateblocked(values){
       }
       var newText2  = document.createTextNode(blackoutstring);
       var rowIndex = i+1;
+      console.log(rowIndex);
       let blackoutcell = document.getElementById('table').rows[rowIndex].cells[2];
+      console.log(blackoutcell);
       blackoutcell.removeChild(blackoutcell.childNodes[0]);
       blackoutcell.appendChild(newText2);
     }

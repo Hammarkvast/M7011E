@@ -32,6 +32,16 @@ router.get('/getAllOwners', function(req,res,next){
 //GET all owners.
 
 router.get('/getUserData', function(req, res, next) {
+    var d = new Date();
+    var time = d.getTime()
+    var sql0 = "UPDATE owners SET lasttime = "+ db.escape(time) + " WHERE ownerid = "+ db.escape(req.session.databaseid)+";";
+    db.query(sql0, async function(err,rows,result){
+    if (err){
+        console.log(err);
+        res.sendStatus(500);
+        return err;
+    }
+    })
     var sql = "SELECT lastwindspeed, production, consumption, gridbatterypercentage, griddelta, battery, batteryMax FROM house WHERE ownerid = "+ db.escape(req.session.databaseid)+";";
     db.query(sql, async function(err,rows,result){
     if (err){
@@ -78,7 +88,7 @@ router.get('/getmanagerhandleusers', function(req, res, next) {
      //var id = req.param.id;
     // console.log("enter check owner")
     // res.render('owner.ejs');
-    var sql = 'SELECT ownerid, username, UNIX_TIMESTAMP(lasttime),blockedtime, secondsblocked FROM  owners WHERE manager = 0';
+    var sql = 'SELECT ownerid, username, lasttime,blockedtime, secondsblocked FROM  owners WHERE manager = 0';
     //res.status(200);
     db.query(sql, function(err, rows, fields){
         if(err) {
@@ -125,7 +135,7 @@ router.get('/getHouseElectricity', function(req, res, next){
 
 router.get('/getmanagerhandleuserblocked', function(req, res, next){
     var id = req.query.id;
-    var sql = 'SELECT blackout FROM house;'
+    var sql = 'SELECT blackout FROM house where ownerid != 2 ;'
     db.query(sql, [id], function(err, row, fields){
         if(err){
             console.log(err);
