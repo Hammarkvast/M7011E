@@ -17,7 +17,7 @@ CREATE TABLE `antom`.`owners`(
     `email` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `username`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `password`  varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-    `lasttime` DATETIME DEFAULT NULL,
+    `lasttime` BIGINT DEFAULT NULL,
     `blockedtime` BIGINT DEFAULT NULL,
     `secondsblocked` int DEFAULT NULL,
     `manager` int not NULL DEFAULT 0,
