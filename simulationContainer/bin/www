@@ -14,7 +14,7 @@ var http = require('http');
 
 // IMPORTANT SWICH 3000 TO 80 WHEN DEPLOYING ON SERVER!!!!!!!!!!!
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-var port = normalizePort(process.env.PORT || '80');
+var port = normalizePort(process.env.PORT || '80);
 app.set('port', port);
 
 /**
