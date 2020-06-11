@@ -15,8 +15,6 @@ function puthandleusers(values){
       // console.log(values[i].blockedtime);
       // console.log(values[i].secondsblocked);
       let currtime = d.getTime();
-      console.log(values);
-      console.log("Lasttime: "+ values[i].lasttime + "\n currnet time: " + currtime);
 
       if ((values[i].blockedtime + values[i].secondsblocked*1000)>currtime){
           blockedstring = "BLOCKED";
@@ -95,15 +93,12 @@ function puthandleusers(values){
 
 function putupdatehandleusers(values){
    d = new Date()
-    console.log("updhaus vl:" + values.length)
     for (i = 0;i <values.length; i++ ){
       blockedstring = "not blocked";
       onlinestring = "not online";
       // console.log(values[i].blockedtime);
       // console.log(values[i].secondsblocked);
       let currtime = d.getTime();
-      console.log(values);
-      console.log("Lasttime: "+ values[i].lasttime + "\n currnet time: " + currtime);
       if ((values[i].blockedtime + values[i].secondsblocked*1000)>currtime) {
           blockedstring = "BLOCKED";
       } 
@@ -124,7 +119,6 @@ function putupdatehandleusers(values){
 }
 
 function putupdateblocked(values){
-    console.log("blackout vl:" + values.length)
     for (i = 0;i <values.length; i++ ){
       blackoutstring = "no blackout"
       if (values[i].blackout == 1){
