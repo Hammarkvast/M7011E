@@ -203,7 +203,7 @@ router.get('/getVisitElectricityPrice', function(req, res, next) {
         if(err) {
             res.status(500).send({error: 'Something failed!'});
         }
-        res.send({rows});
+        res.send(rows);
     })
 });
 router.get('/settoggle', function(req, res, next) {

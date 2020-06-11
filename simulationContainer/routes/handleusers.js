@@ -21,6 +21,25 @@ router.get('/',function(req, res, next){
     }
 });
 
+router.get('/visit', function(req, res, next){
+  if (req.session.loggedin && req.session.manager){
+    body = req.body;
+    id = req.session.buttonid;
+    var sql = "SELECT imgname, imgtype, image FROM house WHERE ownerid = "+ db.escape(id)+";";
+    var query = db.query(sql, function(err, result) { 
+      if (err){
+      console.log("error log js: "+ err.log);
+      console.log("error message js: " + err.message);
+      message = err.message + err.log
+      res.render('visituser', {message: message, userid: id}); 
+    }
+    var data = "data:" + result[0].imgtype + ";base64,"+result[0].image;
+    res.render('visituser', {imageurl: data, userid: id});
+    });
+  }else{
+    res.redirect('/signin_manager');
+  }
+});
 
 router.post('/visit', async function(req,res,next){
   
@@ -36,12 +55,12 @@ router.post('/visit', async function(req,res,next){
       res.render('visituser', {message: message, userid: id}); 
     }
     var data = "data:" + result[0].imgtype + ";base64,"+result[0].image;
-        
+    req.session.buttonid = id;
     res.render('visituser', {imageurl: data, userid: id});
     });
   
   } else{
-    res.redirect("/signin");
+    res.redirect("/signin_manager");
   }
 });
  
