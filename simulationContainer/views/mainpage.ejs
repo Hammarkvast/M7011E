@@ -1,117 +1,115 @@
+<html lang="en">
+<%- include('partials/head') -%>
 
-<html lang = "en">
-    <%- include('partials/head') -%>
 <body>
-<!--<div class="jumbotron text-center">
-  <h1>My First Bootstrap Page</h1>
-  <p>Resize this responsive page to see the effect!</p>
-</div>-->
-<%- include('partials/navigation') -%>
+  <%- include('partials/navigation') -%>
 
-<div class="container p-3 my-3 bg-dark text-white">
-  <div class = "row">
-    <div class= "col-sm-2">
-     <!-- <% if (imageurl.length > 0) { %> -->
-      <picture>
-        <img id ="image" src="" alt= "your house" width = 150px;>
-      </picture>
-    <!-- <% } %> -->
-      </form>
-    </div>
-    <div class="col-sm-2">
-      <h5>username</h5>
-      <p id="username" ></p>
-    </div>
-    <div class="col-sm-2">
-      <h5>First name</h5>
-      <p id="firstname"></p>
-    </div>
-    <div class="col-sm-2">
-      <h5>Last name</h5>
-      <p id="lastname"></p>
-    </div>
-    <div class="col-sm-4">
-      <div class="form-group">
-        <label for="exampleFormControlFile1">Image upload</label>
-        <form class="form-horizontal" role="form" action="/picture" method="post" enctype="multipart/form-data">
-          <input type="file" class="form-control-file" name="house_img" accept=""/>
-          <button type="submit" class = "btn btn-primary">Upload</button>
+  <div class="container p-3 my-3 bg-dark text-white">
+    <div class="row">
+      <div class="col-sm-2">
+        <!-- <% if (imageurl.length > 0) { %> -->
+        <picture>
+          <img id="image" src="" alt="your house" width=150px;>
+        </picture>
+        <!-- <% } %> -->
         </form>
+      </div>
+      <div class="col-sm-2">
+        <h5>username</h5>
+        <p id="username"></p>
+      </div>
+      <div class="col-sm-2">
+        <h5>First name</h5>
+        <p id="firstname"></p>
+      </div>
+      <div class="col-sm-2">
+        <h5>Last name</h5>
+        <p id="lastname"></p>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Image upload</label>
+          <form class="form-horizontal" role="form" action="/picture" method="post" enctype="multipart/form-data">
+            <input type="file" class="form-control-file" name="house_img" accept="" />
+            <button type="submit" class="btn btn-primary">Upload</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container p-3 my-3 bg-dark text-white">
+  <div class="container p-3 my-3 bg-dark text-white">
 
-  <div class="row">
-    <div class="col-sm-2">
+    <div class="row">
+      <div class="col-sm-2">
         <h4> current windspeed </h4>
-        <p id = "windspeed" > </p>
+        <p id="windspeed"> </p>
+      </div>
+      <div class="col-sm-2">
+        <h4> Current Production</h4>
+        <p id="production"> </p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Current consumption</h4>
+        <p id=consumption></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>current netproduction</h4>
+        <p id=netproduction></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Current battery amount</h4>
+        <p id=battery></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Current electricity Price</h4>
+        <p id=electricityprice></p>
+      </div>
     </div>
-    <div class="col-sm-2">
-      <h4> Current Production</h4>
-      <p id = "production" > </p>
-    </div>
-    <div class="col-sm-2">
-      <h4>Current consumption</h4>
-      <p id = consumption></p>
-    </div>
-    <div class="col-sm-2">
-      <h4>current netproduction</h4>
-      <p id = netproduction></p>
-    </div>
-    <div class="col-sm-2">
-      <h4>Current battery amount</h4>
-      <p id = battery></p>
-    </div>
-    <div class="col-sm-2">
-      <h4>Current electricity Price</h4>
-      <p id = electricityprice></p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4">
+    <div class="row">
+      <div class="col-sm-4">
         <h4>batttery vs grid </h4>
         <form class="form-horizontal" role="form" method="post" action="/" onSubmit="return checkblank(this);">
           <div class="slidecontainer">
-            <input type="range" min="0" max="100" value="50" id="slider" name="slider"/>
+            <input type="range" min="0" max="100" value="50" id="slider" name="slider" />
           </div>
-              <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Submit Percentage</button>
+          <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Submit
+            Percentage</button>
         </form>
-    </div>
-    <div class="col-sm-4">
-      <h4 id = "header" > battery level 70%</h4>
+      </div>
+      <div class="col-sm-4">
+        <h4 id="header"> battery level 70%</h4>
         <div class="progress">
-            <div class="progress-bar bg-secondary" style="width:70%" id = "prog"> </div>
+          <div class="progress-bar bg-secondary" style="width:70%" id="prog"> </div>
         </div>
+      </div>
     </div>
   </div>
-</div>
 
-<script>
-</script>
-<script type="text/javascript" src="javascripts/apicall.js"></script>
-<script type="text/javascript" src="javascripts/webdata.js"></script>
+  <script>
+  </script>
+  <script type="text/javascript" src="javascripts/apicall.js"></script>
+  <script type="text/javascript" src="javascripts/webdata.js"></script>
 
-<script>
-  var image =  document.getElementById("image");
-  var imgurl = '<%= imageurl %>';
-  image.src =  imgurl;
-  // image.srcset = ><%= message %>;
-  
-  getuserdata();
-  getelectricityprice();
-  getownerdata();
-  setSlider();
-  timeout = 5001;
-  setInterval(() => {
+  <script>
+    var image = document.getElementById("image");
+    var imgurl = '<%= imageurl %>';
+    image.src = imgurl;
+    // image.srcset = ><%= message %>;
+
     getuserdata();
     getelectricityprice();
-  }, timeout);
-</script>
+    getownerdata();
+    setSlider();
+    timeout = 5001;
+    setInterval(() => {
+      getuserdata();
+      getelectricityprice();
+    }, timeout);
+  </script>
 
 
 
 </body>
- </html>
+
+</html>

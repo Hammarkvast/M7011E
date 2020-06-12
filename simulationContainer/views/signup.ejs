@@ -1,8 +1,9 @@
-<html lang = "en">
+<html lang="en">
+
 <head>
-  <meta charset = "utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel='stylesheet' href='/stylesheets/slider.css' />
+  <link rel='stylesheet' href='/stylesheets/slider.css' />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -16,49 +17,53 @@
 </div>
 
 <div class="container p-3 my-3 bg-dark text-white">
-    <form class="form-horizontal" role="form" method="post" action="/signup" enctype="multipart/form-data" onSubmit="return checkblank(this);">
-        <% if (message.length > 0) { %>
-          <div class="alert alert-success col-sm-12"><%= message %></div>
-        <% } %>
-        <div id="signupalert" style="display:none" class="alert alert-danger">
-          <p>Error:</p>
-          <span></span>
-        </div>
-      <div class="input-group mb-3">  
-        <div class="input-group-prepend">
-          <span class="input-group-text">Person</span>
-        </div>
-        <input type="text" class="form-control" placeholder="First Name" id="firstname" name="firstname">
-        <input type="text" class="form-control" placeholder="Last Name" id="lastname" name="lastname">
-      </div> 
-        <div class="form-group">
-         <label for="email">email:</label>
-         <input type="text" class="form-control" id="email" name="email">
-        </div>
-       <div class="form-group">
-         <label for="usr">Username:</label>
-         <input type="text" class="form-control" id="username" name = "username">
-        </div>
-        <div class="form-group">
-          <label for="mob_no" class="col-md-3 control-label">Profile Image</label>
-          <div class="col-sm-9">
-              <input class="form-control" type="file" name="uploaded_image" accept=""/>
-          </div>
-      </div>      
-        <div class="form-group">
-            <label for="pwd">Password:</label>
-             <input type="password" class="form-control" id="password" name = "password" pattern=".{8,}" placeholder="minimum 8 characters required">
-        </div> 
-        <div class="form-group">
-          <!-- Button -->                                       
-          <div class="col-md-offset-3 col-md-9">
-              <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
-              <p class="text-muted" >
-                Already have an account? <a href="http://54.85.244.46:80/signin" class="text-reset">Sign in</a>
-                <!-- Already have an account? <a href="http://127.0.0.1:3000/signin" class="text-reset">Sign in</a> -->
-              </p>
-          </div>
+  <form class="form-horizontal" role="form" method="post" action="/signup" enctype="multipart/form-data"
+    onSubmit="return checkblank(this);">
+    <% if (message.length > 0) { %>
+    <div class="alert alert-success col-sm-12"><%= message %></div>
+    <% } %>
+    <div id="signupalert" style="display:none" class="alert alert-danger">
+      <p>Error:</p>
+      <span></span>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Person</span>
       </div>
-    </form>
+      <input type="text" class="form-control" placeholder="First Name" id="firstname" name="firstname">
+      <input type="text" class="form-control" placeholder="Last Name" id="lastname" name="lastname">
+    </div>
+    <div class="form-group">
+      <label for="email">email:</label>
+      <input type="text" class="form-control" id="email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="usr">Username:</label>
+      <input type="text" class="form-control" id="username" name="username">
+    </div>
+    <div class="form-group">
+      <label for="mob_no" class="col-md-3 control-label">Profile Image</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="file" name="uploaded_image" accept="" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="password" name="password" pattern=".{8,}"
+        placeholder="minimum 8 characters required">
+    </div>
+    <div class="form-group">
+      <!-- Button -->
+      <div class="col-md-offset-3 col-md-9">
+        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign
+          Up</button>
+        <p class="text-muted">
+          Already have an account? <a href="http://54.85.244.46:80/signin" class="text-reset">Sign in</a>
+          <!-- Already have an account? <a href="http://127.0.0.1:3000/signin" class="text-reset">Sign in</a> -->
+        </p>
+      </div>
+    </div>
+  </form>
 </div>
+
 </html>

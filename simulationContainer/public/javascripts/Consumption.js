@@ -17,7 +17,6 @@ module.exports = class Consumption {
     }
 
     runConsumptionSim(){
-        //setInterval(() => {console.log(this.consumption(this.prevConsumption, this.distribution)); }, 1000);
         return this.consumption();
     }
 

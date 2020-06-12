@@ -1,8 +1,9 @@
-<html lang = "en">
+<html lang="en">
+
 <head>
-  <meta charset = "utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel='stylesheet' href='/stylesheets/slider.css' />
+  <link rel='stylesheet' href='/stylesheets/slider.css' />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -12,44 +13,11 @@
 </head>
 
 <body>
-<%- include('partials/managernavigation') -%>
+  <%- include('partials/managernavigation') -%>
 
-  <!-- <script> -->
-  <!-- // console.log("entercheck script"); -->
-  <!-- // function visit(element){ -->
-    <!-- // console.log("entercheck"); -->
-    <!-- // console.log(element.value); -->
-    <!-- // $.ajax({ -->
-      <!-- // url: "http://localhost:3000/handleusers/visit", -->
-      <!-- // type: "POST", -->
-      <!-- // data: {id: element.value}, //send this to server -->
-      <!-- // success: function() { -->
-        <!-- /  console.log(returned); // here can get the return of route -->
-      <!-- // }, -->
-      <!-- // error: function() { -->
-      <!-- // } -->
-    <!-- // }); -->
-  <!-- // } -->
-<!--  -->
-  <!-- function block(element){ -->
-    <!-- console.log("enterCheck block") -->
-    <!-- //console.log(element); -->
-    <!-- $.ajax({ -->
-        <!-- url: "http://localhost:3000/handleusers/block", -->
-        <!-- type: "POST", -->
-        <!-- data: {id: element.value}, //send this to server -->
-        <!-- success: function(returned) { -->
-            <!-- console.log(returned); // here can get the return of route -->
-        <!-- }, -->
-        <!-- error: function() { -->
-<!--  -->
-        <!-- } -->
-    <!-- }); -->
-<!-- } -->
-  <!-- </script> -->
-<div class="container p-3 my-3">
+  <div class="container p-3 my-3">
 
-    <table class="table table-hover" id = "table">
+    <table class="table table-hover" id="table">
       <thead>
         <tr>
           <th>Username</th>
@@ -59,35 +27,22 @@
           <th>visit</th>
           <th>block</th>
           <th></th>
-          
+
         </tr>
       </thead>
       <tbody>
         <script>
-          
-        gethandleuserdata();
-        getmanageruserblocked()
-        timeout = 1000;
-        setInterval(() => {
-          getmanageruserblocked();
-          updatehandleuserdata();
-        }, timeout);
+          gethandleuserdata();
+          getmanageruserblocked()
+          timeout = 1000;
+          setInterval(() => {
+            getmanageruserblocked();
+            updatehandleuserdata();
+          }, timeout);
         </script>
       </tbody>
-      <!-- <% if (message.length > 0){ %> -->
-        <!-- <% for (var i = 0 ; i<test.length; i++){ %> -->
-          <!-- <tr> -->
-            <!-- <td> <%= test[i].username%></td> -->
-            <!-- <td> <%= test[i].username%></td> -->
-            <!-- <td> <%= test[i].username%></td> -->
-            <!-- <td> <%= test[i].username%></td> -->
-            <!-- <td> <button id="btnVisit" class="btn btn-lg btn-primary btn-block" type="button">visit</button> </td> -->
-            <!-- <td> <button id="btnBlock" class="btn btn-lg btn-primary btn-block" type="button">block</button> </td> -->
-          <!-- </tr> -->
-        <!-- <%}%> -->
-      <!-- <%}%> -->
     </table>
-</div>
+  </div>
 </body>
 
 </html>

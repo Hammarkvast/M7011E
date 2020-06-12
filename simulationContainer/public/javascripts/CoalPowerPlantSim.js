@@ -3,7 +3,7 @@ var gaussian = require("gaussian");
 module.exports = class Consumption {
     distribution;
     prevConsumption;
-    constructor(previousProduction,mean, stddev, onoroff, changetimestate){
+    constructor(previousProduction, mean, stddev, onoroff, changetimestate) {
         const distribution = gaussian(mean, stddev);
         this.distribution = distribution;
         this.previosProduction = previousProduction;
@@ -11,34 +11,34 @@ module.exports = class Consumption {
         this.changetimestate = changetimestate;
     }
 
-    producion(){
+    producion() {
         var d = new Date();
         var time = d.getTime();
 
         let prevProdcdf = this.distribution.cdf(this.previosProduction);
-        prevProdcdf+= (Math.random()-0.5);
-        let  amntProduced = this.distribution.ppf(prevProdcdf);
-        let timediff = time-this.changetimestate;
-        if (this.onoroff ==1){
-            if (timediff < 30000){
-                let scalar = timediff * (1/30000);
+        prevProdcdf += (Math.random() - 0.5);
+        let amntProduced = this.distribution.ppf(prevProdcdf);
+        let timediff = time - this.changetimestate;
+        if (this.onoroff == 1) {
+            if (timediff < 30000) {
+                let scalar = timediff * (1 / 30000);
                 let finamntprod = amntProduced * scalar;
                 return finamntprod;
-            }else{
+            } else {
                 return amntProduced;
             }
-        }else{
-            if (timediff<30000){
-                let scalar = timediff * (1/30000);
-                let finamntprod = amntProduced * (1-scalar);
+        } else {
+            if (timediff < 30000) {
+                let scalar = timediff * (1 / 30000);
+                let finamntprod = amntProduced * (1 - scalar);
                 return finamntprod;
-            }else{
+            } else {
                 return 0;
             }
         }
     }
 
-    runConsumptionSim(){
+    runConsumptionSim() {
         //setInterval(() => {console.log(this.consumption(this.prevConsumption, this.distribution)); }, 1000);
         return this.consumption();
     }

@@ -25,20 +25,5 @@ module.exports = class BrokenSim{
         }
     }
 
-    //getbroken(){
-        // if (this.count >=5){
-            // this.count = 0;
-            // this.broken = false;
-        // } 
-        // if (this.broken){
-            // this.count++;
-        // }
-      //  return this.broken;
-    //}
 
 }
-
-// const wt = new Windturbine();
-// for (i = 0; i <1000; i++){
-    // console.log(wt.getwindtrubineprod());
-// }

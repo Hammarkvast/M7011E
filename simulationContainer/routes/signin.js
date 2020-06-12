@@ -9,56 +9,66 @@ var bcrypt = require('bcrypt');
 
 //GET all owners.
 
-router.get('/', function(req, res, next) {
-      res.render('signin', {message: ""});
+router.get('/', function (req, res, next) {
+   res.render('signin', {
+      message: ""
+   });
 });
 
-router.post('/', function(req,res,next){
-    message = '';
-   var post  = req.body;
-   var name= post.username;
-   var pass= post.password;
+router.post('/', function (req, res, next) {
+   message = '';
+   var post = req.body;
+   var name = post.username;
+   var pass = post.password;
    //var sql = "INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`user_name`, `password`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "')";
-   if (name){
-   var sql = "SELECT * FROM owners WHERE username = "+ db.escape(name) + " AND manager != 1;";
-   var query = db.query(sql, function(err, result) { 
-      if (err){
-         console.log("error log js: "+ err.log);
-         console.log("error message js: " + err.message);
-   
-         message = err.message + err.log
-         res.render('signin', {message: message}); 
-      }
-      if(result[0] !== undefined){
-      bcrypt.compare(pass, result[0].password, function(err, compareres) {
-         if(compareres == true){
-            req.session.loggedin = true;
-            req.session.username = name;
-            req.session.manager = false;
-            req.session.databaseid = result[0].ownerid;
-            res.redirect("/");
-         } else {
-            message = "Wrong username and/or password!";
-            res.render('signin',{message: message});
+   if (name) {
+      var sql = "SELECT * FROM owners WHERE username = " + db.escape(name) + " AND manager != 1;";
+      var query = db.query(sql, function (err, result) {
+         if (err) {
+            console.log("error log js: " + err.log);
+            console.log("error message js: " + err.message);
+
+            message = err.message + err.log
+            res.render('signin', {
+               message: message
+            });
          }
-        });
-      }else if(name == "man"){
-         message = "Try signin in to the managerpage instead!";
-         res.render('signin', {message: message});            
-      }else{
-         message = "Wrong username and/or password. Try again!";
-         res.render('signin', {message: message});                   
-      }
-         // message = "Succesfully! Your account has been created.";
-         // res.render('signin',{message: message});
+         if (result[0] !== undefined) {
+            bcrypt.compare(pass, result[0].password, function (err, compareres) {
+               if (compareres == true) {
+                  req.session.loggedin = true;
+                  req.session.username = name;
+                  req.session.manager = false;
+                  req.session.databaseid = result[0].ownerid;
+                  res.redirect("/");
+               } else {
+                  message = "Wrong username and/or password!";
+                  res.render('signin', {
+                     message: message
+                  });
+               }
+            });
+         } else if (name == "man") {
+            message = "Try signin in to the managerpage instead!";
+            res.render('signin', {
+               message: message
+            });
+         } else {
+            message = "Wrong username and/or password. Try again!";
+            res.render('signin', {
+               message: message
+            });
+         }
       });
-   }else{
+   } else {
       message = "Wrong username and/or password!";
-      res.render('signin',{message: message});
+      res.render('signin', {
+         message: message
+      });
    }
 });
- 
-   
 
 
-module.exports = router; 
+
+
+module.exports = router;

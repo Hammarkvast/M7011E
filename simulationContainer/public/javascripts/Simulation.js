@@ -106,7 +106,6 @@ async function prodSimulation(id) {
 
             let prod = new ProductionSim(result2[0].lastwindspeed, result2[0].productionefficiency);
             let production = prod.currentproduction();
-            //  console.log("production: " + production)
             var sql3 = "UPDATE antom.house SET production = " + db.escape(production) + " WHERE houseid =" + db.escape(houseid) + ";";
 
             await db.query(sql3, function (err2, result) {
@@ -283,11 +282,6 @@ async function coalPLantSimulation(values) {
 
         let batteryresult = buffersim.batteryfunc();
 
-        // console.log(batteryresult);
-        // console.log(produced + " PRODUCED RIGHT NOW BY OUR POWERPLANT!!!!!!");
-        // console.log(grideltavar + " GRIDDELTAVAR");
-        // console.log(values);
-
         var sql = "update antom.powerplant SET production = " + db.escape(produced) + ", buffer = " + db.escape(batteryresult[0]) + ", griddelta = " + db.escape(batteryresult[1]) + " where powerplantid = " + db.escape(values.powerplantid) + ";";
         await db.query(sql, async function (err, result) {
             if (err) {
@@ -309,7 +303,6 @@ async function blackoutcheck(id) {
             res.sendstatus(500);
             return err;
         }
-        // if gridnet <= 0 and battery = 0 and consumption greater than simulation blackout
         var sql2 = "select consumption, production, battery FROM house WHERE houseid = " + db.escape(result[0].houseid) + ";"
         let gridnet = 0;
         let consumption = 0;

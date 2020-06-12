@@ -1,8 +1,9 @@
-<html lang = "en">
+<html lang="en">
+
 <head>
-  <meta charset = "utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel='stylesheet' href='/stylesheets/slider.css' />
+  <link rel='stylesheet' href='/stylesheets/slider.css' />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -16,31 +17,34 @@
 </div>
 
 <div class="container p-3 my-3 bg-dark text-white">
-    <form name="manSignin"class="form-horizontal" role="form" method="post" action="/signin_manager" onSubmit="return checkblank(this);">
-      <% if (message.length > 0) { %>
-        <div class="alert alert-success col-sm-12"><%= message %></div>
-      <% } %>
-      <div id="signupalert" style="display:none" class="alert alert-danger">
-        <p>Error:</p>
-        <span></span>
-      </div>
-    <div class="input-group mb-3">  
-    </div> 
-     <div class="form-group">
-       <label for="usr">Manager:</label>
-       <input type="text" class="form-control" id="username" name = "username">
-      </div>
-      <div class="form-group">
-          <label for="pwd">Password:</label>
-           <input type="password" class="form-control" id="password" name = "password" >
-      </div> 
-      <div class="form-group">
-        <!-- Button -->                                       
-        <div class="col-md-offset-3 col-md-9">
-            <button id="btn-signin" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign in</button>
-        </div>
+  <form name="manSignin" class="form-horizontal" role="form" method="post" action="/signin_manager"
+    onSubmit="return checkblank(this);">
+    <% if (message.length > 0) { %>
+    <div class="alert alert-success col-sm-12"><%= message %></div>
+    <% } %>
+    <div id="signupalert" style="display:none" class="alert alert-danger">
+      <p>Error:</p>
+      <span></span>
     </div>
-    </form>
+    <div class="input-group mb-3">
     </div>
+    <div class="form-group">
+      <label for="usr">Manager:</label>
+      <input type="text" class="form-control" id="username" name="username">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="password" name="password">
+    </div>
+    <div class="form-group">
+      <!-- Button -->
+      <div class="col-md-offset-3 col-md-9">
+        <button id="btn-signin" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign
+          in</button>
+      </div>
+    </div>
+  </form>
 </div>
+</div>
+
 </html>
