@@ -40,3 +40,7 @@ function putElectricity(electricityprice) {
     $('#optradio').prop(checked, true);
   }
 }
+
+function putSliderManager(userdata){
+  document.getElementById("slider").value = userdata[0].gridbufferpercentage;
+}

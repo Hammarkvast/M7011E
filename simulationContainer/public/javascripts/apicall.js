@@ -84,3 +84,16 @@ async function setSlider(){
     });
 
 }
+
+async function setSliderManager(){
+  await $.getJSON('/API/getSliderManager', function(userdata) {
+    // userdata = JSON.stringify(userdata);
+    //userdata = JSON.parse(userdata);
+    //averageData = averageCountyWeather;
+    // userdata = JSON.parse(userdata);
+    console.log(userdata);
+    putSliderManager(userdata);
+    
+  });
+
+}

@@ -245,4 +245,18 @@ router.get('/getSlider', function (req, res, next) {
     })
 
 });
+
+router.get('/getSliderManager', function(req, res, next) {
+    var sql = "SELECT gridbufferpercentage FROM powerplant;";
+    db.query(sql, async function(err, rows, result){
+        if (err){
+            console.log(err);
+            res.sendStatus(500);
+            return err;
+        }
+        console.log(rows);
+        res.send(rows);
+    })
+});
+
 module.exports = router;
