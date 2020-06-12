@@ -9,6 +9,6 @@ INSERT INTO `house` (`ownerid`,`longitude`, `latitude`, `lastwindspeed`, `meanwi
 
 INSERT INTO `totalelectricity` (`id`, `totalconsumption`, `totalproduction`, `totalnetproduction`, `totalelectricityprice`) VALUES (1, 2.0, 3.0, 6, 0.8);
 
-INSERT INTO `powerplant` (`meanproduction`, `stddevproduction`, `production`, `griddelta`, `gridbufferpercentage`, `bufferMax`, `buffer`) VALUES
-( 400.0, 0.1, 400.0, 200.0, 50.0, 10000.0, 0);
+INSERT INTO `powerplant` (`meanproduction`, `stddevproduction`, `production`, `griddelta`, `gridbufferpercentage`, `bufferMax`, `buffer`, `onoroff`, `changestatetime`) VALUES
+( 400.0, 0.1, 400.0, 200.0, 50.0, 10000.0, 0, 1,0);
 

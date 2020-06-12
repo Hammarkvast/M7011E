@@ -61,6 +61,8 @@ CREATE TABLE `antom`.`powerplant`(
     `gridbufferpercentage` float,
     `bufferMax` int,
     `buffer` float,
+    `onoroff` int,
+    `changestatetime` BIGINT,
     PRIMARY KEY(powerplantid)
 );
 

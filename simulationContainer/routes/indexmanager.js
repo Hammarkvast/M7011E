@@ -90,4 +90,28 @@ router.post('/price', function(req, res, next) {
    res.redirect("/signin_manager");
 });
 
+router.post('/onoroff', function(req, res, next) {
+    // console.log("toggle Enter check");
+  if (req.session.loggedin){
+    var post  = req.body;
+    var d = new Date();
+    var time = d.getTime();
+
+    // console.log(post);
+    var tog= post.optradio;
+    //console.log(toggle)
+    // console.log("HHHHHHEEEEEERRRRRRREEEEEE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<") 
+     var sql = 'UPDATE powerplant SET onoroff = ' + db.escape(tog)+ ", changestatetime = " + db.escape(time)+'where onoroff !='+db.escape(tog)+' ;';
+    db.query(sql, function(err, result){
+        if (err){
+            console.log(err);
+            res.sendStatus(500);
+            return;
+        }
+       // res.json({'status':'success'})
+    });
+    res.redirect("/managerhome");   
+  }
+    res.redirect('/signin_manager');
+});
 module.exports = router;

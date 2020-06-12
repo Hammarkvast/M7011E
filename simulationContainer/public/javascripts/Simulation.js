@@ -267,7 +267,7 @@ async function coalPLant(){
 
 async function coalPLantSimulation(values){
 
-    let powerplant = new coalPowerPLantSim(values.production, values.meanproduction, values.stddevproduction);
+    let powerplant = new coalPowerPLantSim(values.production, values.meanproduction, values.stddevproduction, values.onoroff, values.changestatetime);
     let produced = powerplant.producion();
     let buffersim = new BatterySim(values.buffer, values.bufferMax, produced, 0, values.gridbufferpercentage);
 
@@ -275,7 +275,7 @@ async function coalPLantSimulation(values){
     
 
 
-    var sql =  "update antom.powerplant SET production = "+ db.escape(produced) + ", buffer = "+ db.escape(batteryresult[0])+", griddelta = " + db.escape(batteryresult[1])+ "where powerplantid = "+db.escape(values.powerplantid)+";"; 
+    var sql =  "update antom.powerplant SET production = "+ db.escape(produced) + ", buffer = "+ db.escape(batteryresult[0])+", griddelta = " + db.escape(batteryresult[1])+ " where powerplantid = "+db.escape(values.powerplantid)+";"; 
     await db.query(sql, async function(err,result){
         if (err){
             console.log(err);
