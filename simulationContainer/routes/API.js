@@ -74,7 +74,7 @@ router.get('/getElectricityPrice', function(req, res, next) {
     // res.render('owner.ejs');
     
     //console.log("get electricity price n api")
-    var sql = 'SELECT totalelectricityPrice, manorsim FROM totalelectricity;';
+    var sql = 'SELECT totalnetproduction, totalelectricityPrice, manorsim FROM totalelectricity;';
     //res.status(200);
     db.query(sql, function(err, rows, fields){
         if(err) {

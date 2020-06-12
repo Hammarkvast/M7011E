@@ -32,6 +32,7 @@ function putOwnerData(user){
 
 function putElectricity(electricityprice){
 
+  document.getElementById("netgridproduction").innerHTML = electricityprice.totalnetproduction + "kwh";
   document.getElementById("electricityprice").innerHTML = electricityprice.totalelectricityPrice + "kr/kwh";
   let manorsim = electricityprice.manorsim;
   if (manorsim==0){

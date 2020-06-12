@@ -101,7 +101,7 @@ router.post('/onoroff', function(req, res, next) {
     var tog= post.optradio;
     //console.log(toggle)
     // console.log("HHHHHHEEEEEERRRRRRREEEEEE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<") 
-     var sql = 'UPDATE powerplant SET onoroff = ' + db.escape(tog)+ ", changestatetime = " + db.escape(time)+'where onoroff !='+db.escape(tog)+' ;';
+     var sql = 'UPDATE powerplant SET onoroff = ' + db.escape(tog)+ ", changestatetime = " + db.escape(time)+' where onoroff != '+db.escape(tog)+' ;';
     db.query(sql, function(err, result){
         if (err){
             console.log(err);
