@@ -97,3 +97,9 @@ async function setSliderManager(){
   });
 
 }
+
+async function setPowerplantState(){
+  await $.getJSON('/API/getPlantState', function(userdata) {
+    putPowerplantState(userdata);
+  })
+}

@@ -116,4 +116,6 @@ router.post('/onoroff', function (req, res, next) {
     }
     res.redirect('/signin_manager');
 });
+
+
 module.exports = router;

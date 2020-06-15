@@ -41,6 +41,33 @@ function putElectricity(electricityprice) {
   }
 }
 
+function putPowerplantState(state) {
+  var date = new Date();
+  var currentTime = date.getTime();
+  stateString = "Started!";
+  var timeDiff = currentTime - state[0].changestatetime;
+  console.log(state[0].changestatetime);
+  if(state[0].onoroff == 1){
+    if(timeDiff <= 30000){
+      stateString = "Starting up!";
+      document.getElementById("currState").innerHTML = stateString;
+    } else{
+      stateString = "Started!";
+      document.getElementById("currState").innerHTML = stateString;
+    }
+  } else {
+    if(state[0].production == 0) {
+      stateString = "Stopped!";
+      document.getElementById("currState").innerHTML = stateString;
+    } else {
+      stateString = "Shutting down!";
+      document.getElementById("currState").innerHTML = stateString;
+    }
+  }
+
+
+}
+
 function putSliderManager(userdata){
   document.getElementById("slider").value = userdata[0].gridbufferpercentage;
 }

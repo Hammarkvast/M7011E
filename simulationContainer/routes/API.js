@@ -259,4 +259,15 @@ router.get('/getSliderManager', function(req, res, next) {
     })
 });
 
+router.get('/getPlantState', function(req, res, next){
+    var sql = 'SELECT onoroff, changestatetime, production FROM powerplant;';
+    db.query(sql, function(err, rows, result) {
+        if(err) {
+            console.log(err)
+            res.sendStatus(500);
+        }
+        res.send(rows);
+    })
+})
+
 module.exports = router;

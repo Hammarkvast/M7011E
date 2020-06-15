@@ -104,7 +104,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-3">
       <h4 id="toggle"> Turn on or off powerplant </h4>
       <form id="form-id" class="form-horizontal" role="form" method="post" action="/managerhome/onoroff"
         onSubmit="return checkblank(this);">
@@ -113,6 +113,10 @@
         <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp ON or
           OFF</button>
       </form>
+    </div>
+    <div class = "col-sm-3">
+      <h4>Powerplant State</h4>
+      <p id="currState"></p>
     </div>
   </div>
 </div>
@@ -134,11 +138,13 @@
   getelectricityprice();
   getownerdata();
   setSliderManager();
+  setPowerplantState();
   timeout = 5001;
   setInterval(() => {
     //console.log("Inside Interval");
     getmanagerpowerplantdata();
     getelectricityprice();
+    setPowerplantState();
   }, timeout);
 </script>
 
