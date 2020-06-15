@@ -17,15 +17,15 @@ async function Simulationtest({}) {
     timeout = 5000;
     setInterval(async () => {
 
-        var sql = "SELECT ownerid,blockedtime, secondsblocked FROM owners;";
+        var sql = "SELECT ownerid,blockedtime, secondsblocked FROM owners where manager = 0;";
         await db.query(sql, async function (err, result) {
             if (err) {
                 console.log(err);
                 res.sendStatus(500);
                 return err;
             }
-            // console.log(result);
-
+            
+            // console.log(result[i].ownerid);
             for (i = 0; i < result.length; i++) {
                 await WeatherSimulation(result[i].ownerid);
                 await prodSimulation(result[i].ownerid);
@@ -275,7 +275,7 @@ async function coalPLantSimulation(values) {
             return err;
         }
         grideltavar = result0[0].sumgrid;
-
+        console.log("Griddeltavar "+ grideltavar);
         let powerplant = new coalPowerPLantSim(values.production, values.meanproduction, values.stddevproduction, values.onoroff, values.changestatetime);
         let produced = powerplant.producion();
         let buffersim = new BatterySim(values.buffer, values.bufferMax, produced, -grideltavar, values.gridbufferpercentage, 0, 0);
@@ -365,7 +365,27 @@ async function pricesimulation() {
                 let priceSimvar = new PriceSim(grideltavar);
                 let price = priceSimvar.price();
 
-                var sql2 = "UPDATE antom.totalelectricity SET totalnetproduction = " + db.escape(grideltavar) + ", totalelectricityprice =" + db.escape(price);
+                var sql2 = "UPDATE antom.totalelectricity SET totalnetproduction = " + db.escape(grideltavar) + ", totalelectricityprice =" + db.escape(price)+";";
+                await db.query(sql2, async function (err2, result2) {
+                    if (err2) {
+                        console.log(err2);
+                        res.sendstatus(500);
+                        return err2;
+                    }
+
+                })
+            })
+        }else{
+            var sql = "SELECT griddelta FROM powerplant;";
+            await db.query(sql, async function (err, result) {
+                if (err) {
+                    console.log(err);
+                    result.sendstatus(500);
+                    return err;
+                }
+                let grideltavar = result[0].griddelta;
+
+                var sql2 = "UPDATE antom.totalelectricity SET totalnetproduction = " + db.escape(grideltavar) +";";
                 await db.query(sql2, async function (err2, result2) {
                     if (err2) {
                         console.log(err2);

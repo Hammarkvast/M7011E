@@ -91,8 +91,8 @@
     var image = document.getElementById("image");
     var imgurl = '<%= imageurl %>';
     image.src = imgurl;
-    var id = < %= id % > ;
-    // console.log("userid: "+ id);  
+    var id = <%= id %>;
+    //console.log("userid: "+ id);  
     getvisituserdata(id);
     getvisitownerdata(id);
     getvisitelectricityprice(id);
