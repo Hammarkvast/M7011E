@@ -68,7 +68,6 @@ async function WeatherSimulation(id) {
             let weather = new WeatherSim(result2[0].lastwindspeed, result2[0].meanwind, result2[0].stddevwind);
             let lastwindspeed = weather.weather()
 
-            console.log("lastwindspeed: " + lastwindspeed)
 
             var sql3 = "UPDATE antom.house SET lastwindspeed = " + db.escape(lastwindspeed) + " WHERE houseid =" + db.escape(houseid) + ";";
 
@@ -275,7 +274,6 @@ async function coalPLantSimulation(values) {
             return err;
         }
         grideltavar = result0[0].sumgrid;
-        console.log("Griddeltavar "+ grideltavar);
         let powerplant = new coalPowerPLantSim(values.production, values.meanproduction, values.stddevproduction, values.onoroff, values.changestatetime);
         let produced = powerplant.producion();
         let buffersim = new BatterySim(values.buffer, values.bufferMax, produced, -grideltavar, values.gridbufferpercentage, 0, 0);
